@@ -1,6 +1,9 @@
 \documentclass[twocolumn]{IEEEtran11}
 
-\usepackage{times}
+\include{qmacros}
+
+
+\usepackage{amsmath}
 \usepackage{epsfig}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
@@ -36,19 +39,34 @@ Computation can be done via measurement only, the outcome of which is dependant 
 %\begin{keywords} 
 %\end{keywords}
 
-\section{Areas}
+\section{Background}
 This paper will attempt to discuss some background on cluster states, a correspondence between 1WQC and the more traditional gate array model, and the computational power of this new model.
 
 \subsection{Cluster States}
 A cluster state is characterized by a set of eigenvalue equations, which are are determined by the distribution of the qubits on some lattice\cite{briegel2001persistent}.
-Briegel and Raussendorf show that any quantum logic circuit can be implemented on a cluster state, which demonstrates universality of the proposed scheme\cite{briegel2000measurements}. A method to prepare a one-dimensional cluster state is given in \cite{jorrand2005unifying}, consisting of ``cascading'' $C_z
-$ gates on $n$ qubits.
+Briegel and Raussendorf show that any quantum logic circuit can be implemented on a cluster state, which demonstrates universality of the proposed scheme\cite{briegel2000measurements}. Nielsen\cite{nielsen108020universal} extended this result to no longer require coherent dynamics, instead relying on a method to teleport quantum gates, and he provided a concise algorithm to do it. A method to prepare a one-dimensional cluster state is given in \cite{jorrand2005unifying}, consisting of ``cascading'' Controlled-$Z$ ($C_z$) gates on $n$ qubits, where:
+
+\[
+C_z = 
+\begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 1 & 0 & 0 \\
+  0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & -1 \\
+ \end{pmatrix}
+\]
+
+The action of the $C_z$ gate in the computational basis can be seen to be $\ket{x,y} \to (-1)^{xy}\ket{x,y}$. The set of all single qubit unitaries, coupled with either $C_x$ or $C_z$ has been shown to be universal\cite{brylinski2002universal}.
+
+\subsection{One-Way Quantum Computation}
+The unidirectionality of cluster state computation is inherent, due to the fact that the entanglement is progressively consumed at every step. An execution on a one-way quantum computer is a sequence of one-qubit measurements on a cluster state\cite{jorrand2005unifying}.
+
 
 \subsection{Gate Array Correspondence}
 In his analysis of the reducability of 1WQC to the gate array model, Richard Jozsa gives a polynomial time algorithm to perform the conversion between the two computational models\cite{jozsa2006introduction}. 
 
 \subsection{Computational Power and Complexity}
-In general, measurement based models can be polynomial time reduced to the gate array model, and thus have the same power, but they are more easily parallelizable\cite{jozsa2006introduction}.
+The gate teleportion algorithm\cite{nielsen108020universal} has a time complexity of $O(\log (1/\epsilon)$, where $\epsilon$ is the failure probability. In general, measurement based models can be polynomial time reduced to the gate array model, and thus have the same power, but they are more easily parallelizable\cite{jozsa2006introduction}.
 
 
 %% file citations.bib contains all the biblography
