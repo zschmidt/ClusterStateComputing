@@ -1,0 +1,56 @@
+\documentclass[twocolumn]{IEEEtran11}
+
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\oddsidemargin -15pt
+\evensidemargin -15pt
+\leftmargin 0 pt
+\topmargin -30pt
+\textwidth = 6.9 in
+\textheight = 9.0 in
+
+\newcommand{\itembase}{\setlength{\itemsep}{0pt}}
+\newcommand{\eg}{{\it e.g., }}
+\newcommand{\ie}{{\it i.e., }}
+
+\begin{document}
+\bibliographystyle{IEEE}
+
+\title{\Large \bf Cluster State Computing}
+\author{
+Dileep Reddy, Maira Amezcua, Zach Schmidt \\
+{\em dileep@uoregon.edu, mamezcua@cas.uoregon.edu, zschmidt@cs.uoregon.edu }
+}
+\maketitle
+
+%\pagestyle{empty}
+\begin{abstract}
+Computation can be done via measurement only, the outcome of which is dependant on the initial entangled state -- the \textit{cluster state}. This paper will attempt to provide background regarding computation using only measurements, a brief forray into the preparation of cluster states, a discussion of one way quantum computers (1WQC), and the computational power of various configurations of a 1WQC.
+\end{abstract}
+
+%\begin{keywords} 
+%\end{keywords}
+
+\section{Areas}
+This paper will attempt to discuss some background on cluster states, a correspondence between 1WQC and the more traditional gate array model, and the computational power of this new model.
+
+\subsection{Cluster States}
+A cluster state is characterized by a set of eigenvalue equations, which are are determined by the distribution of the qubits on some lattice\cite{briegel2001persistent}.
+Briegel and Raussendorf show that any quantum logic circuit can be implemented on a cluster state, which demonstrates universality of the proposed scheme\cite{briegel2000measurements}. A method to prepare a one-dimensional cluster state is given in \cite{jorrand2005unifying}, consisting of ``cascading'' $C_z
+$ gates on $n$ qubits.
+
+\subsection{Gate Array Correspondence}
+In his analysis of the reducability of 1WQC to the gate array model, Richard Jozsa gives a polynomial time algorithm to perform the conversion between the two computational models\cite{jozsa2006introduction}. 
+
+\subsection{Computational Power and Complexity}
+In general, measurement based models can be polynomial time reduced to the gate array model, and thus have the same power, but they are more easily parallelizable\cite{jozsa2006introduction}.
+
+
+%% file citations.bib contains all the biblography
+\bibliography{citations}
+\end{document}
