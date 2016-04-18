@@ -1,5 +1,9 @@
 \documentclass[twocolumn]{IEEEtran11}
 
+
+\usepackage[usenames,dvipnames]{xcolor} % for colored text
+\usepackage[normalem]{ulem} % for strickthrough text
+
 \include{qmacros}
 
 
@@ -21,6 +25,14 @@
 \newcommand{\eg}{{\it e.g., }}
 \newcommand{\ie}{{\it i.e., }}
 
+% All the pretty colors go here
+\definecolor{myGreen}{rgb}{0,1,0}
+\definecolor{myRed}{rgb}{1,0,0}
+\newcommand{\clb}{\color{blue}}
+\newcommand{\clr}{\color{myRed}}
+\newcommand{\clg}{\color{myGreen}}
+\newcommand{\clbl}{\color{black}}
+
 \begin{document}
 \bibliographystyle{IEEE}
 
@@ -33,14 +45,14 @@ Dileep Reddy, Mayra Amezcua, Zach Schmidt \\
 
 %\pagestyle{empty}
 \begin{abstract}
-Quantum computation can be done via measurement only, the outcome of which is dependent on an initial entangled state -- the \textit{cluster state}. Each computational step is a unitary operation that destroys a quantum state, leaving a final state that relies on the outcomes of earlier computations. The model of interest is the one-way quantum computer which is based on this measurement scheme. This paper will present background regarding computation using only measurements, a brief introduction into the preparation of cluster states, a discussion of one way quantum computers (1WQC), and the computational power of various configurations of a 1WQC.
+\clb Any quantum computation can be performed via sequences of one-qubit measurements on a specific type of initially entangled state -- the \textit{cluster state}\clbl. Each computational step is a unitary operation that destroys a quantum state, leaving a final state that relies on the outcomes of earlier computations. The model of interest is the one-way quantum computer which is based on this measurement scheme. This paper will present background regarding computation using only measurements, a brief introduction into the preparation of cluster states, a discussion of one way quantum computers (1WQC), and the computational power of various configurations of a 1WQC.
 \end{abstract}
 
 %\begin{keywords} 
 %\end{keywords}
 
 \section{Background}
-Over the past few decades advances in science and technology have greatly contributed to the development of modern computers. While these computers are efficient and convenient for everyday needs, they fail at certain computational tasks. Instead, quantum computers promise faster large scale factorization and database searches that intractable for their classical counterparts. The first quantum computer designs were based off of classical models; sequences of gates are performed on chosen quantum bits and a final measurement would convert quantum information into classical bits. However, this network of quantum logic gates does not fully explore the interesting properties of quantum mechanics: entanglement and measurement. A new model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrates that quantum computation can be achieved by using single qubit measurements as computational steps. This so-called cluster model or \textit{one-way quantum computer (1WQC)} relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource. The fascinating feature about 1WQC is that they have no classical analogues and probe into new territory in regards to entanglement and measurements. 
+Over the past few decades advances in science and technology have greatly contributed to the development of modern computers. While these computers are efficient and convenient for everyday needs, they fail at certain computational tasks. Instead, quantum computers promise faster large scale factorization and database searches that intractable for their classical counterparts. The first quantum computer designs were based off of classical models; sequences of \clb one- and multi-qubit \clbl gate \clb operations \clbl are performed on chosen quantum bits and a final measurement would convert quantum information into classical bits. \sout{However, this network of quantum logic gates does not fully explore the interesting properties of quantum mechanics: entanglement and measurement.} A new model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrates that quantum computation can be achieved by using single qubit measurements as computational steps. This so-called cluster model or \textit{one-way quantum computer (1WQC)} relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource. The fascinating feature about 1WQC is that they have no classical analogues and probe into new territory in regards to entanglement and measurements. 
 
 This paper will attempt to discuss some background on cluster states, a correspondence between 1WQC and the more traditional gate array model, and the computational power of this new model.
 
