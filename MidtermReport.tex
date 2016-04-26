@@ -1,0 +1,87 @@
+\documentclass[onecolumn]{IEEEtran11}
+
+
+\usepackage[usenames,dvipnames]{xcolor} % for colored text
+\usepackage[normalem]{ulem} % for strickthrough text
+
+\include{qmacros}
+
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\oddsidemargin -15pt
+\evensidemargin -15pt
+\leftmargin 0 pt
+\topmargin -30pt
+\textwidth = 6.9 in
+\textheight = 9.0 in
+
+\newcommand{\itembase}{\setlength{\itemsep}{0pt}}
+\newcommand{\eg}{{\it e.g., }}
+\newcommand{\ie}{{\it i.e., }}
+
+% All the pretty colors go here
+\definecolor{myGreen}{rgb}{0,1,0}
+\definecolor{myRed}{rgb}{1,0,0}
+\newcommand{\clb}{\color{blue}}
+\newcommand{\clr}{\color{myRed}}
+\newcommand{\clg}{\color{myGreen}}
+\newcommand{\clbl}{\color{black}}
+
+\begin{document}
+
+
+\title{{\Large \bf Cluster State Quantum Computing}\\ {\normalsize CIS:410/510 Midterm Report, Spring 2016}}
+\author{
+Dileep Reddy, Mayra Amezcua, Zach Schmidt \\
+{\em dileep@uoregon.edu, mamezcua@cas.uoregon.edu, zschmidt@cs.uoregon.edu }
+}
+\maketitle
+
+\section{4-node Cluster State}
+\subsection{Linear Cluster State}
+We start with four qubits in the $\ket{+}$ state and apply a CZ gate on the first two qubits to entangle them. 
+%\[\begin{array}{cccc}
+%\bullet&\bullet&\bullet&\bullet\\
+%\ket{+}_1&\ket{+}_2&\ket{+}_3&\ket{+}_4\end{array}\]
+
+\[\Qcircuit @C=1em @R=1.6em{
+\lstick{\ket{+}}&\ctrl{1}&\qw\\
+\lstick{\ket{+}}&\gate{CZ}&\qw\\
+\lstick{\ket{+}}&\qw&\qw\\
+\lstick{\ket{+}}&\qw&\qw}\]\vspace{3ex}
+
+\[CZ_{12}\ket{+}_1\ket{+}_2\ket{+}_3\ket{+}_4=\left(\frac{\ket{0}_1\ket{+}_2+\ket{1}_1\ket{-}_2}{\sqrt2}\right)\ket{+}_{3}\ket{+}_{4}=\left(\frac{\ket{+}_1\ket{0}_2+\ket{-}_1\ket{1}_2}{\sqrt2}\right)\ket{+}_{3}\ket{+}_{4}\]\vspace{1ex}
+
+Now we apply a CZ gate to qubits 2 and 3. 
+
+\[\Qcircuit @C=1em @R=1.6em{
+\lstick{\ket{+}}&\ctrl{1}&\qw&\qw&\qw\\
+\lstick{\ket{+}}&\gate{CZ}&\qw&\ctrl{1}&\qw\\
+\lstick{\ket{+}}&\qw&\qw&\gate{CZ}&\qw\\
+\lstick{\ket{+}}&\qw&\qw&\qw&\qw}\]\vspace{3ex}
+
+\[CZ_{23}\left(\frac{\ket{+}_1\ket{0}_2\ket{+}_{3}+\ket{-}_1\ket{1}_2\ket{+}_{3}}{\sqrt2}\right)\ket{+}_{4}=\left(\frac{\ket{+}_1\ket{0}_2\ket{+}_{3}+\ket{-}_1\ket{1}_2\ket{-}_{3}}{\sqrt2}\right)\ket{+}_{4}\]
+\[=\frac{1}{\sqrt2}\left[(\ket{+}_1\ket{0}_2+\ket{-}\ket{1})\ket{0}_{3}+(\ket{+}_1\ket{0}_2-\ket{-}\ket{1})\ket{1}_{3}\right]\ket{+}_{4}\]\vspace{1ex}
+
+Finally we apply one last CZ gate on the last two qubits.
+
+\[\Qcircuit @C=1em @R=1.6em{
+\lstick{\ket{+}}&\ctrl{1}&\qw&\qw&\qw&\qw&\qw\\
+\lstick{\ket{+}}&\gate{CZ}&\qw&\ctrl{1}&\qw&\qw&\qw\\
+\lstick{\ket{+}}&\qw&\qw&\gate{CZ}&\qw&\ctrl{1}&\qw\\
+\lstick{\ket{+}}&\qw&\qw&\qw&\qw&\gate{CZ}&\qw}\]\vspace{3ex}
+
+\[CZ_{34}\frac{1}{\sqrt2}\left[(\ket{+}_1\ket{0}_2+\ket{-}\ket{1})\ket{0}_{3}\ket{+}_{4}+(\ket{+}_1\ket{0}_2-\ket{-}\ket{1})\ket{1}_{3}\ket{+}_{4}\right]\]
+\[=\frac{1}{\sqrt2}\left[(\ket{+}_1\ket{0}_2+\ket{-}\ket{1})\ket{0}_{3}\ket{+}_{4}+(\ket{+}_1\ket{0}_2-\ket{-}\ket{1})\ket{1}_{3}\ket{-}_{4}\right]\]
+\[=\frac{1}{\sqrt2}(\ket{+}_{1}\ket{0}_2\ket{+}_3+\ket{-}_{1}\ket{1}_2\ket{-}_3)\ket{0}_4+\frac{1}{\sqrt2}(\ket{+}_{1}\ket{0}_2\ket{-}_3+\ket{-}_{1}\ket{1}_2\ket{+}_3)\ket{1}_4\]
+
+\subsection{T-shaped Cluster State}
+
+
+\end{document}
