@@ -45,10 +45,11 @@ Dileep Reddy, Mayra Amezcua, Zach Schmidt \\
 
 \section{4-node Cluster State}
 \subsection{Linear Cluster State}
+
+\[\Qcircuit @C=1em @R=1.6em{
+&\cluster{\ket{+}}&\cluster{\ket{+}}&\cluster{\ket{+}}&\cluster{\ket{+}}&\qw }\]\vspace{2ex}
+
 We start with four qubits in the $\ket{+}$ state and apply a CZ gate on the first two qubits to entangle them. 
-%\[\begin{array}{cccc}
-%\bullet&\bullet&\bullet&\bullet\\
-%\ket{+}_1&\ket{+}_2&\ket{+}_3&\ket{+}_4\end{array}\]
 
 \[\Qcircuit @C=1em @R=1.6em{
 \lstick{\ket{+}}&\ctrl{1}&\qw\\
@@ -79,9 +80,21 @@ Finally we apply one last CZ gate on the last two qubits.
 
 \[CZ_{34}\frac{1}{\sqrt2}\left[(\ket{+}_1\ket{0}_2+\ket{-}\ket{1})\ket{0}_{3}\ket{+}_{4}+(\ket{+}_1\ket{0}_2-\ket{-}\ket{1})\ket{1}_{3}\ket{+}_{4}\right]\]
 \[=\frac{1}{\sqrt2}\left[(\ket{+}_1\ket{0}_2+\ket{-}\ket{1})\ket{0}_{3}\ket{+}_{4}+(\ket{+}_1\ket{0}_2-\ket{-}\ket{1})\ket{1}_{3}\ket{-}_{4}\right]\]
-\[=\frac{1}{\sqrt2}(\ket{+}_{1}\ket{0}_2\ket{+}_3+\ket{-}_{1}\ket{1}_2\ket{-}_3)\ket{0}_4+\frac{1}{\sqrt2}(\ket{+}_{1}\ket{0}_2\ket{-}_3+\ket{-}_{1}\ket{1}_2\ket{+}_3)\ket{1}_4\]
+\[=\frac{1}{\sqrt2}(\ket{+}_{1}\ket{0}_2\ket{+}_3+\ket{-}_{1}\ket{1}_2\ket{-}_3)\ket{0}_4+\frac{1}{\sqrt2}(\ket{+}_{1}\ket{0}_2\ket{-}_3+\ket{-}_{1}\ket{1}_2\ket{+}_3)\ket{1}_4\]\vspace{4ex}
 
 \subsection{T-shaped Cluster State}
+
+\[\Qcircuit @C=1em @R=1.6em{
+&\cluster{\ket{+}}&\cluster{\ket{+}}\qw&\cluster{\ket{+}}\qw\\
+&&\cluster{\ket{+}}\qwx& }\]\vspace{2ex}
+
+We can start with a three qubit entangled state and apply a CZ gate between the second qubit and a fourth qubit to create a t-shaped cluster state. 
+
+\[\Qcircuit @C=1em @R=1.6em{
+\lstick{\ket{+}}&\ctrl{1}&\qw&\qw&\qw&\qw&\qw\\
+\lstick{\ket{+}}&\gate{CZ}&\qw&\ctrl{1}&\qw&\ctrl{2}&\qw\\
+\lstick{\ket{+}}&\qw&\qw&\gate{CZ}&\qw&\qw&\qw\\
+\lstick{\ket{+}}&\qw&\qw&\qw&\qw&\gate{CZ}&\qw}\]\vspace{3ex}
 
 
 \end{document}

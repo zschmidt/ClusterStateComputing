@@ -99,6 +99,8 @@
 \newcommand{\smeterB}[2]{\meterB{#1} \qwx[#2] \qw}
     % A split meter that allows for a measurement operator to be split over non-
     % adjacent rows
+\newcommand{\cluster}[1]{*{\xy*++{#1}**\frm{o}\endxy}}
+    % Inserts a cluser bubble with user defined text.
 \newcommand{\measure}[1]{*+[F-:<.9em>]{#1} \qw}
     % Inserts a measurement bubble with user defined text.
 \newcommand{\measuretab}[1]{*{\xy*+<.6em>{#1}="e";"e"+UL;"e"+UR **\dir{-};"e"+DR **\dir{-};"e"+DL **\dir{-};"e"+LC-<.5em,0em> **\dir{-};"e"+UL **\dir{-} \endxy} \qw}
