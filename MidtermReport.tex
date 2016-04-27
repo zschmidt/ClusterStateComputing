@@ -47,7 +47,7 @@ Dileep Reddy, Mayra Amezcua, Zach Schmidt \\
 \subsection{Linear Cluster State}
 
 \[\Qcircuit @C=1em @R=1.6em{
-&\cluster{\ket{+}}&\cluster{\ket{+}}&\cluster{\ket{+}}&\cluster{\ket{+}}&\qw }\]\vspace{2ex}
+&\cluster{\ket{+}}&\cluster{\ket{+}}\qw&\cluster{\ket{+}}\qw&\cluster{\ket{+}}\qw }\]\vspace{2ex}
 
 We start with four qubits in the $\ket{+}$ state and apply a CZ gate on the first two qubits to entangle them. 
 
@@ -84,7 +84,7 @@ Finally we apply one last CZ gate on the last two qubits.
 
 \subsection{T-shaped Cluster State}
 
-\[\Qcircuit @C=1em @R=1.6em{
+\[\Qcircuit @C=1em @R=1.3em{
 &\cluster{\ket{+}}&\cluster{\ket{+}}\qw&\cluster{\ket{+}}\qw\\
 &&\cluster{\ket{+}}\qwx& }\]\vspace{2ex}
 
@@ -95,6 +95,8 @@ We can start with a three qubit entangled state and apply a CZ gate between the 
 \lstick{\ket{+}}&\gate{CZ}&\qw&\ctrl{1}&\qw&\ctrl{2}&\qw\\
 \lstick{\ket{+}}&\qw&\qw&\gate{CZ}&\qw&\qw&\qw\\
 \lstick{\ket{+}}&\qw&\qw&\qw&\qw&\gate{CZ}&\qw}\]\vspace{3ex}
+
+\[CZ_{24}\left(\frac{\ket{+}_1\ket{0}_2\ket{+}_{3}\ket{+}_4+\ket{-}_1\ket{1}_2\ket{+}_{3}\ket{+}_4}{\sqrt2}\right)=\frac{1}{\sqrt2}\left(\ket{+}_1\ket{0}_2\ket{+}_{3}\ket{+}_4+\ket{-}_1\ket{1}_2\ket{+}_{3}\ket{-}_4\right)\]
 
 
 \end{document}
