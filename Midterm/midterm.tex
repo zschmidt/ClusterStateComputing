@@ -132,16 +132,17 @@ We can then analyze the state of the qubits at each of the dotted lines:
 {\small
 \begin{gather*}
 \left(\frac{\ket{+}_1\ket{0}_2\ket{+}_{3}+\ket{-}_1\ket{1}_2\ket{-}_{3}}{\sqrt2}\right)\ket{+}_{4}\\
-\equiv\frac{1}{\sqrt{2}}\left(\frac{\ket{0}_1\ket{+}_2+\ket{1}_1\ket{-}_2}{\sqrt{2}}\ket{0}_{3}+\frac{\ket{0}_1\ket{-}_2+\ket{1}_1\ket{+}_2}{\sqrt{2}}\ket{1}_{3}\right)\ket{+}_{4}
+\equiv\left(\frac{\ket{0}_1\ket{+}_2+\ket{1}_1\ket{-}_2}{2}\ket{0}_{3}+\frac{\ket{0}_1\ket{-}_2+\ket{1}_1\ket{+}_2}{2}\ket{1}_{3}\right)\ket{+}_{4}
 \end{gather*}
 }%
 \item[\bf \textit{3:}]
 {\scriptsize
 \begin{gather*}
-\left(\frac{\ket{+}_1\ket{0}_2+\ket{-}\ket{1}}{\sqrt{2}}\ket{0}_{3}+\frac{\ket{+}_1\ket{0}_2-\ket{-}\ket{1}}{\sqrt{2}}\ket{1}_{3}\right)\ket{-}_{4}\\
-\equiv\frac{\left[
+  \left(\frac{\ket{+}_1\ket{0}_2\ket{+}_3+\ket{-}_1\ket{1}_2\ket{-}_3}{2}\right)\ket{0}_4\\
+  +\left(\frac{\ket{+}_1\ket{0}_2\ket{-}_3+\ket{-}_1\ket{1}_2\ket{+}_3}{2}\right)\ket{1}_4\\
+\equiv\frac{
   (\ket{+}_{1}\ket{0}_2+\ket{-}_{1}\ket{1}_2)\ket{0}_3\ket{+}_4 +
-  (\ket{+}_{1}\ket{0}_2+\ket{-}_{1}\ket{1}_2)\ket{1}_3\ket{-}_4\right]}{2}
+  (\ket{+}_{1}\ket{0}_2+\ket{-}_{1}\ket{1}_2)\ket{1}_3\ket{-}_4}{2}
 \end{gather*}
 }%
 \end{description}
@@ -213,7 +214,7 @@ outcome.
 {\footnotesize \text{Gate $C_z^{(0,1)}$, followed by measurements $M_X^{(0)}$, $M_X^{(1)}$, \& $M_X^{(2)}$.}}%
 \end{gather*}
 
-To transfer the state $\ket{\psi}$ to physical qubit number $3$, we must first supply the quantum information to the ``wire.'' This is achieved by applying a $C_z$ gate between physical qubits $0$ and $1$. Using $\ket{\mathcal{LC}}_{123}$ to denote the linear cluster state, we have
+To teleport the state $\ket{\psi}$ to physical qubit number $3$, we must first supply the quantum information to the ``wire.'' This is achieved by applying a $C_z$ gate between physical qubits $0$ and $1$. Using $\ket{\mathcal{LC}}_{123}$ to denote the linear cluster state, we have
 
 {
   \begin{gather*}
@@ -229,7 +230,7 @@ Following this, we perform $X$-measurements on physical qubits $0$, $1$, and $2$
   X^{m_2}Z^{m_1}X^{m_0}H\ket{\psi}_3,\quad\quad m_j\in\{0,1\}.
 \end{equation*}
 
-The quantum information $\ket{\psi}$ has successfully been transferred to physical qubit $3$, up to application of Pauli operators depending on the measurement outcomes. Since the leftover/extra Pauli operators do not commute, these measurements had to have been carried out in a specific order. However, the operation $C_z^{(2,3)}$, which was employed to grow the linear cluster state, commutes with $C_z^{(0,1)}$, as well as measurements $M_X^{(0/1)}$. Thus, further links to the chain can be grown as earlier links are being subjected to measurements. This aids in parallelizability, as well as physical implementation of cluster state quantum computing schemes.
+The quantum information $\ket{\psi}$ has successfully been teleported to physical qubit $3$, up to application of Pauli operators depending on the measurement outcomes. Since the leftover/extra Pauli operators do not commute, these measurements had to have been carried out in a specific order. However, the operation $C_z^{(2,3)}$, which was employed to grow the linear cluster state, commutes with $C_z^{(0,1)}$, as well as measurements $M_X^{(0/1)}$. Thus, further links to the chain can be grown as earlier links are being subjected to measurements. This aids in parallelizability, as well as physical implementation of cluster state quantum computing schemes.
 
 \clbl Briegel and Raussendorf show that any quantum logic circuit can be implemented on a cluster state, which demonstrates universality of the proposed scheme \cite{briegel2000measurements}. Nielsen \cite{nielsen108020universal} extended this result to no longer require coherent dynamics, instead relying on a method to teleport quantum gates, and he provided a concise algorithm to accomplish this. 
 
@@ -243,9 +244,6 @@ One-way quantum computation, on the other hand, revolves around single qubit mea
 \clr
 Need picture and text showing some quantum circuit in traditional gate-array form. And a 2-D cluster state below it that looks identical in shape. Must mention how the ``input qubits'' will be coupled into the cluster.
 \clb
-\subsubsection{Linear cluster state as a wire}
-\clr Dileep will fill this
-\clb 
 \subsubsection{Gates through teleportation}
 \clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose?
 
