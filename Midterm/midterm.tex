@@ -20,7 +20,7 @@
 \topmargin -30pt
 \textwidth = 6.9 in
 \textheight = 9.0 in
-
+\newcommand*{\Scale}[2][4]{\scalebox{#1}{$#2$}}%
 \newcommand{\itembase}{\setlength{\itemsep}{0pt}}
 \newcommand{\eg}{{\it e.g., }}
 \newcommand{\ie}{{\it i.e., }}
@@ -202,7 +202,34 @@ qubit in the computational basis, and performing appropriate unitary
 rotations on its former neighbors based on the measurement
 outcome.
 
-\clb The effect of an $X$-measurement (\ie a computational basis measurement following a Hadamard transformation) on any node of the cluster state is much more involved. This will be explored in detail in the following subsection. \clr I could explain how a linear CL can function as a wire. Don't know if it should go here or elsewhere.
+\clb The effect of an $X$-measurement (\ie a computational basis measurement following a Hadamard transformation) on any node of the cluster state is much more involved. This is best illustrated when demonstrating the use of a linear cluster state as a wire for quantum information. For this exercise, we start with a linear cluster state with three nodes (labelled $1$, $2$, and $3$). A single qubit of quantum information $\ket{\psi} = \alpha\ket{0}+\beta\ket{1}$ is stored in a physical qubit labelled $0$ as illustrated below.
+
+\begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+    &\ket{\psi}_0&&&\\
+    &\cluster{0}&\cluster{1}&\cluster{2}\qw&\cluster{3}\qw
+    \gategroup{1}{2}{2}{3}{1.5em}{--}
+}\\
+{\footnotesize \text{Gate $C_z^{(0,1)}$, followed by measurements $M_X^{(0)}$, $M_X^{(1)}$, \& $M_X^{(2)}$.}}%
+\end{gather*}
+
+To transfer the state $\ket{\psi}$ to physical qubit number $3$, we must first supply the quantum information to the ``wire.'' This is achieved by applying a $C_z$ gate between physical qubits $0$ and $1$. Using $\ket{\mathcal{LC}}_{123}$ to denote the linear cluster state, we have
+
+{
+  \begin{gather*}
+    C_z^{(0,1)}\ket{\psi}_0\otimes\ket{\mathcal{LC}}_{123} \\
+    = \frac{1}{\sqrt{2}}[\alpha\ket{0}_0\ket{+}_1\ket{0}_2\ket{+}_3+\beta\ket{1}_0\ket{-}_1\ket{0}_2\ket{+}_3\\
+      \alpha\ket{0}_0\ket{-}_1\ket{1}_2\ket{-}_3+\beta\ket{1}_0\ket{+}_1\ket{1}_2\ket{-}_3]
+  \end{gather*}
+}%
+
+Following this, we perform $X$-measurements on physical qubits $0$, $1$, and $2$ in that order. Let us denote an $X$-measurement operation on the $j^{th}$-node with $M_X^{(j)}$, and let the outcome of any measurement on the same node be $m_j$. Then, the end result of these operations is the state
+
+\begin{equation*}
+  X^{m_2}Z^{m_1}X^{m_0}H\ket{\psi}_3,\quad\quad m_j\in\{0,1\}.
+\end{equation*}
+
+The quantum information $\ket{\psi}$ has successfully been transferred to physical qubit $3$, up to application of Pauli operators depending on the measurement outcomes. Since the leftover/extra Pauli operators do not commute, these measurements had to have been carried out in a specific order. However, the operation $C_z^{(2,3)}$, which was employed to grow the linear cluster state, commutes with $C_z^{(0,1)}$, as well as measurements $M_X^{(0/1)}$. Thus, further links to the chain can be grown as earlier links are being subjected to measurements. This aids in parallelizability, as well as physical implementation of cluster state quantum computing schemes.
 
 \clbl Briegel and Raussendorf show that any quantum logic circuit can be implemented on a cluster state, which demonstrates universality of the proposed scheme \cite{briegel2000measurements}. Nielsen \cite{nielsen108020universal} extended this result to no longer require coherent dynamics, instead relying on a method to teleport quantum gates, and he provided a concise algorithm to accomplish this. 
 
