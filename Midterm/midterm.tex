@@ -249,10 +249,31 @@ Need picture and text showing some quantum circuit in traditional gate-array for
 
 \clb
 \subsubsection{Applying a 2-qubit gate via 2-D cluster state}
-\clr Dileep will fill this
+
+The ability to implement gates of the form $HZ_\alpha$, and any 2-qubit controlled-phase gate, and to prepare arrays of $\ket{+}$ states as inputs, constitute a set of resources that is universal for quantum computation \cite{jozsa2006introduction}. In this subsection, we will demonstrate the use of two-dimensional cluster states to implement a $C_z$ gate between two input kets bearing quantum information $\ket{\phi_A}_A\ket{\phi_B}_B$ encoded in physical qubits labelled `A' and `B.' Here, $\ket{\phi_j} := \alpha_j\ket{0}+\beta_j\ket{1}$. For the scheme, we will use an I-shaped cluster states with six nodes, as shown in the figure. 
+
+\newcommand{\bertLine}{\ar@{-}[]+<0em,-2.3em>;[d]+<0em,2.3em>}
+\begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+    \ket{\phi_A}&\cluster{\Scale[0.8] A}&\cluster{1}&\qw&\cluster{2}\bertLine\qw&\qw&\cluster{3}\qw\\
+    \ket{\phi_B}&\cluster{\Scale[0.8] B}&\cluster{5}&\qw&\cluster{4}\qw&\qw&\cluster{6}\qw
+    \gategroup{1}{1}{2}{3}{2.2em}{--}
+}\\
+{\footnotesize \text{Apply $C_z^{(A,1)}$ and $C_z^{(B,5)}$ to input quantum information into cluster state.}}%
+\end{gather*}
+
+The procedure would be to first entangle the input quantum information qubits into the cluster state via the application of $C_z$ gates. Then we perform single qubit measurements on all qubits but numbers $3$ and $6$. Using the $Z$-measurement property of nodes on cluster states, we can pick node $4$ as a representative anchor and write down the total state of the current system as
+
+\begin{gather*}
+  \frac{1}{\sqrt{2}}\left[\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{+}_5\ket{+}_6+Z^{(2)}\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{-}_5\ket{-}_6\right]\\\otimes\ket{\phi_A}_A\ket{\phi_B}_B,
+\end{gather*}
+
+\noindent where $Z^{(2)}$ is being applied on qubit $2$.
+
+The single qubit mesurements have to be performed in the order ($M^{(A)}_X, M^{(1)}_X, M^{(2)}_X$) and ($M^{(B)}_X, M^{(5)}_B, M^{(4)}_X$). These two subsets are parallelizable, and one could perform the measurements \{$M^{(A)}_X, M^{(B)}_X$\} in parallel, and then \{$M^{(1)}_X, M^{(5)}_X$\}, and so on. But here, we will introduce the concept of layers of measurement, by performing all bottom row operations at once (including input entanglement), and then working on the top row.
 \clb 
 \subsubsection{Commutations and parallelizability}
-\clr Dileep has some idea here. It's basically extending what is above.
+Dileep has some idea here. It's basically extending what is above. \clr BUT MAY BE SAVE THIS SECTION FOR FINAL REPORT EH?
 \clbl
 %\subsection{Gate Array Correspondence}
 %In his analysis of the reducibility of 1WQC to the gate array model, Richard Jozsa gives a polynomial time algorithm to perform the conversion between the two computational models \cite{jozsa2006introduction}. 
