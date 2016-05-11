@@ -265,15 +265,37 @@ The ability to implement gates of the form $HZ_\alpha$, and any 2-qubit controll
 The procedure would be to first entangle the input quantum information qubits into the cluster state via the application of $C_z$ gates. Then we perform single qubit measurements on all qubits but numbers $3$ and $6$. Using the $Z$-measurement property of nodes on cluster states, we can pick node $4$ as a representative anchor and write down the total state of the current system as
 
 \begin{gather*}
-  \frac{1}{\sqrt{2}}\left[\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{+}_5\ket{+}_6+Z^{(2)}\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{-}_5\ket{-}_6\right]\\\otimes\ket{\phi_A}_A\ket{\phi_B}_B,
+  \frac{1}{\sqrt{2}}\left[\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{+}_5\ket{+}_6+Z_{2}\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{-}_5\ket{-}_6\right]\\\otimes\ket{\phi_A}_A\ket{\phi_B}_B,
 \end{gather*}
 
-\noindent where $Z^{(2)}$ is being applied on qubit $2$.
+\noindent where $Z_{2}$ is being applied on qubit $2$.
 
 The single qubit mesurements have to be performed in the order ($M^{(A)}_X, M^{(1)}_X, M^{(2)}_X$) and ($M^{(B)}_X, M^{(5)}_B, M^{(4)}_X$). These two subsets are parallelizable, and one could perform the measurements \{$M^{(A)}_X, M^{(B)}_X$\} in parallel, and then \{$M^{(1)}_X, M^{(5)}_X$\}, and so on. But here, we will introduce the concept of layers of measurement, by performing all bottom row operations at once (including input entanglement), and then working on the top row.
-\clb 
+
+Enacting the gate $C_z^{(B,5)}$ on the initial state, followed by measurements $M^{(B)}_X, M^{(5)}_B, M^{(4)}_X$ yields random outcomes $m_B, m_5, m_4 \in \{0,1\}$ and  gives us the state
+
+\begin{gather*}
+  X_6^{m_4}Z_6^{m_5}X_6^{m_B}C_Z^{(2,6)}\ket{\mathcal{LC}}_{123}\ket{\phi_B}_6\otimes\ket{\phi_A}_A.
+\end{gather*}
+
+Note that even though the original cluster state had an edge between nodes $2$ and $4$ in the graph representation, a measurement on qubit $4$ did not sever the link between node $6$ and the linear chain $\ket{\mathcal{LC}}_{123}$, due to the measurements being in the $X$ basis. Now, if we follow the above operations by application of the $C_Z^{(A,1)}$ gate, and the measurements $M^{(A)}_X, M^{(1)}_X, M^{(2)}_X$ in that order, we get the random results $m_A, m_1, m_2 \in \{0,1\}$ and the final state
+
+\begin{gather*}
+  X_3^{m_2}Z_3^{m_1}X_3^{m_A}H_3X_6^{m_4}Z_6^{m_5}X_6^{m_B}H_6C_X^{(6,3)}\ket{\phi_A}_3\ket{\phi_B}_6,
+\end{gather*}
+
+\noindent where $C_X^{(j,k)}$ is the controlled-NOT gate. All single-qubit operations on qubit $3$ commute with single-qubit operations on qubit $6$. Using the fact that $H_j^2 = I_j$, as well as $C_X^{(6,3)}\equiv (H_3\otimes I_6)C_Z^{(3,6)}(H_3\otimes I_6)$, the final state is equivalently
+
+\begin{gather*}
+  X_3^{m_2}X_6^{m_4}Z_3^{m_1}Z_6^{m_5}X_3^{m_A}X_6^{m_4}H_6C_Z^{(3,6)}H_3\ket{\phi_A}_3\ket{\phi_B}_6,
+\end{gather*}
+
+\noindent which is the desired result, up to overall Pauli transformations on the individual qubits. Thus, we have proven that a universal set of quantum operations can be implemented using the cluster state model.
+
 \subsubsection{Commutations and parallelizability}
-Dileep has some idea here. It's basically extending what is above. \clr BUT MAY BE SAVE THIS SECTION FOR FINAL REPORT EH?
+
+The previous subsections demostrated that although measurements in a specific layer (an ordered set of sequentially connected nodes) of a cluster state need to occur in a specific order, operations on different layers commute, and can therefore be interspersed. This, combined with the ability to delay the growth of the cluster state to occur just before the measurements catch up with the remaining nodes, offers several possibilities for process parallelization. Indeed, in the $2$-qubit gate example, the quantum information in one of the qubits was put into the system first, followed by some measurement-based teleporation, and the other input qubit was brought in later. We effectively managed to entangle the two qubits using only single-qubit measurements. This seems to indicate that all multi-qubit interactions can be pre-computed by setting the topological layout of the graph of the cluster state before any of the quantum information has even been introduced into the system. Thus, outside of the physical implementation considerations, cluster state model isomorphisms offer a new analysis tool that disentangles the quintessential influence of quantum formalism on the complexity class of various algorithms.
+
 \clbl
 %\subsection{Gate Array Correspondence}
 %In his analysis of the reducibility of 1WQC to the gate array model, Richard Jozsa gives a polynomial time algorithm to perform the conversion between the two computational models \cite{jozsa2006introduction}. 
