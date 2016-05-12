@@ -242,7 +242,15 @@ One-way quantum computation, on the other hand, revolves around single qubit mea
 %=======
 
 \clr
-Need picture and text showing some quantum circuit in traditional gate-array form. And a 2-D cluster state below it that looks identical in shape. Must mention how the ``input qubits'' will be coupled into the cluster.
+\[
+ \Qcircuit @C=1em @R=1.2em {
+   & \gate{A} & \multigate{1}{C} & \qw & \gate{E} & \multigate{2}{G} & \multigate{1}{J} & \qw \\
+   & \gate{B} & \ghost{C} & \gate{D}  & \multigate{1}{F} & \ghost{G} & \ghost{J} & \qw \\
+   & \qw & \qw & \qw & \ghost{F} & \ghost{G} & \gate{K} & \qw 
+}
+ \]
+ Need to draw 2-D cluster state graph that looks identical to picture above.
+
 \clb
 \subsubsection{Gates through teleportation}
 \clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose?
