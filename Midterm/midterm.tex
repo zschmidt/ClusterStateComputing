@@ -264,19 +264,19 @@ The basic principle of cluster-state quantum computation is to effectively enact
 
 \subsubsection{Gates through teleportation}
 %\clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose?
-\clb Quantum teleportation is a procedure by which quantum information can be transferred from one point to another via two classical bits of information if the sender and received previously shared an entangled state.
+\clb Quantum teleportation is a procedure by which quantum information can be transferred from one point to another via two classical bits of information if the sender and received previously shared an entangled state. This uses an entangled state as a resource but if that state has some error then teleportation fails. Gottesman and Chuang \cite{gottesman1999demonstrating} first showed that if the entangled state $\ket{\psi}$ can be replaced by $U\ket{\psi}$, such that $U$ is a non-trivial quantum operation the corresponding output is $U\ket{\alpha}$. This output state is not the same but a transformed version that is predetermined by the entangled state. They proved that a state can be teleported using gates, which is important for quantum error correction and fault-tolerance.
 
 
 \begin{gather*}
 \Qcircuit @C=1em@R=0.5em @!R{
-\lstick{\ket{+}_1} & \ctrl{1} & \qw & \gate{ HZ_{\alpha 1} } & \meter &\cw  \\
+\lstick{\ket{+}_1} & \ctrl{1} & \qw & \gate{ HZ_{\alpha 1} } & \meter   \\
  \lstick{\ket{+}_2} & \gate{CZ} & \ctrl{1}  & \qw & \gate{ HZ_{\pm \alpha 2} }\cwx & \meter \\
  \lstick{\ket{+}_3} & \qw & \gate{CZ}  & \qw & \qw & \qw
 }
 \end{gather*}
 
 
-For this problem we prepare a three node cluster state given by: 
+First we demonstrate how we can perform a quantum circuit on a cluster state. The circuit diagram for our cluster state is shown above. For this problem we prepare a three node cluster state given by: 
 {
 \begin{gather*}
 C_{z}^{(1,2)}C_{z}^{(2,3)}\ket{+}_1\ket{+}_2\ket{+}_3 = \ket{\psi_1} \\
@@ -297,7 +297,7 @@ For convenience we assume that we measure the state $\ket{0}$.
 {
 \begin{gather*}
 X^{m_1}\ket{\psi_2}=\frac{1}{\sqrt2}\cos{(\alpha_1/2)}\ket{0}_2\ket{+}_3\\
--\frac{i}{\sqrt2}\sin{(\alpha_1/2)}\ket{1}_2\ket{3}_3=\ket{\psi3}
+-\frac{i}{\sqrt2}\sin{(\alpha_1/2)}\ket{1}_2\ket{3}_3=\ket{\psi_3}
 \end{gather*}
 }%
 We apply one final $HZ_{\alpha}$ gate. 
@@ -313,12 +313,12 @@ The final output state we get is:
 
 {
 \begin{gather*}
-X^{m_2}\ket{\psi_{4}}=\frac{1}{\sqrt2}\cos{(\frac{\alpha_1}{2})}e^{-i\alpha_2/2}\ket{+}_3\\
+X^{m_2}\ket{\psi_{4}}=\ket{\psi_5}=\frac{1}{\sqrt2}\cos{(\frac{\alpha_1}{2})}e^{-i\alpha_2/2}\ket{+}_3\\
 -\frac{i}{\sqrt2}\sin{(\frac{\alpha_1}{2})}e^{i\alpha_2/2}\ket{-}_3
 \end{gather*}
 }%
 
-\newcommand{\jertLine}{\ar@{-}[]+<0em,-3em>;[d]+<0em,3em>}
+We observe that in the circuit given below the two highlighted boxes are both one-bit teleportations. The output of the circuit is $X^{m_2}HZ_{\pm\alpha2}X^{m_1}HZ_{\alpha1}\ket{+}$, where $m_1$ and $m_2$ are the outputs for the first and second qubits. 
 \begin{gather*}
 \Qcircuit @C=1em @R=1.2em{
 &\lstick{\ket{+}_1} &\ctrl{1} & \gate{HZ_{\alpha1}} & \meter & \cw & \cw \\
