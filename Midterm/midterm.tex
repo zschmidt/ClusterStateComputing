@@ -276,7 +276,7 @@ The basic principle of cluster-state quantum computation is to effectively enact
 \end{gather*}
 
 
-For this problem we start with a three node cluster state and apply two $HZ_{\alpha}$ gates. The cluster state is given by: 
+For this problem we prepare a three node cluster state given by: 
 {
 \begin{gather*}
 C_{z}^{(1,2)}C_{z}^{(2,3)}\ket{+}_1\ket{+}_2\ket{+}_3 = \ket{\psi_1} \\
@@ -285,12 +285,36 @@ C_{z}^{(1,2)}C_{z}^{(2,3)}\ket{+}_1\ket{+}_2\ket{+}_3 = \ket{\psi_1} \\
 \end{gather*}
 }%
 
-First we will apply $HZ_{\alpha1}$ and measure in the computational basis.
+First we will apply $HZ_{\alpha1}$ and measure in the computational basis. 
+{
+\begin{gather*}
+HZ_{\alpha1}\ket{\psi_1}=\frac{e^{-i\alpha_{1}/2}}{2}\ket{+}_1\left(\frac{\ket{0}_2\ket{+}_3+\ket{1}_2\ket{-}_3}{\sqrt2}\right)\\
++\frac{e^{i\alpha_{1}/2}}{2}\ket{-}_1\left(\frac{\ket{0}_2\ket{+}_3-\ket{1}_2\ket{-}_3}{\sqrt2}\right)=\ket{\psi_2}
+\end{gather*}
+}%
+For convenience we assume that we measure the state $\ket{0}$.
 
 {
 \begin{gather*}
-HZ_{\alpha1}\ket{\psi_1}=\frac{e^{-i\alpha_{1}/2}}{2}\ket{0}_1\left(\frac{\ket{0}_2\ket{+}_3+\ket{1}_2\ket{-}_3}{\sqrt2}\right)\\
-+\frac{e^{i\alpha_{1}/2}}{2}\ket{1}_1\left(\frac{\ket{0}_2\ket{+}_3-\ket{1}_2\ket{-}_3}{\sqrt2}\right)
+X^{m_1}\ket{\psi_2}=\frac{1}{\sqrt2}\cos{(\alpha_1/2)}\ket{0}_2\ket{+}_3\\
+-\frac{i}{\sqrt2}\sin{(\alpha_1/2)}\ket{1}_2\ket{3}_3=\ket{\psi3}
+\end{gather*}
+}%
+We apply one final $HZ_{\alpha}$ gate. 
+{
+\begin{gather*}
+HZ_{\pm\alpha2}\ket{\psi_{3}}=\ket{\psi_4}\\
+\frac{1}{\sqrt2}\ket{0}_2\left(\cos{(\frac{\alpha_1}{2})}e^{-i\alpha_2/2}\ket{+}_3-i\sin{(\frac{\alpha_1}{2})}e^{i\alpha_2/2}\ket{-}_3\right)\\
++\frac{1}{\sqrt2}\ket{1}_2\left(\cos{(\frac{\alpha_1}{2})}e^{-i\alpha_2/2}\ket{+}_3+i\sin{(\frac{\alpha_1}{2})}e^{i\alpha_2/2}\ket{-}_3\right)
+\end{gather*}
+}%
+
+The final output state we get is:
+
+{
+\begin{gather*}
+X^{m_2}\ket{\psi_{4}}=\frac{1}{\sqrt2}\cos{(\frac{\alpha_1}{2})}e^{-i\alpha_2/2}\ket{+}_3\\
+-\frac{i}{\sqrt2}\sin{(\frac{\alpha_1}{2})}e^{i\alpha_2/2}\ket{-}_3
 \end{gather*}
 }%
 
