@@ -264,23 +264,17 @@ The basic principle of cluster-state quantum computation is to effectively enact
 
 \subsubsection{Gates through teleportation}
 \clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose?
-\clb Quantum teleportation is a procedure by which quantum information can be transferred from one point to another via two classical bits of information if the sender and received previously shared an entangled state. 
+\clb Quantum teleportation is a procedure by which quantum information can be transferred from one point to another via two classical bits of information if the sender and received previously shared an entangled state.
 
-\begin{gather*}
-\Qcircuit @C=0.5em@R=0.5em{
-\lstick{\ket{+}_1} & \ctrl{1} & \qw & \gate{HZ_{\alpha1}} & \meter & \cwx \\
-\lstick{\ket{+}_2} & \gate{CZ} & \ctrl{1} & \qw & \gate{HZ_{\pm\alpha2}} \cwx & \meter \\
-\lstick{\ket{+}_3} & \qw & \gate{CZ} & \qw & \qw & \qw
-}
-\end{gather*}
 
 \begin{gather*}
 \Qcircuit @C=1em@R=1.2em{
-\lstick{\ket{+}_1} & \ctrl{1} & \gate{ HZ_{\alpha1}} & \meter & \cwx \\
-\lstick{\ket{+}_2} & \gate{CZ} } & \qw & \gate{HZ_{\pm\alpha2}\cwx & \meter  \\
-\lstick{\ket{+}_3} & \qw & \qw & \qw 
+  \lstick{\ket{+}_1} & \ctrl{1} & \gate{ HZ_{\alpha 1} } & \meter                        \\
+  \lstick{\ket{+}_2} & \gate{CZ}& \ctrl{1}          & \gate{ HZ_{\pm \alpha 2} }\cwx & \meter \\
+  \lstick{\ket{+}_3} & \qw      & \gate{CZ}         & \qw                            & \qw
 }
 \end{gather*}
+
 
 \clbl
 
