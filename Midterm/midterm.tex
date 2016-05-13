@@ -241,15 +241,28 @@ All quantum computation schemes may be characterized by some combination of stat
 One-way quantum computation, on the other hand, revolves around single qubit measurements as a progression of computational steps. Measurements are a crucial component to quantum information processing because they irreversibly destroy a quantum state. Entanglement, on the other hand, will ensure that the state of the final qubit relies on the outcomes of preceding measurements. Given a cluster state, a series one-qubit measurements can be performed at each qubit to implement a quantum gate \cite{jorrand2005unifying}.  The unidirectionality of cluster state computation is inherent, due to the fact that quantum information cannot be accurately recovered once a measurement has been made. Consider a two-dimensional array of entangled qubits, information propagates horizontally through a row of qubits while vertical qubit neighbors are used for two-qubit gates. Similarly, three-dimensional clusters can be used to implement topologically protected gates \cite{raussendorf2007topological}, where the gate function only depends upon the way ``connected defects'' are wound around one another, but not on the details of their shape. This degree of freedom affords the design some fault tolerance.
 %=======
 
-\clr
-\[
+The basic principle of cluster-state quantum computation is to effectively enact arbitrary quantum circuits onto qubits storing quantum information by performing single-qubit transformations and measurements on a pre-formed cluster state whose graph representation bears topological similarities to the circuit in question. These measurements result in destruction of the node-qubits of the cluster state, and hence are irreversible. The outcomes of these measurements need to be tracked or fed forward to influence future operations along certain layers of the cluster, as will be illustrated later in this article.
+
+
+\begin{gather*}
  \Qcircuit @C=1em @R=1.2em {
    & \gate{A} & \multigate{1}{C} & \qw & \gate{E} & \multigate{2}{G} & \multigate{1}{J} & \qw \\
    & \gate{B} & \ghost{C} & \gate{D}  & \multigate{1}{F} & \ghost{G} & \ghost{J} & \qw \\
-   & \qw & \qw & \qw & \ghost{F} & \ghost{G} & \gate{K} & \qw 
-}
- \]
- Need to draw 2-D cluster state graph that looks identical to picture above.
+   & \qw & \qw & \qw & \ghost{F} & \ghost{G} & \gate{K} & \qw \\
+ }\\
+ {\footnotesize \text{Arbitrary quantum circuit involving unitary operations on 3 qubits.}}%
+ \end{gather*}
+
+ \newcommand{\certLine}{\ar@{-}[]+<0em,-1.em>;[d]+<0em,1.em>}
+ \begin{gather*}
+ \Qcircuit @C=0.5em @R=0.5em{
+    &\cluster{}\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw\\
+   &\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\qw&\qw\\
+    &\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw\\   
+ }\\
+           {\footnotesize \text{Single-qubit measurements on this cluster state is equivalent}}\\
+            {\footnotesize \text{to the topologically similar circuit above.}}%
+ \end{gather*}
 
 \clb
 \subsubsection{Gates through teleportation}
