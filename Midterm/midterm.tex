@@ -269,11 +269,21 @@ The basic principle of cluster-state quantum computation is to effectively enact
 
 \begin{gather*}
 \Qcircuit @C=1em@R=1.2em{
-  \lstick{\ket{+}_1} & \ctrl{1} & \gate{ HZ_{\alpha 1} } & \meter                        \\
-  \lstick{\ket{+}_2} & \gate{CZ}& \ctrl{1}          & \gate{ HZ_{\pm \alpha 2} }\cwx & \meter \\
-  \lstick{\ket{+}_3} & \qw      & \gate{CZ}         & \qw                            & \qw
+  \lstick{\ket{+}_1} & \ctrl{1} & \qw & \gate{ HZ_{\alpha 1} } & \meter                        \\
+  \lstick{\ket{+}_2} & \gate{CZ} & \ctrl{1}  & \qw         & \gate{ HZ_{\pm \alpha 2} }\cwx & \meter \\
+  \lstick{\ket{+}_3} & \qw & \gate{CZ}   & \qw      & \qw                            & \qw
 }
 \end{gather*}
+
+\newcommand{\jertLine}{\ar@{-}[]+<0em,-3em>;[d]+<0em,3em>}
+\begin{gather*}
+\Qcircuit @C=1em @R=1.2em{
+&\lstick{\ket{+}_1} &\ctrl{1} & \gate{HZ_{\alpha1}} & \meter & \cw & \cw \\
+&\lstick{\ket{+}_2} & \gate{CZ} & \qw & \qw & \ctrl{1} & \gate{HZ_{\pm\alpha2}} \cwx  & \meter \\
+&\lstick{\ket{+}_3} & \qw & \qw & \qw & \gate{CZ} & \qw & \qw \gategroup{1}{5}{2}{3}{0.8em}{--} \gategroup{2}{6}{3}{8}{1.2em}{--}
+}
+\end{gather*}
+
 
 
 \clbl
