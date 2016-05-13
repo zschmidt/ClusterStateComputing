@@ -263,17 +263,28 @@ The basic principle of cluster-state quantum computation is to effectively enact
  \end{gather*}
 
 \subsubsection{Gates through teleportation}
-\clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose?
+%\clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose?
 \clb Quantum teleportation is a procedure by which quantum information can be transferred from one point to another via two classical bits of information if the sender and received previously shared an entangled state.
 
 
 \begin{gather*}
-\Qcircuit @C=1em@R=1.2em{
-  \lstick{\ket{+}_1} & \ctrl{1} & \qw & \gate{ HZ_{\alpha 1} } & \meter                        \\
-  \lstick{\ket{+}_2} & \gate{CZ} & \ctrl{1}  & \qw         & \gate{ HZ_{\pm \alpha 2} }\cwx & \meter \\
-  \lstick{\ket{+}_3} & \qw & \gate{CZ}   & \qw      & \qw                            & \qw
+\Qcircuit @C=1em@R=0.5em @!R{
+\lstick{\ket{+}_1} & \ctrl{1} & \qw & \gate{ HZ_{\alpha 1} } & \meter &\cw  \\
+ \lstick{\ket{+}_2} & \gate{CZ} & \ctrl{1}  & \qw & \gate{ HZ_{\pm \alpha 2} }\cwx & \meter \\
+ \lstick{\ket{+}_3} & \qw & \gate{CZ}  & \qw & \qw & \qw
 }
 \end{gather*}
+
+
+For this problem we start with a three node cluster state. The state of the qubits after the two $C_{z}$ gates is given by:
+
+{
+\begin{gather*}
+C_{z}^{(1,2)}C_{z}^{(2,3)}\ket{+}_1\ket{+}_2\ket{+}_3 \\
+=\frac{1}{\sqrt2}\ket{0}_1\left(\ket{0}_2\ket{+}_3+\ket{1}_2\ket{-}_3\right)\\
++\frac{1}{\sqrt2}\ket{1}_1\left(\ket{0}_2\ket{+}_3-\ket{1}_2\ket{-}_3\right)
+\end{gather*}
+}%
 
 \newcommand{\jertLine}{\ar@{-}[]+<0em,-3em>;[d]+<0em,3em>}
 \begin{gather*}
