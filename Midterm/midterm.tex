@@ -263,10 +263,9 @@ The basic principle of cluster-state quantum computation is to effectively enact
  \end{gather*}
 
 \subsubsection{Gates through teleportation}
-%\clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose?
+%\clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose? No she cannot. Writing is not her forte. 
 \clb Quantum teleportation is a procedure by which quantum information can be transferred from one point to another via two classical bits of information if the sender and received previously shared an entangled state. It is useful for quantum computation however, this approach uses an entangled state as a resource but if that state has some error then teleportation fails. Gottesman and Chuang \cite{gottesman1999demonstrating} first showed that if the entangled state $\ket{\psi}$ can be replaced by $U\ket{\psi}$, such that $U$ is a non-trivial quantum operation. The corresponding output $U\ket{\alpha}$ is in the initial state $\ket{\psi}$ but with additional single-qubit Pauli operations $X$, $Y$, or $Z$. By simply reversing the Pauli operators the original state can be reconstructed. This teleportation scheme can be useful in applying other gates that are non-trivial. 
 
-As demonstrated in the previous section, by applying single-qubit gates we can teleport one state from one side of a cluster state to the other. We demonstrate gate application through teleportation by using the $HZ_\alpha$ gate.
 
 \begin{gather*}
 HZ_\alpha=\frac{1}{\sqrt2}\left(\begin{array}{cc}
@@ -274,6 +273,7 @@ e^{\frac{-i\alpha}{2}} & e^{\frac{i\alpha}{2}}\\
 e^{\frac{-i\alpha}{2}} & -e^{\frac{i\alpha}{2}}\end{array}\right)
 \end{gather*}
 
+As demonstrated in the previous section, by applying single-qubit gates we can teleport one state from one side of a cluster state to the other. We demonstrate gate application through teleportation by using the $HZ_\alpha$ gate.
  
 \begin{gather*}
 \Qcircuit @C=1em@R=0.5em @!R{
@@ -336,7 +336,7 @@ X^{m_2}Z^{m_1}HZ_{\alpha2}HZ_{\alpha1}\ket{+}_3
 
 This is equivalent to the output of the conventional single-qubit quantum circuit up to a known Pauli matrix. Thus it is easy to model gate application through teleportation.
 
-We observe that in the circuit given below the two highlighted boxes are both one-bit teleportations. Because the $C_z$ gate commutes with $HZ_\alpha$ we can perform one teleportation procedure and then the second one.
+We observe that in the circuit given below the two highlighted boxes are both one-bit teleportations. Because the $C_z$ gate commutes with $HZ_\alpha$ we can perform one teleportation procedure and then the second one or vice-versa. This is advantageous because it means that we can build the cluster as we go.
 
 
 \begin{gather*}
