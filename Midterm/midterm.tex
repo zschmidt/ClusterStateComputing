@@ -273,7 +273,7 @@ e^{\frac{-i\alpha}{2}} & e^{\frac{i\alpha}{2}}\\
 e^{\frac{-i\alpha}{2}} & -e^{\frac{i\alpha}{2}}\end{array}\right)
 \end{gather*}
 
-As demonstrated in the previous section, by applying single-qubit gates we can teleport one state from one side of a cluster state to the other. We demonstrate gate application through teleportation by using the $HZ_\alpha$ gate.
+As demonstrated in the previous section, by applying single-qubit gates we can teleport one state from one side of a cluster state to the other. In this section we demonstrate how to apply the $HZ_\alpha$ gate through teleportation.
  
 \begin{gather*}
 \Qcircuit @C=1em@R=0.5em @!R{
@@ -284,7 +284,7 @@ As demonstrated in the previous section, by applying single-qubit gates we can t
 \end{gather*}
 
 
-First we demonstrate how we can perform a quantum circuit on a cluster state. For this problem we prepare a three node cluster state given by: 
+In this example we will apply two consecutive $HZ_\alpha$ gates to our cluster to simulate two gates on a single qubit. We will demonstrate that the outcome is the same except for an additional two Pauli operations. For this problem we prepare a three node cluster state given by: 
 {
 \begin{gather*}
 C_{z}^{(1,2)}C_{z}^{(2,3)}\ket{+}_1\ket{+}_2\ket{+}_3 = \ket{\psi_1} \\
