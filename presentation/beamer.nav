@@ -29,7 +29,7 @@
 \defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {5}{5}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\sectionentry {2}{Cluster states}{6}{Cluster states}{0}}
+\headcommand {\sectionentry {2}{Cluster states (CS)}{6}{Cluster states (CS)}{0}}
 \defcounter {refsection}{0}\relax 
 \headcommand {\beamer@sectionpages {4}{5}}
 \defcounter {refsection}{0}\relax 
@@ -73,35 +73,35 @@
 \defcounter {refsection}{0}\relax 
 \headcommand {\beamer@subsectionentry {0}{3}{3}{11}{Two qubit operations}}\headcommand {\beamer@subsectionpages {10}{10}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {3}{3}{1}{11/11}{Two qubit operations}{0}}
+\headcommand {\slideentry {3}{3}{1}{11/12}{Two qubit operations}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\beamer@framepages {11}{12}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\sectionentry {4}{Advantages and disadvantages}{12}{Advantages and disadvantages}{0}}
+\headcommand {\sectionentry {4}{Advantages and disadvantages}{13}{Advantages and disadvantages}{0}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@sectionpages {9}{11}}
+\headcommand {\beamer@sectionpages {9}{12}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionpages {11}{11}}
+\headcommand {\beamer@subsectionpages {11}{12}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionentry {0}{4}{1}{12}{Parallelizability}}\headcommand {\beamer@subsectionpages {12}{11}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{13}{Parallelizability}}\headcommand {\beamer@subsectionpages {13}{12}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {4}{1}{1}{12/12}{Parallelizability}{0}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\beamer@framepages {12}{12}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionentry {0}{4}{2}{13}{Experimental implementations}}\headcommand {\beamer@subsectionpages {12}{12}}
-\defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {4}{2}{1}{13/13}{Experimental implementations}{0}}
+\headcommand {\slideentry {4}{1}{1}{13/13}{Parallelizability}{0}}
 \defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {13}{13}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\beamer@subsectionentry {0}{4}{3}{14}{Cluster state model as an analysis tool}}\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{14}{Experimental implementations}}\headcommand {\beamer@subsectionpages {13}{13}}
 \defcounter {refsection}{0}\relax 
-\headcommand {\slideentry {4}{3}{1}{14/14}{Cluster state model as an analysis tool}{0}}
+\headcommand {\slideentry {4}{2}{1}{14/14}{Experimental implementations}{0}}
 \defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@partpages {1}{14}}
-\headcommand {\beamer@subsectionpages {14}{14}}
-\headcommand {\beamer@sectionpages {12}{14}}
-\headcommand {\beamer@documentpages {14}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@subsectionentry {0}{4}{3}{15}{CS model as an analysis tool}}\headcommand {\beamer@subsectionpages {14}{14}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {4}{3}{1}{15/15}{CS model as an analysis tool}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\beamer@partpages {1}{15}}
+\headcommand {\beamer@subsectionpages {15}{15}}
+\headcommand {\beamer@sectionpages {13}{15}}
+\headcommand {\beamer@documentpages {15}}
 \headcommand {\def \inserttotalframenumber {14}}

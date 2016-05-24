@@ -12,6 +12,39 @@
 \usepackage{multicol}
 \usepackage[T1]{fontenc}
 \usepackage[style=numeric-comp]{biblatex}
+
+%\usepackage[usenames,dvipnames]{xcolor} % for colored text
+\usepackage[normalem]{ulem} % for strikethrough text
+
+\include{lib/qmacros}
+\usepackage{lib/qcircuit}
+
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newcommand*{\Scale}[2][4]{\scalebox{#1}{$#2$}}%
+\newcommand{\itembase}{\setlength{\itemsep}{0pt}}
+\newcommand{\eg}{{\it e.g., }}
+\newcommand{\ie}{{\it i.e., }}
+
+% All the pretty colors go here
+\definecolor{myGreen}{rgb}{0,1,0}
+\definecolor{myRed}{rgb}{1,0,0}
+\newcommand{\clb}{\color{blue}}
+\newcommand{\clr}{\color{myRed}}
+\newcommand{\clg}{\color{myGreen}}
+\newcommand{\clbl}{\color{black}}
+
+% Making Qcircuit more concise
+\newcommand{\uLbl}[1]{\ustick{\textit{#1}}}
+\newcommand{\dblLine}{\ar@{.}[]+<0em,0em>;[d]+<0em,0em>}
+\newcommand{\lzyLine}{\qw\dblLine}
+\newcommand{\lzyLbl}[1]{\uLbl{#1}\qw\dblLine}
+
 %\usepackage{bibentry}
 \setbeamercolor{background canvas}{bg=gray}
 
@@ -165,13 +198,13 @@ Computer and Information Science, University of Oregon
 \end{frame}
 
 \begin{frame}
-{Table of Contents}
+{Table of Contents (optional frame. Can delete.)}
 \begin{multicols}{2}
 \tableofcontents
 \end{multicols}
 \end{frame}
 
-\begin{frame}{template frame}
+\begin{frame}{template frame (delete me)}
 
   \begin{block}{test block}
     some text
@@ -202,6 +235,14 @@ Computer and Information Science, University of Oregon
 
 \section{Motivation}
 \begin{frame}
+\begin{gather*}
+ \Qcircuit @C=1em @R=1.2em {
+   & \gate{A} & \multigate{1}{C} & \qw & \gate{E} & \multigate{2}{G} & \multigate{1}{J} & \qw \\
+   & \gate{B} & \ghost{C} & \gate{D}  & \multigate{1}{F} & \ghost{G} & \ghost{J} & \qw \\
+   & \qw & \qw & \qw & \ghost{F} & \ghost{G} & \gate{K} & \qw \\
+ }\\
+ {\footnotesize \text{Arbitrary quantum circuit involving unitary operations on 3 qubits.}}%
+ \end{gather*}
   One-way quantum computing, measurement based quantum computing \\
   As opposed to circuit based quantum computing
 \end{frame}
@@ -211,17 +252,37 @@ Computer and Information Science, University of Oregon
   Basic teleporation
 \end{frame}
 
-\section{Cluster states}
+\section{Cluster states (CS)}
 
 \subsection{Definition}
 \begin{frame}
-  
+
 \end{frame}
 
 
 \subsection{Representations}
 \begin{frame}
-  
+
+    \begin{columns}
+
+      \begin{column}{.5\linewidth}
+    \begin{figure}[thb]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/2d_clusters_rep.jpg}
+  \label{I2dclustersfig}
+  \caption{Figure showing representative 2-D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
+\end{figure}
+        
+    \end{column}
+
+      \begin{column}{.5\linewidth}
+        Blah
+    \end{column}
+
+  \end{columns}
+
+
+
 \end{frame}
 
 
@@ -235,18 +296,74 @@ Computer and Information Science, University of Oregon
 
 \subsection{Linear wire}
 \begin{frame}
-  
+\begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+    &\ket{\psi}_0&&&\\
+    &\cluster{0}&\cluster{1}&\cluster{2}\qw&\cluster{3}\qw
+    \gategroup{1}{2}{2}{3}{1.5em}{--}
+}\\
+{\footnotesize \text{Gate $C_z^{(0,1)}$, followed by measurements $M_X^{(0)}$, $M_X^{(1)}$, \& $M_X^{(2)}$.}}%
+\end{gather*}
 \end{frame}
 
 \subsection{Arbitrary single qubit operations}
 \begin{frame}
-  Callback to teleportation discussion  
+  Callback to teleportation discussion
+  
+\begin{gather*}
+\Qcircuit @C=1em @R=1em{
+&\lstick{\ket{+}_1} &\ctrl{1} & \gate{HZ_{\alpha1}} & \meter & \cw & \cw \\
+&\lstick{\ket{+}_2} & \gate{CZ} & \qw & \qw & \ctrl{1} & \gate{HZ_{\pm\alpha2}} \cwx  & \meter \\
+&\lstick{\ket{+}_3} & \qw & \qw & \qw & \gate{CZ} & \qw & \qw \gategroup{1}{5}{2}{3}{0.8em}{--} \gategroup{2}{6}{3}{8}{1.2em}{--}
+}
+\end{gather*}
+
 \end{frame}
 
 
 \subsection{Two qubit operations}
 \begin{frame}
-  
+\newcommand{\bertLine}{\ar@{-}[]+<0em,-2.3em>;[d]+<0em,2.3em>}
+\begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+    \ket{\phi_A}&\cluster{\Scale[0.8] A}&\cluster{1}&\qw&\cluster{2}\bertLine\qw&\qw&\cluster{3}\qw\\
+    \ket{\phi_B}&\cluster{\Scale[0.8] B}&\cluster{5}&\qw&\cluster{4}\qw&\qw&\cluster{6}\qw
+    \gategroup{1}{1}{2}{3}{2.2em}{--}
+}\\
+{\footnotesize \text{Apply $C_z^{(A,1)}$ and $C_z^{(B,5)}$ to input quantum information into cluster state.}}%
+\end{gather*}
+
+\pause
+    \begin{columns}
+
+      \begin{column}{.35\linewidth}
+\begin{gather*}
+ \Qcircuit @C=1em @R=1.2em {
+   & \gate{A} & \multigate{1}{C} & \qw & \gate{E} & \multigate{2}{G} & \multigate{1}{J} & \qw \\
+   & \gate{B} & \ghost{C} & \gate{D}  & \multigate{1}{F} & \ghost{G} & \ghost{J} & \qw \\
+   & \qw & \qw & \qw & \ghost{F} & \ghost{G} & \gate{K} & \qw \\
+ }
+ \end{gather*}
+
+      \end{column}
+      \begin{column}{0.05\linewidth}
+      \end{column}
+      \begin{column}{.6\linewidth}
+        \vspace{0.5ex}
+         \newcommand{\certLine}{\ar@{-}[]+<0em,-1.em>;[d]+<0em,1.em>}
+ \begin{gather*}
+ \Qcircuit @C=0.5em @R=0.5em{
+    &\cluster{}\qw&\qw&\cluster{}\certLine\qw&\qw&\qw&\qw&\cluster{}\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw\\
+   &\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\certLine\qw&\qw&\cluster{}\qw&\qw\\
+    &\qw&\qw&\qw&\qw&\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw&\cluster{}\qw&\qw\\   
+ }
+ \end{gather*}
+
+    \end{column}
+
+  \end{columns}
+
+
 \end{frame}
 
 \section{Advantages and disadvantages}
@@ -261,7 +378,7 @@ Computer and Information Science, University of Oregon
   
 \end{frame}
 
-\subsection{Cluster state model as an analysis tool}
+\subsection{CS model as an analysis tool}
 \begin{frame}
   
 \end{frame}
