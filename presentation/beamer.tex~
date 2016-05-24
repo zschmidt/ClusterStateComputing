@@ -1,0 +1,618 @@
+
+\documentclass[8pt,mathserif]{beamer}
+\usetheme{Warsaw}
+\usecolortheme{whale}
+\usepackage{times}  % fonts are up to you
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage[style=numeric-comp]{biblatex}
+%\usepackage{bibentry}
+\setbeamercolor{background canvas}{bg=gray}
+
+\setbeamertemplate{footline}[page number]{}
+
+%\addbibresource{TMI_bib.bib}
+%\bibliography{TMIbib.bib}
+
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+  \setlength{\textwidth}{#1}
+  \begin{actionenv}#3%
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+
+\makeatletter
+\pgfdeclareverticalshading[black,bg]{bmb@shadow}{200cm}{%
+  color(0bp)=(black!25); color(4bp)=(black!50!bg); color(8bp)=(black!50!bg)}
+\pgfdeclareradialshading[black,bg]{bmb@shadowball}{\pgfpointorigin}{%
+  color(0bp)=(black!50!bg); color(4bp)=(black!25)}
+\pgfdeclareradialshading[black,bg]{bmb@shadowballlarge}{\pgfpointorigin}{%
+  color(0bp)=(black!50!bg); color(4bp)=(black!50!bg); color(8bp)=(black!25)}
+
+\def\insertsectionnavigation#1{%
+  \hbox to #1{\vbox{{\usebeamerfont{section in head/foot}%
+     \usebeamercolor[fg]{section in head/foot}%
+     \def\slideentry##1##2##3##4##5##6{}%
+     \def\sectionentry##1##2##3##4##5{%
+       \ifnum##5=\c@part%
+       \def\insertsectionhead{##2\hskip1em}%
+       \def\insertsectionheadnumber{##1}%
+       \def\insertpartheadnumber{##5}%
+         \hyperlink{Navigation##3}{%
+             \ifnum\c@section=##1%
+               {\usebeamertemplate{section in head/foot}}%
+             \else%
+               {\usebeamertemplate{section in head/foot shaded}}%
+             \fi%
+         }\par
+       \fi}%
+       \parbox[c][0cm][c]{.5\paperwidth}{%
+       \begin{multicols}{2}
+       \dohead
+       \end{multicols}}\space}
+     }%
+  \hfil}%
+}
+
+\def\insertsubsectionnavigation#1{%
+  \hbox to #1{%
+    \vbox{{%
+      \usebeamerfont{subsection in head/foot}\usebeamercolor[fg]{subsection in head/foot}%
+      \vskip0.5625ex%
+      \beamer@currentsubsection=0%
+      \def\sectionentry##1##2##3##4##5{}%
+      \def\slideentry##1##2##3##4##5##6{\ifnum##6=\c@part\ifnum##1=\c@section%
+        \ifnum##2>\beamer@currentsubsection%
+        \beamer@currentsubsection=##2%
+        \def\insertsubsectionhead{##5}%
+        \def\insertsectionheadnumber{##1}%
+        \def\insertsubsectionheadnumber{##2}%
+        \def\insertpartheadnumber{##6}%
+        \beamer@link(##4){%
+              \ifnum\c@subsection=##2%
+                {\usebeamertemplate{subsection in head/foot}}%
+              \else%
+                {\usebeamertemplate{subsection in head/foot shaded}}%
+              \fi\hfill}\par
+        \fi\fi\fi}%
+       \hspace*{0.5em}\parbox[c][0cm][c]{\dimexpr.5\paperwidth-1em\relax}{%
+       \begin{multicols}{2}
+       \dohead\vskip0.5625ex\end{multicols}
+       }\space
+   }\hfil
+}}}
+
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{blocks}[rounded][shadow=false]
+%\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+\setbeamertemplate{frametitle}[default][colsep=-4bp,rounded=false,shadow=false]
+
+\setbeamertemplate{headline}
+{%
+  \leavevmode\@tempdimb=2.4375ex%
+  \ifnum\beamer@subsectionmax<\beamer@sectionmax%
+    \multiply\@tempdimb by\beamer@sectionmax%
+  \else%
+    \multiply\@tempdimb by\beamer@subsectionmax%
+  \fi%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.125ex%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=0.5\@tempdimb,dp=2ex]{section in head/foot}%
+      \vbox to0.5\@tempdimb{\vfill\insertsectionnavigation{.5\paperwidth}\vfill}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=0.5\@tempdimb,dp=2ex]{subsection in head/foot}%
+      \vbox to0.5\@tempdimb{\vfill\insertsubsectionnavigation{.5\paperwidth}\vfill}%
+    \end{beamercolorbox}%
+  \fi%
+}
+\makeatother
+
+\def\bra#1{\mathinner{\langle{#1}|}}
+\def\ket#1{\mathinner{|{#1}\rangle}}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\def\Bra#1{\left<#1\right|}
+\def\Ket#1{\left|#1\right>}
+
+% for themes, etc.
+%\mode<presentation>
+%{ \usetheme{boxes} }
+
+
+%\usepackage{beamerposter}
+
+% these will be used later in the title page
+\title{Efficient sorting of single-photon wave packets by\\
+  \bf{temporal-mode interferometry}}
+\author{Dileep V. Reddy, Michael G. Raymer (University of Oregon)\\ 
+Colin J. McKinstrie (Applied Communication Sciences)}
+\date{October 21, 2014}
+
+
+% note: do NOT include a \maketitle line; also note that this title
+% material goes BEFORE the \begin{document}
+
+% have this if you'd like a recurring outline
+%\AtBeginSection[]  % "Beamer, do the following at the start of every section"
+%{
+%\begin{frame}<beamer> 
+%\frametitle{Outline} % make a frame titled "Outline"
+%\tableofcontents[currentsection]  % show TOC and highlight current section
+%\end{frame}
+%}
+\newcommand\Fontvi{\fontsize{7}{7.2}\selectfont}
+
+\begin{document}
+
+
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../figures/fio_bg1.png}}
+\begin{frame}
+\begin{center}
+Frontiers in Optics, 2014
+\maketitle
+
+Oregon Center for Optics, Department of Physics, University of Oregon
+\end{center}
+\end{frame}
+
+\section{Temporal modes}
+
+\subsection{Problem motivation}
+
+\begin{frame}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=4.in]{../figures/TMI_mythical}
+\end{figure}
+
+\begin{block}{Problem Statement}
+Design a device that can separate an arbitrary {\bf Temporal mode} component from an optical signal (classical or quantum) pulse with 100\% or near-100\% fidelity.
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}{Existing types of optical multiplexing}
+\begin{columns}
+\begin{column}{.3\linewidth}
+\begin{figure}[htb]
+\centering
+Polarization
+\includegraphics[width=1.4in]{../figures/polarization.jpg}
+\end{figure}
+\end{column}
+\begin{column}{.7\linewidth}
+\begin{figure}[htb]
+\centering
+Transverse modes\\
+\vspace{2ex}
+\includegraphics[width=2.in]{../figures/fmodes02.jpg}
+\end{figure}
+\end{column}
+\end{columns}
+\vspace{2ex}
+\begin{figure}[htb]
+\centering
+Time-division, and Wavelength-division multiplexing\\
+\vspace{2ex}
+\includegraphics[width=3.5in]{../figures/tdmwdm}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Definition of temporal modes}
+
+Monochromatic mode: $\quad|1\rangle_{\omega}=\widehat{a}^\dagger(\omega)|0\rangle,\quad \left[\widehat{a}(\omega),\widehat{a}^\dagger(\omega')\right]=2\pi\delta^3(\omega-\omega').$\\\vspace{5pt}
+Arbitrary mode: $\quad\quad\quad\quad|1\rangle_{j}=\widehat{b}^\dagger_{j}|0\rangle,\quad\quad\left[\widehat{b}_{j},\widehat{b}^\dagger_{m}\right]=\delta_{j,m}.$\\\vspace{5pt}
+\begin{center}$\widehat{b}_{j}=\int\frac{d\omega}{2\pi}U^*_j(\omega)\widehat{a}(\omega)$\end{center}
+\vspace{-2pt}
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+Time domain electric field
+\includegraphics[width=1.1in]{../figures/pherG_time.png}
+\end{figure}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+Spectra in frequency domain
+\includegraphics[width=1.1in]{../figures/pherG_freq.png}
+\end{figure}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\section{Optical nonlinearity}
+
+\subsection{Quantum frequency conversion}
+\begin{frame}{Quantum frequency conversion\footnotemark[1]}
+
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.6in]{../figures/sfg.png}
+\end{figure}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.6in]{../figures/dfg.png}
+\end{figure}
+\end{column}
+\end{columns}
+\begin{gather*}
+P(t) = \chi^{(1)}E(t)+\chi^{(2)}E^2(t)+\chi^{(3)}E^3(t)+...\\
+\nabla^2{\mathbf E}-\frac{n^2}{c^2}\partial_t^2{\mathbf E}=\frac{4\pi}{c^2}\partial^2_t{\mathbf P^{NL}}
+\end{gather*}
+\vspace{-10pt}
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=2in]{../figures/bulk_beta.png}
+\end{figure}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+Periodically poled waveguide
+\includegraphics[width=2in]{../figures/qpm.png}\footnotemark[2]
+\begin{gather*}
+\omega_p+\omega_s = \omega_r\\
+\beta_p+\beta_s+2\pi/\Lambda = \beta_r
+\end{gather*}
+\end{figure}
+\end{column}
+\end{columns}
+\footnotetext[1]{J. Huang and P. Kumar, Phys. Rev. Lett, 68, 2153 (1992).}
+\footnotetext[2]{M. G. Raymer and K. Srinivasan, Physics Today, 11, 32 (2012).}
+\end{frame}
+
+\begin{frame}{Coupled-mode equations in $\chi^{(2)}$ waveguides}
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.6in]{../figures/sfg.png}
+\end{figure}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.6in]{../figures/dfg.png}
+\end{figure}
+\end{column}
+\end{columns}
+%\pause
+\begin{equation*}
+E_j(z,t)=\int d\omega \widetilde{A_j}(z,\omega)e^{i(\beta(\omega)z-\omega t)} \approx A_j(t-\beta_j' z)e^{i(\beta_jz-\omega_j t)} \quad\text{if undepleted}
+\end{equation*}
+
+\begin{block}{Coupled-mode equations for frequency conversion\footnotemark}
+\begin{gather*}
+(\partial_z-\beta'_r\partial_t)A_r(z,t) = i \gamma e^{i(\beta_p+\beta_s-\beta_r+2\pi/\Lambda)z} A_p(t-\beta_p'z)A_s(z,t)\\
+(\partial_z-\beta'_s\partial_t)A_s(z,t) = i \gamma e^{-i(\beta_p+\beta_s-\beta_r+2\pi/\Lambda)z} A^*_p(t-\beta_p'z)A_r(z,t)\\
+\end{gather*}
+\end{block}
+%\vspace{5pt}
+\footnotetext[3]{D. V. Reddy, M. G. Raymer, C. J. McKinstrie, L. Mejling, and K. Rottwitt, Opt. Express 21, 13840 (2013).}
+\end{frame}
+
+\begin{frame}%{Green function formalism}
+\begin{columns}
+\begin{column}{.55\linewidth}
+\begin{gather*}
+A_j(L,t)=\int dt'\sum\limits_{k=r,s}G_{jk}(t,t')A_k(0,t')\\
+\text{Employing singular value decomposition (SVD)}\footnotemark\\
+G_{rr}(t,t') = \sum\limits_n\tau_n\Psi_{n}(t)\psi_{n}^*(t')\\
+G_{rs}(t,t') = \sum\limits_n\rho_n\Psi_{n}(t)\phi_{n}^*(t')\\
+G_{ss}(t,t') = \sum\limits_n\tau_n^*\Phi_{n}(t)\phi_{n}^*(t')\\
+G_{sr}(t,t') = -\sum\limits_n\rho_n^*\Phi_{n}(t)\psi_{n}^*(t')\\
+\tau_n^2+\rho_n^2=1,\quad \rho_1\ge\rho_2\ge\rho_3\ge....
+\end{gather*}
+%\pause
+$n$-th Schmidt mode conversion efficiency $=\rho_n^2$.
+Ideally, $\rho_n=\delta_{n1}$.
+\end{column}
+\begin{column}{.35\linewidth}
+%\pause
+\begin{figure}[htb]
+\centering
+$G_{rs}(t,t')$ for various $\gamma$
+\includegraphics[width=1.75in]{../figures/figx3}\footnotemark
+\end{figure}
+\end{column}
+\end{columns}
+\footnotetext[4]{M. G. Raymer, S. J. van Enk, C. J. McKinstrie, and H. J. McGuinness, Opt. Commun. 283, 747 (2010).}
+\footnotetext[5]{D. V. Reddy, M. G. Raymer, C. J. McKinstrie, L. Mejling, and K. Rottwitt, Opt. Express 21, 13840 (2013).}
+\end{frame}
+
+\subsection{Schmidt modes and Selectivity}
+
+\begin{frame}
+Free parameters: $\left[\gamma\sqrt{L/\beta'_{rs}}\right]$, $\left[\beta'_{rp}/\beta'_{sp}\right]$, $\left[\beta'_{rs}L/\tau_p\right]$, and pump shape. ($\beta'_{jk}=\beta'_j-\beta'_k$)
+\begin{alertblock}{Temporal-mode Selectivity:\footnotemark[5]}
+\begin{center}
+$S = \rho_1^4\bigg/\left(\sum\limits_n\rho_n^2\right)$
+\end{center}
+\end{alertblock}
+%\pause
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering Conversion efficiencies for\\ `Single sideband velocity
+matched regime'\\ ($\beta'_{sp}=0$, $\beta'_{rs}L/\tau_p=20$):
+\includegraphics[width=2.1in]{../figures/fig006}\footnotemark[5]
+\end{figure}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{figure}[htb]
+\centering
+%\vspace{10pt}
+Universality curve for $\tau_p=0.1$,\\`Single sideband velocity
+matched regime'\\ ($\overline\gamma = \gamma/\beta'_{rs}$):
+\includegraphics[width=2.in]{../figures/figx4}\footnotemark[5]
+\end{figure}
+\end{column}
+\end{columns}
+\footnotetext[5]{D. V. Reddy, M. G. Raymer, C. J. McKinstrie, L. Mejling, and K. Rottwitt, Opt. Express 21, 13840 (2013).}
+\end{frame}
+
+\section{Temporal-mode interferometry}
+\subsection{Proof of concept}
+\begin{frame}
+\def \cw {.07\linewidth}
+\def \dw {.33\linewidth}
+\def \ew {.07\linewidth}
+\def \fw {.47\linewidth}
+\begin{exampleblock}{\centering What we want:}\end{exampleblock}
+\begin{columns}
+\begin{column}{\cw}
+\vspace{10pt}
+\begin{gather*}
+\\
+\\
+|\phi_1(t')\rangle_s
+\end{gather*}
+\end{column}
+\begin{column}{\dw}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.5in]{../figures/BS_color_fio.png}
+\end{figure}
+\end{column}
+\begin{column}{\ew}
+\vspace{10pt}
+\begin{gather*}
+|\Psi_1(t)\rangle_r\\
+\\
+\end{gather*}
+\end{column}
+\vrule{}
+\begin{column}{\cw}
+\vspace{10pt}
+\begin{gather*}
+\\
+\\
+|\phi_2(t')\rangle_s
+\end{gather*}
+\end{column}
+\begin{column}{\dw}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.5in]{../figures/BS_color_fio.png}
+\end{figure}
+\end{column}
+\begin{column}{\ew}
+\vspace{10pt}
+\begin{gather*}
+\\
+\\
+|\Phi_2(t)\rangle_s
+\end{gather*}
+\end{column}
+\end{columns}
+\vspace{20pt}
+\begin{alertblock}{\centering What we have:}\end{alertblock}
+\begin{columns}
+\begin{column}{\cw}
+\vspace{10pt}
+\begin{gather*}
+\\
+\\
+|\phi_n(t')\rangle_s
+\end{gather*}
+\end{column}
+\begin{column}{\dw}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.5in]{../figures/BS_color_fio.png}
+\end{figure}
+\end{column}
+\begin{column}{\ew}
+\vspace{10pt}
+\begin{gather*}
+\rho_n|\Psi_n(t)\rangle_r\\
++\\
+\tau_n|\Phi_n(t)\rangle_s
+\end{gather*}
+\end{column}
+\begin{column}{\fw}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.9in]{../figures/figx25.png}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{At $50$\% conversion, $\quad|\rho_1|^2 = 0.5$, $\quad|\rho_{n\ne 1}|^2\approx 0$}
+\def \cw {.07\linewidth}
+\def \dw {.33\linewidth}
+\def \ew {.07\linewidth}
+\def \fw {.47\linewidth}
+\begin{columns}
+\begin{column}{\cw}
+\vspace{10pt}
+\begin{gather*}
+\\
+\\
+|\phi_1(t')\rangle_s
+\end{gather*}
+\end{column}
+\begin{column}{\dw}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.5in]{../figures/BS_color1_fio.png}
+\end{figure}
+\end{column}
+\begin{column}{\ew}
+\vspace{10pt}
+\begin{gather*}
+\frac{|\Psi_1(t)\rangle_r}{\sqrt{2}}\\
++\\
+\frac{|\Phi_1(t)\rangle_s}{\sqrt{2}}
+\end{gather*}
+\end{column}
+\vrule{}
+\begin{column}{\cw}
+\vspace{10pt}
+\begin{gather*}
+\frac{|\psi_1(t')\rangle_r}{\sqrt{2}}\\
++\\
+\frac{|\phi_1(t')\rangle_s}{\sqrt{2}}
+\end{gather*}
+\end{column}
+\begin{column}{\dw}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.5in]{../figures/BS_color2_fio.png}
+\end{figure}
+\end{column}
+\begin{column}{\ew}
+\vspace{10pt}
+\begin{gather*}
+|\Psi_1(t)\rangle_r\\
+\\
+\end{gather*}
+\end{column}
+\end{columns}
+
+\vspace{10pt}
+%\pause
+\begin{block}{}
+\begin{equation*}
+G_{rs}(t,t')=\int dt''\left[G^{(2)}_{rs}(t,t'')G^{(1)}_{ss}(t'',t')+e^{i\theta}G^{(2)}_{rr}(t,t'')G^{(1)}_{rs}(t'',t')\right]
+\end{equation*}
+\end{block}
+
+\vspace{10pt}
+{\bf Mach-Zehnder interferometry analogy:} Each stage behaves like a frequency-shifting 50/50 beamsplitter.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=2.in]{../figures/TMI_MZ_fio2.png}
+\end{figure}
+
+\end{frame}
+
+\subsection{Configurations}
+
+\begin{frame}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=4.in]{../figures/TMI_sch2}\footnotemark\\
+\end{figure}
+\vspace{10pt}
+\begin{block}{}
+{\bf Reverse collision (RC)} configuration: $\beta_r^{'(1)}=\beta_s^{'(2)}$, $\beta_s^{'(1)}=\beta_r^{'(2)}$.\\
+
+\begin{center}$|\rho_1|^2=0.9975$, $|\rho_2|^2=0.0110$\end{center}
+\end{block}
+\begin{block}{}
+{\bf Double collision (DC)} configuration: Identical media, with time-delays inbetween.\\
+
+\begin{center}$|\rho_1|^2=0.9957$, $|\rho_2|^2=0.0134$\end{center}
+\end{block}
+\footnotetext{D. V. Reddy, M. G. Raymer, and C. J. McKinstrie, Opt. Lett. 39, 2924 (2014).}
+\end{frame}
+
+\subsection{Applications}
+
+\begin{frame}
+\begin{exampleblock}{}{\centering Single-photon temporal-mode shaping and filtering:}
+\end{exampleblock}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=3.in]{../figures/PRA_fig14fio}
+\end{figure}
+\vspace{-10pt}
+\begin{exampleblock}{}{\centering Direct temporal-mode tomography:}
+\end{exampleblock}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=3.5in]{../figures/PRA_fig18fio}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{}{\centering Long-distance quantum communication:}
+\end{exampleblock}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=3.5in]{../figures/PRA_fig15}
+\end{figure}
+%\vspace{-5pt}
+\begin{exampleblock}{}{\centering Temporal-mode multiplexing:}
+\end{exampleblock}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=3.5in]{../figures/PRA_fig19}
+\end{figure}
+\end{frame}
+
+\section{Conclusion}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Conclusions:}
+\begin{itemize}
+\item We proposed temporal-mode interferometry (TMI) for wave-packet multiplexing and demultiplexing\footnotemark[5].
+\begin{itemize}
+\item Clemmen et al (CLEO:2014: FTh5A.2) have since experimentally demonstrated `color-qubit' with CW pumps, {\it i.e.} with no selectivity.
+\end{itemize}
+\item TMI, together with existing methods, enables all linear quantum operations on single-photon wave-packets.
+\item TMI enables multidimensional and continuous wave operations on the same.
+\end{itemize}
+\end{exampleblock}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.5in]{../figures/logos}
+\end{figure}
+\begin{block}{Acknowledgements:}
+{Colin J. McKinstrie, Applied Communication Sciences\\
+Raymer Lab, Oregon Center for Optics, University of Oregon\\
+Michael G. Raymer, Roger Smith, Dash Vitullo, Erin Mondloch, Kyle Lynch-Klarup
+}
+\end{block}
+
+\footnotetext[5]{D. V. Reddy, M. G. Raymer, and C. J. McKinstrie, Opt. Lett. 39, 2924 (2014).}
+
+\end{frame}
+
+\end{document}

@@ -1,0 +1,269 @@
+
+\documentclass[8pt,mathserif]{beamer}
+\usetheme{Warsaw}
+\usecolortheme{whale}
+\usepackage{times}  % fonts are up to you
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage[style=numeric-comp]{biblatex}
+%\usepackage{bibentry}
+\setbeamercolor{background canvas}{bg=gray}
+
+\setbeamertemplate{footline}[page number]{}
+
+%\addbibresource{TMI_bib.bib}
+%\bibliography{TMIbib.bib}
+
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+  \setlength{\textwidth}{#1}
+  \begin{actionenv}#3%
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+
+\makeatletter
+\pgfdeclareverticalshading[black,bg]{bmb@shadow}{200cm}{%
+  color(0bp)=(black!25); color(4bp)=(black!50!bg); color(8bp)=(black!50!bg)}
+\pgfdeclareradialshading[black,bg]{bmb@shadowball}{\pgfpointorigin}{%
+  color(0bp)=(black!50!bg); color(4bp)=(black!25)}
+\pgfdeclareradialshading[black,bg]{bmb@shadowballlarge}{\pgfpointorigin}{%
+  color(0bp)=(black!50!bg); color(4bp)=(black!50!bg); color(8bp)=(black!25)}
+
+\def\insertsectionnavigation#1{%
+  \hbox to #1{\vbox{{\usebeamerfont{section in head/foot}%
+     \usebeamercolor[fg]{section in head/foot}%
+     \def\slideentry##1##2##3##4##5##6{}%
+     \def\sectionentry##1##2##3##4##5{%
+       \ifnum##5=\c@part%
+       \def\insertsectionhead{##2\hskip1em}%
+       \def\insertsectionheadnumber{##1}%
+       \def\insertpartheadnumber{##5}%
+         \hyperlink{Navigation##3}{%
+             \ifnum\c@section=##1%
+               {\usebeamertemplate{section in head/foot}}%
+             \else%
+               {\usebeamertemplate{section in head/foot shaded}}%
+             \fi%
+         }\par
+       \fi}%
+       \parbox[c][0cm][c]{.5\paperwidth}{%
+       \begin{multicols}{2}
+       \dohead
+       \end{multicols}}\space}
+     }%
+  \hfil}%
+}
+
+\def\insertsubsectionnavigation#1{%
+  \hbox to #1{%
+    \vbox{{%
+      \usebeamerfont{subsection in head/foot}\usebeamercolor[fg]{subsection in head/foot}%
+      \vskip0.5625ex%
+      \beamer@currentsubsection=0%
+      \def\sectionentry##1##2##3##4##5{}%
+      \def\slideentry##1##2##3##4##5##6{\ifnum##6=\c@part\ifnum##1=\c@section%
+        \ifnum##2>\beamer@currentsubsection%
+        \beamer@currentsubsection=##2%
+        \def\insertsubsectionhead{##5}%
+        \def\insertsectionheadnumber{##1}%
+        \def\insertsubsectionheadnumber{##2}%
+        \def\insertpartheadnumber{##6}%
+        \beamer@link(##4){%
+              \ifnum\c@subsection=##2%
+                {\usebeamertemplate{subsection in head/foot}}%
+              \else%
+                {\usebeamertemplate{subsection in head/foot shaded}}%
+              \fi\hfill}\par
+        \fi\fi\fi}%
+       \hspace*{0.5em}\parbox[c][0cm][c]{\dimexpr.5\paperwidth-1em\relax}{%
+       \begin{multicols}{2}
+       \dohead\vskip0.5625ex\end{multicols}
+       }\space
+   }\hfil
+}}}
+
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{blocks}[rounded][shadow=false]
+%\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+\setbeamertemplate{frametitle}[default][colsep=-4bp,rounded=false,shadow=false]
+
+\setbeamertemplate{headline}
+{%
+  \leavevmode\@tempdimb=2.4375ex%
+  \ifnum\beamer@subsectionmax<\beamer@sectionmax%
+    \multiply\@tempdimb by\beamer@sectionmax%
+  \else%
+    \multiply\@tempdimb by\beamer@subsectionmax%
+  \fi%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.125ex%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=0.5\@tempdimb,dp=2ex]{section in head/foot}%
+      \vbox to0.5\@tempdimb{\vfill\insertsectionnavigation{.5\paperwidth}\vfill}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=0.5\@tempdimb,dp=2ex]{subsection in head/foot}%
+      \vbox to0.5\@tempdimb{\vfill\insertsubsectionnavigation{.5\paperwidth}\vfill}%
+    \end{beamercolorbox}%
+  \fi%
+}
+\makeatother
+
+\def\bra#1{\mathinner{\langle{#1}|}}
+\def\ket#1{\mathinner{|{#1}\rangle}}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\def\Bra#1{\left<#1\right|}
+\def\Ket#1{\left|#1\right>}
+
+% for themes, etc.
+%\mode<presentation>
+%{ \usetheme{boxes} }
+
+
+%\usepackage{beamerposter}
+
+% these will be used later in the title page
+\title{\bf{Cluster-State Quantum Computing}}
+\author{Mayra Amezcua, Dileep V. Reddy, Zach Schmidt}
+\date{\today}
+
+
+% note: do NOT include a \maketitle line; also note that this title
+% material goes BEFORE the \begin{document}
+
+% have this if you'd like a recurring outline
+%\AtBeginSection[]  % "Beamer, do the following at the start of every section"
+%{
+%\begin{frame}<beamer> 
+%\frametitle{Outline} % make a frame titled "Outline"
+%\tableofcontents[currentsection]  % show TOC and highlight current section
+%\end{frame}
+%}
+\newcommand\Fontvi{\fontsize{7}{7.2}\selectfont}
+
+\begin{document}
+
+
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{figures/fio_bg1.png}}
+\begin{frame}
+\begin{center}
+Course Project, Spring 2016
+\maketitle
+
+{\bf CIS410/510 Introduction to Quantum Information Theory}\\
+Lecturer: Prof. Xiaodi Wu\\
+Computer and Information Science, University of Oregon
+\end{center}
+\end{frame}
+
+\begin{frame}
+{Table of Contents}
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+\end{frame}
+
+\begin{frame}{template frame}
+
+  \begin{block}{test block}
+    some text
+  \end{block}
+
+  \begin{varblock}[4cm]{test varblock}
+    Variable block (here 4cm)
+  \end{varblock}
+
+  \begin{columns}
+
+    \begin{column}{.5\linewidth}
+      \begin{alertblock}{test alert}
+        some alert
+      \end{alertblock}
+    \end{column}
+
+    \begin{column}{.5\linewidth}
+      \begin{exampleblock}{test example}
+        some example citation \footnotemark
+      \end{exampleblock}
+    \end{column}\footnotetext[1]{Auth, DV, 123, 2001.}
+
+  \end{columns}
+
+\end{frame}
+
+
+\section{Motivation}
+\begin{frame}
+  One-way quantum computing, measurement based quantum computing \\
+  As opposed to circuit based quantum computing
+\end{frame}
+
+\subsection{Gates through teleportation}
+\begin{frame}
+  Basic teleporation
+\end{frame}
+
+\section{Cluster states}
+
+\subsection{Definition}
+\begin{frame}
+  
+\end{frame}
+
+
+\subsection{Representations}
+\begin{frame}
+  
+\end{frame}
+
+
+\subsection{Properties}
+\begin{frame}
+  
+\end{frame}
+
+
+\section{Universal computation through CS}
+
+\subsection{Linear wire}
+\begin{frame}
+  
+\end{frame}
+
+\subsection{Arbitrary single qubit operations}
+\begin{frame}
+  Callback to teleportation discussion  
+\end{frame}
+
+
+\subsection{Two qubit operations}
+\begin{frame}
+  
+\end{frame}
+
+\section{Advantages and disadvantages}
+
+\subsection{Parallelizability}
+\begin{frame}
+  
+\end{frame}
+
+\subsection{Experimental implementations}
+\begin{frame}
+  
+\end{frame}
+
+\subsection{Cluster state model as an analysis tool}
+\begin{frame}
+  
+\end{frame}
+
+\end{document}
