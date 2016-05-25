@@ -1,5 +1,6 @@
 
 \documentclass[8pt,mathserif]{beamer}
+\usepackage{etex}
 \usetheme{Warsaw}
 \usecolortheme{whale}
 \usepackage{times}  % fonts are up to you
@@ -10,19 +11,19 @@
 \usepackage{listings}
 \usepackage{lmodern}
 \usepackage{multicol}
+\usepackage{epsfig}
 \usepackage[T1]{fontenc}
-\usepackage[style=numeric-comp]{biblatex}
+\usepackage{lib/qcircuit}
+\include{lib/qmacros}
+%Zach's note: I'm unable to compile with this package.
+%   It seems like an issue with xstring
+%\usepackage[style=numeric-comp]{biblatex}
 
 %\usepackage[usenames,dvipnames]{xcolor} % for colored text
 \usepackage[normalem]{ulem} % for strikethrough text
 
-\include{lib/qmacros}
-\usepackage{lib/qcircuit}
 
-\usepackage{amsmath}
-\usepackage{epsfig}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
