@@ -246,6 +246,9 @@ Computer and Information Science, University of Oregon
  \end{gather*}
   One-way quantum computing, measurement based quantum computing \\
   As opposed to circuit based quantum computing
+
+
+
 \end{frame}
 
 \subsection{Gates through teleportation}
@@ -258,38 +261,55 @@ Computer and Information Science, University of Oregon
 \subsection{Definition}
 \begin{frame}
 
+  \textit{Cluster states} form a class of multiparty entangled quantum states which belong to the larger set of so-called graph states. 
+
+  \begin{quotation}
+  \noindent Examples of graph states:
+    \begin{itemize} 
+      \item Bell states
+      \item Greenberger-Horne-Zeilinger (GHZ) states
+      \item states that appear in quantum error correction
+    \end{itemize}
+  \end{quotation}
+
+  Intuitively, graph states can be thought of as multi-qubit states that can be represented by a graph. 
+  \begin{itemize}
+    \item Each qubit is represented by a vertex of the graph
+    \item An edge between vertices represents an interacting pair of qubits
+  \end{itemize}
+
 \end{frame}
 
 
 \subsection{Representations}
 \begin{frame}
 
-    \begin{columns}
-
-      \begin{column}{.5\linewidth}
+\begin{columns}
+  \begin{column}{.5\linewidth}
     \begin{figure}[thb]
-  \centering
-  \includegraphics[width=0.9\linewidth]{figures/2d_clusters_rep.jpg}
-  \label{I2dclustersfig}
-  \caption{Figure showing representative 2-D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
-\end{figure}
-        
-    \end{column}
-
-      \begin{column}{.5\linewidth}
-        Blah
-    \end{column}
-
-  \end{columns}
-
-
-
+      \centering
+      \includegraphics[width=0.9\linewidth]{figures/2d_clusters_rep.jpg}
+      \label{I2dclustersfig}
+      \caption{Figure showing representative 2-D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
+    \end{figure}
+  \end{column}
+  \begin{column}{.5\linewidth}
+    Blah
+  \end{column}
+\end{columns}
 \end{frame}
 
 
 \subsection{Properties}
 \begin{frame}
-  
+The spacial layout of the graph representation of the cluster state plays a role in the computational power of that state.\\
+
+\vspace{2em}
+Operations on a linearly prepared cluster state can be efficiently simulated on a classical computer in $O(n\log ^c (1/n))$, where $n$ is the initial number of qubits, and $c$ is the cost of floating point multiplication \cite{nielsen2006cluster}.\\
+
+\vspace{2em}
+In general, measurement based models can be polynomial time reduced to the gate array model, and thus have the same power, but they are more easily parallelizable \cite{jozsa2006introduction}.
+
 \end{frame}
 
 
@@ -383,5 +403,17 @@ Computer and Information Science, University of Oregon
 \begin{frame}
   
 \end{frame}
+
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\begin{frame}[allowframebreaks]%in case more than 1 slide needed
+\section{References}
+  {\footnotesize
+    \bibliographystyle{apalike}
+    \bibliography{citations}
+  }
+\end{frame}
+
 
 \end{document}
