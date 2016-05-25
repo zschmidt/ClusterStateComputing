@@ -295,20 +295,39 @@ Interestingly, 1WQC's have no classical analogues and probe into new territory i
 
 \subsection{Representations}
 \begin{frame}
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      \begin{figure}[thb]
+        \centering
+        \includegraphics[width=0.9\linewidth]{figures/2d_clusters_rep.jpg}
+        \label{I2dclustersfig}
+        \caption{Figure showing representative 2-D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
+      \end{figure}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      A method to prepare cluster states is given in \cite{jorrand2005unifying}, consisting of ``cascading'' $C_z$ gates on $n$ qubits.
 
-\begin{columns}
-  \begin{column}{.5\linewidth}
-    \begin{figure}[thb]
-      \centering
-      \includegraphics[width=0.9\linewidth]{figures/2d_clusters_rep.jpg}
-      \label{I2dclustersfig}
-      \caption{Figure showing representative 2-D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
-    \end{figure}
-  \end{column}
-  \begin{column}{.5\linewidth}
-    Blah
-  \end{column}
-\end{columns}
+      \begin{align*}
+        \Qcircuit @C=1em @R=.5em @!R{
+          \lstick{\ket{+}_1}&\ctrl{1} &\qw       &\qw       &\qw\\
+          \lstick{\ket{+}_2}&\gate{CZ}&\ctrl{1}  &\qw       &\qw\\
+          \lstick{\ket{+}_3}&\qw      &\gate{CZ} &\ctrl{1}  &\qw\\
+          \lstick{\ket{+}_4}&\qw      &\qw       &\gate{CZ} &\qw
+        }\\
+        {\footnotesize \text{A circuit to prepare a linear cluster state}}
+      \end{align*}
+
+      \begin{align*}
+        \Qcircuit @C=1em @R=.5em @!R{
+          \lstick{\ket{+}_1}&\ctrl{1} &\qw       &\qw       &\qw\\
+          \lstick{\ket{+}_2}&\gate{CZ}&\ctrl{1}  &\ctrl{2}  &\qw\\
+          \lstick{\ket{+}_3}&\qw      &\gate{CZ} &\qw       &\qw\\
+          \lstick{\ket{+}_4}&\qw      &\qw       &\gate{CZ} &\qw
+        }\\
+        {\footnotesize \text{A circuit to prepare a non-linear cluster state}}
+      \end{align*}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
