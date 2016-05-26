@@ -511,7 +511,21 @@ Since there is a polynomial time reduced to the gate array model (implying they 
 \section{Advantages and disadvantages}
 
 \subsection{Parallelizability}
+
 \begin{frame}
+  \begin{figure}[thb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/parallel01.png}
+    \caption{The controlled-phase operations commute with unitaries and measurements on other parts of the cluster state. This allows one to conserve and reuse physical resourses, as well as maintain coherence on smaller cluster sizes at any given time.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}[thb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/parallel02.png}
+    \caption{X-measurements do not sever ``vertical'' links despite destruction of qubits. This allows different linear layers to be processed in any order.}
+  \end{figure}
 \end{frame}
 
 \subsection{Experimental implementations}
@@ -547,7 +561,10 @@ Since there is a polynomial time reduced to the gate array model (implying they 
 
 \subsection{CS model as an analysis tool}
 \begin{frame}
-  
+    \begin{block}{Coming soon}
+    Text about polynomial time classical simulation of linear cluster chain operations, and necessity of at least 2-D cluster states for true quantum speed up of certain algorithms. This separates product-state preparation from entangling operations.
+  \end{block}
+
 \end{frame}
 
 
