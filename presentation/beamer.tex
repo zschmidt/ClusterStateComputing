@@ -247,7 +247,7 @@ These models have no evident classical analogues and they offer a new perspectiv
 If we have a pool of maximally entangled states we can apply any unitary gate $U$ to any (multi-qubit) input state $\ket{\psi}$ by measurements alone.\\
 
 \vspace{2em}
-A significant annoyance is that we do not get the exact desired result $U \ket{\psi}$ but instead get $PU \ket{\psi}$ where $P$ is some Pauli operation (on each qubit) depending on the measurement outcome\cite{jozsa2006introduction}.
+One caveat is that the result is not $U \ket{\psi}$ but $PU \ket{\psi}$, where $P$ is some Pauli operation (on each qubit) depending on the measurement outcome\cite{jozsa2006introduction}.
 
 \end{frame}
 
@@ -438,6 +438,8 @@ Since there is a polynomial time reduced to the gate array model (implying they 
 \section{Universal computation through CS}
 \subsection{Linear wire}
 \begin{frame}
+\begin{varblock}{Teleportation}A linear cluster state acts as a wire to teleport information from one end to the other.\end{varblock}\vspace{2em}
+A single bit of quantum information is stored in $\ket{\psi}_0$. The state is teleported to qubit 3 by entangling $\ket{\psi}_0$ and $\ket{1}$ and then making a series of measurements. 
 \begin{gather*}
   \Qcircuit @C=1em @R=1em{
     &\ket{\psi}_0&&&\\
@@ -450,7 +452,7 @@ Since there is a polynomial time reduced to the gate array model (implying they 
 
 \subsection{Arbitrary single qubit operations}
 \begin{frame}
-  Callback to teleportation discussion
+  Gates can be applied as a series of one-bit teleportation. In this case these two one-bit teleportations can be implemented in any order because they commute! This also means that you can grow the cluster state to be more complex. 
   
 \begin{gather*}
 \Qcircuit @C=1em @R=1em{
@@ -547,16 +549,18 @@ Since there is a polynomial time reduced to the gate array model (implying they 
 	         &\cluster{}&\qw&\cluster{}\qw\\ 
 	    }
 	  \end{gather*}
+	  The optical components act as the gates. 
 	\end{column}
  
    \end{columns}
+   \cite{prevedel2007experimental}
 \end{frame}
 
 \begin{frame}
   Cluster States in Optical Frequency Combs\\
   
   \begin{figure}\centering\includegraphics[scale=0.15]{figures/frequencycombs.jpg}\end{figure}
-
+   \cite{menicucci2008one}
 \end{frame}
 
 \subsection{CS model as an analysis tool}
