@@ -1,4 +1,3 @@
-%\documentclass[8pt,mathserif]{beamer}
 \documentclass[8pt]{beamer}
 \usepackage{etex}
 \usetheme{Warsaw}
@@ -15,8 +14,6 @@
 
 %\usepackage[usenames,dvipnames]{xcolor} % for colored text
 \usepackage[normalem]{ulem} % for strikethrough text
-
-
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -39,6 +36,7 @@
 \newcommand{\dblLine}{\ar@{.}[]+<0em,0em>;[d]+<0em,0em>}
 \newcommand{\lzyLine}{\qw\dblLine}
 \newcommand{\lzyLbl}[1]{\uLbl{#1}\qw\dblLine}
+\newcommand{\vLineClstr}{\ar@{-}[]+<0em,-2.1em>;[d]+<0em,2.1em>}
 
 %\usepackage{bibentry}
 \setbeamercolor{background canvas}{bg=gray}
@@ -298,7 +296,7 @@ A significant annoyance is that we do not get the exact desired result $U \ket{\
       \vspace{-1em}
       \begin{gather*}
         \Qcircuit @C=1em @R=1.3em{
-          \smClstr{1}&\smClstr{2}\ar@{-}[]+<0em,-2.1em>;[d]+<0em,2.1em>\qw&\smClstr{3}\qw\\
+          \smClstr{1}&\smClstr{2}\vLineClstr\qw&\smClstr{3}\qw\\
           &\smClstr{4}&
           }\\
         \Qcircuit @C=1em @R=.5em @!R{
@@ -314,16 +312,126 @@ A significant annoyance is that we do not get the exact desired result $U \ket{\
 \end{frame}
 
 
+\begin{frame}
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      Note that the numbering on the nodes is arbitrary:
+
+      \begin{gather*}
+        \Qcircuit @C=1em @R=1.3em{
+          \smClstr{1}&\smClstr{2}\qw&\smClstr{3}\qw}
+          =
+          \Qcircuit @C=1em @R=1.3em{
+          \smClstr{3}&\smClstr{2}\qw&\smClstr{1}\qw}
+      \end{gather*}
+
+      This is immediately apparent when looking at the actual state:
+      {
+      \begin{gather*}
+        \frac{\ket{+}\ket{+}\ket{+}+\ket{-}\ket{-}\ket{-}}{\sqrt{2}}
+      \end{gather*}
+      }%
+
+      Notice this state is symmetric -- `numbering' the qubits is unnecessary in this case
+
+
+    \end{column}
+    \begin{column}{.5\linewidth}
+      This symmetry can make it easy to see how these states will be built.\\
+      Consider an input of $\ket{+++}$. When this is run through a $C_Z$ gate on qubits 1 and 2 produces the state:
+
+      {
+      \begin{gather*}
+        \frac{ (\ket{0}\ket{+} + \ket{1}\ket{-}) \ket{+}}{\sqrt{2}}
+      \end{gather*}
+      }%
+
+      Which is now obviously equal to the state:
+
+      {
+      \begin{gather*}
+        \frac{ (\ket{+}\ket{0} + \ket{-}\ket{1}) \ket{+}}{\sqrt{2}}
+      \end{gather*}
+      }%
+
+      
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\subsection{Measurement}
+\begin{frame}
+
+\begin{columns}
+  \begin{column}{.5\linewidth}
+
+    \begin{exampleblock}{4-node Cluster State}
+      \begin{gather*}
+        \Qcircuit @C=1em @R=1.3em{
+        \smClstr{1}&\smClstr{2}\vLineClstr\qw&\smClstr{3}\qw\\
+        &\smClstr{4}&}
+      \end{gather*}
+    \end{exampleblock}
+
+
+    The state representing the above graph is given by:
+    {
+    \begin{gather*}
+      \frac{\ket{+}_1\ket{0}_2\ket{+}_{3}\ket{+}_4+\ket{-}_1\ket{1}_2\ket{-}_{3}\ket{-}_4}{\sqrt{2}}
+    \end{gather*}
+    }%
+  \end{column}
+
+  \begin{column}{.5\linewidth}
+    If we were to measure qubit 4, this would `sever' the vertex from the graph, and it would impart a Hadamard on every vertex that was adjacent, resulting in the following state:
+    {
+    \begin{gather*}
+      \frac{\ket{+}_1\ket{+}_2\ket{+}_{3}+\ket{-}_1\ket{-}_2\ket{-}_{3}}{\sqrt{2}}
+    \end{gather*}
+    }%
+    
+    This was an example of a dynamical operation, i.e. this is the 1WQC analogue of a gate!
+
+
+  \end{column}
+\end{columns}
+\end{frame}
+
+
 \subsection{Properties}
 \begin{frame}
 The spacial layout of the graph representation of the cluster state plays a role in the computational power of that state.\\
 
 \vspace{2em}
-Operations on a linearly prepared cluster state can be efficiently simulated on a classical computer in $O(n\log ^c (1/n))$, where $n$ is the initial number of qubits, and $c$ is the cost of floating point multiplication \cite{nielsen2006cluster}.\\
+Operations on a linearly prepared cluster state can be efficiently simulated on a classical computer in $O(n\log ^c (1/n))$, where $n$ is the initial number of qubits, and $c$ is the cost of floating point multiplication \cite{nielsen2006cluster}\\
 
 \vspace{2em}
-In general, measurement based models can be polynomial time reduced to the gate array model, and thus have the same power, but they are more easily parallelizable \cite{jozsa2006introduction}.
+This fact means that (barring strange outcomes) one dimensional cluster states are not sufficient for universal quantum computation.
 
+\vspace{2em}
+This begs the question: \textit{How many dimensions are necessary?}
+\end{frame}
+
+
+\subsection{Gate Array Equivalence}
+\begin{frame}
+
+It turns out that the two dimensional cluster model is polynomial time equivalent to the gate array model\cite{jozsa2006introduction}\\
+
+\vspace{2em}
+We can see that the gate array model allows for arbitrary measurements at any point, and we can further see that subsequent gates and measurements can be made to depend on earlier measurement outcomes. The idea is as follows:
+\begin{itemize}
+\item Attach an ancilla qubit $A$ in state $\ket{0}$ to a state before applying some gate $U$ to another qubit $B$
+\item Apply $U^\dagger$ to $B$ and then apply $C_X$ to $BA$
+\item  Subsequent gates that depend on the measurement outcome are replaced by a corresponding controlled operation, controlled by the state of $A$
+\end{itemize}
+This (general) idea allows us to convert between the cluster and gate array models.
+
+\vspace{2em}
+\begin{alertblock}{Why Bother?}
+Since there is a polynomial time reduced to the gate array model (implying they have the same power) they may not seem to be worthy of further study, but they are more easily parallelizable \cite{jozsa2006introduction}
+\end{alertblock}
 \end{frame}
 
 
