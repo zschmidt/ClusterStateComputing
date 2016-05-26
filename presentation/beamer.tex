@@ -417,13 +417,37 @@ In general, measurement based models can be polynomial time reduced to the gate 
 
 \subsection{Parallelizability}
 \begin{frame}
-  
 \end{frame}
 
 \subsection{Experimental implementations}
 \begin{frame}
-  Cluster States in Frequency Combs
-  \begin{figure}\centering\includegraphics[scale=0.19]{figures/frequencycombs.jpg}\end{figure}
+
+	Four Optical Qubit Cluster State 
+	\newcommand{\certLine}{\ar@{-}[]+<0em,-1.em>;[d]+<0em,1.em>}
+   \begin{columns}
+ 
+	 \begin{column}{.7\linewidth}
+	   \begin{figure}\centering\includegraphics[scale=0.4]{figures/opticalclusterstate}\end{figure}
+	 \end{column}
+  
+	\begin{column}{.3\linewidth}
+	This generates a square cluster state. Two pairs of entangle photons are created and then separate pairs are entangled. 
+	 \begin{gather*}
+	  \Qcircuit @C=0.5em @R=0.5em{
+  		 &\cluster{}\certLine&\qw&\cluster{}\certLine\qw\\
+	         &\cluster{}&\qw&\cluster{}\qw\\ 
+	    }
+	  \end{gather*}
+	\end{column}
+ 
+   \end{columns}
+\end{frame}
+
+\begin{frame}
+  Cluster States in Optical Frequency Combs\\
+  
+  \begin{figure}\centering\includegraphics[scale=0.15]{figures/frequencycombs.jpg}\end{figure}
+
 \end{frame}
 
 \subsection{CS model as an analysis tool}
