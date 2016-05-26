@@ -1,18 +1,12 @@
-
-\documentclass[8pt,mathserif]{beamer}
+%\documentclass[8pt,mathserif]{beamer}
+\documentclass[8pt]{beamer}
 \usepackage{etex}
 \usetheme{Warsaw}
 \usecolortheme{whale}
-\usepackage{times}  % fonts are up to you
-\usepackage{graphicx}
-\usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{color}
-\usepackage{listings}
 \usepackage{lmodern}
 \usepackage{multicol}
-\usepackage{epsfig}
-\usepackage[T1]{fontenc}
 \usepackage{lib/qcircuit}
 \include{lib/qmacros}
 %Zach's note: I'm unable to compile with this package.
@@ -222,15 +216,12 @@ Computer and Information Science, University of Oregon
         some alert
       \end{alertblock}
     \end{column}
-
     \begin{column}{.5\linewidth}
       \begin{exampleblock}{test example}
         some example citation \footnotemark
       \end{exampleblock}
     \end{column}\footnotetext[1]{Auth, DV, 123, 2001.}
-
   \end{columns}
-
 \end{frame}
 
 
@@ -249,20 +240,19 @@ quantum circuit model.
 A set containing all single-qubit gates and at least one entangling two-qubit gate (such as the controlled-\textsc{not} or controlled-\textsc{phase}) is universal\cite{brylinski2002universal}
 
 \vspace{2em}
-A vastly different model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrated that universal quantum computation could be achieved by \textit{measurements alone!}
+The quantum circuit model provides a convenient way to think about quantum computers as a system of circuits, analogous to our classical computers
 
 \end{frame}
 \begin{frame}
+A vastly different model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrated that universal quantum computation could be achieved by \textit{measurements alone!}
 
 \vspace{2em}
 This so-called cluster model or \textit{one-way quantum computer} (1WQC) relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource.\\
 
-\vspace{2em}
-%Yes I know it's not a quotation -- it is, however, a convenient environment
-\begin{quotation}
-\noindent
-These models have no evident classical analogues and they offer a new perspective on the role of entanglement in quantum computation
-\end{quotation}
+      \begin{alertblock}{Pure Quantum Model}
+        These models have no evident classical analogues and they offer a new perspective on the role of entanglement in quantum computation
+      \end{alertblock}
+
 \end{frame}
 
 \subsection{Gates through teleportation}
@@ -312,8 +302,6 @@ A significant annoyance is that we do not get the exact desired result $U \ket{\
       \end{figure}
     \end{column}
     \begin{column}{.5\linewidth}
-      
-
       Any cluster state can be built with the following algorithm:
       \begin{enumerate}
         \item Prepare each of the $n$ qubits in the state $\ket{+}$
@@ -331,7 +319,7 @@ A significant annoyance is that we do not get the exact desired result $U \ket{\
           \lstick{\ket{+}_3}&\qw      &\gate{CZ} &\qw       &\qw\\
           \lstick{\ket{+}_4}&\qw      &\qw       &\gate{CZ} &\qw
         }\\
-        {\footnotesize \text{A 4-node non-linear cluster state and its associated circuit}}
+        {\scriptstyle \text{A 4-node non-linear cluster state and its associated circuit}}
       \end{gather*}
     \end{column}
   \end{columns}
@@ -361,7 +349,7 @@ In general, measurement based models can be polynomial time reduced to the gate 
     &\cluster{0}&\cluster{1}&\cluster{2}\qw&\cluster{3}\qw
     \gategroup{1}{2}{2}{3}{1.5em}{--}
 }\\
-{\footnotesize \text{Gate $C_z^{(0,1)}$, followed by measurements $M_X^{(0)}$, $M_X^{(1)}$, \& $M_X^{(2)}$.}}%
+{\scriptstyle \text{Gate $C_z^{(0,1)}$, followed by measurements $M_X^{(0)}$, $M_X^{(1)}$, \& $M_X^{(2)}$.}}%
 \end{gather*}
 \end{frame}
 
@@ -389,7 +377,7 @@ In general, measurement based models can be polynomial time reduced to the gate 
     \ket{\phi_B}&\cluster{\Scale[0.8] B}&\cluster{5}&\qw&\cluster{4}\qw&\qw&\cluster{6}\qw
     \gategroup{1}{1}{2}{3}{2.2em}{--}
 }\\
-{\footnotesize \text{Apply $C_z^{(A,1)}$ and $C_z^{(B,5)}$ to input quantum information into cluster state.}}%
+{\scriptstyle \text{Apply $C_z^{(A,1)}$ and $C_z^{(B,5)}$ to input quantum information into cluster state.}}%
 \end{gather*}
 
 \pause
