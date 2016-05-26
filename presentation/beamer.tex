@@ -42,11 +42,8 @@
 
 %\usepackage{bibentry}
 \setbeamercolor{background canvas}{bg=gray}
-
 \setbeamertemplate{footline}[page number]{}
 
-%\addbibresource{TMI_bib.bib}
-%\bibliography{TMIbib.bib}
 
 \newenvironment<>{varblock}[2][.9\textwidth]{%
   \setlength{\textwidth}{#1}
@@ -150,10 +147,6 @@
 \def\Bra#1{\left<#1\right|}
 \def\Ket#1{\left|#1\right>}
 
-% for themes, etc.
-%\mode<presentation>
-%{ \usetheme{boxes} }
-
 
 %\usepackage{beamerposter}
 
@@ -177,9 +170,6 @@
 \newcommand\Fontvi{\fontsize{7}{7.2}\selectfont}
 
 \begin{document}
-
-
-
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{figures/fio_bg1.png}}
 \begin{frame}
 \begin{center}
@@ -199,30 +189,27 @@ Computer and Information Science, University of Oregon
 \end{multicols}
 \end{frame}
 
-\begin{frame}{template frame (delete me)}
-
-  \begin{block}{test block}
-    some text
-  \end{block}
-
-  \begin{varblock}[4cm]{test varblock}
-    Variable block (here 4cm)
-  \end{varblock}
-
-  \begin{columns}
-
-    \begin{column}{.5\linewidth}
-      \begin{alertblock}{test alert}
-        some alert
-      \end{alertblock}
-    \end{column}
-    \begin{column}{.5\linewidth}
-      \begin{exampleblock}{test example}
-        some example citation \footnotemark
-      \end{exampleblock}
-    \end{column}\footnotetext[1]{Auth, DV, 123, 2001.}
-  \end{columns}
-\end{frame}
+% I may want some junk from this in the future...
+% \begin{frame}{template frame (delete me)}
+%   \begin{block}{test block}
+%     some text
+%   \end{block}
+%   \begin{varblock}[4cm]{test varblock}
+%     Variable block (here 4cm)
+%   \end{varblock}
+%   \begin{columns}
+%     \begin{column}{.5\linewidth}
+%       \begin{alertblock}{test alert}
+%         some alert
+%       \end{alertblock}
+%     \end{column}
+%     \begin{column}{.5\linewidth}
+%       \begin{exampleblock}{test example}
+%         some example citation \footnotemark
+%       \end{exampleblock}
+%     \end{column}\footnotetext[1]{Auth, DV, 123, 2001.}
+%   \end{columns}
+% \end{frame}
 
 
 \section{Motivation}
@@ -249,9 +236,10 @@ A vastly different model, proposed by Briegel and Raussendorf \cite{briegel2000m
 \vspace{2em}
 This so-called cluster model or \textit{one-way quantum computer} (1WQC) relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource.\\
 
-      \begin{alertblock}{Pure Quantum Model}
-        These models have no evident classical analogues and they offer a new perspective on the role of entanglement in quantum computation
-      \end{alertblock}
+\vspace{2em}
+\begin{alertblock}{Pure Quantum Model}
+These models have no evident classical analogues and they offer a new perspective on the role of entanglement in quantum computation
+\end{alertblock}
 
 \end{frame}
 
@@ -340,7 +328,6 @@ In general, measurement based models can be polynomial time reduced to the gate 
 
 
 \section{Universal computation through CS}
-
 \subsection{Linear wire}
 \begin{frame}
 \begin{gather*}
