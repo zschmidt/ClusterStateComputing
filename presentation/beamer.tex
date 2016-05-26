@@ -236,36 +236,43 @@ Computer and Information Science, University of Oregon
 
 \section{Motivation}
 \begin{frame}
-\begin{gather*}
- \Qcircuit @C=1em @R=1.2em {
-   & \gate{A} & \multigate{1}{C} & \qw & \gate{E} & \multigate{2}{G} & \multigate{1}{J} & \qw \\
-   & \gate{B} & \ghost{C} & \gate{D}  & \multigate{1}{F} & \ghost{G} & \ghost{J} & \qw \\
-   & \qw & \qw & \qw & \ghost{F} & \ghost{G} & \gate{K} & \qw \\
- }\\
- {\footnotesize \text{Arbitrary quantum circuit involving unitary operations on 3 qubits.}}%
- \end{gather*}
-
 %Zach's note: Does the existence of the teleportation slide imply that this should just
 %   focus on 1WQC and measurement based?
 
   % One-way quantum computing, measurement based quantum computing \\
   % As opposed to circuit based quantum computing
 
-
-A new model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrates that quantum computation can be achieved by using single qubit measurements as computational steps.\\
-
-\vspace{2em}
-This so-called cluster model or \textit{one-way quantum computer (1WQC)} relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource.\\
+The most widely used model of quantum computation at the present time is the
+quantum circuit model.
 
 \vspace{2em}
-Interestingly, 1WQC's have no classical analogues and probe into new territory in regards to entanglement and measurements.
+A set containing all single-qubit gates and at least one entangling two-qubit gate (such as the controlled-\textsc{not} or controlled-\textsc{phase}) is universal\cite{brylinski2002universal}
 
+\vspace{2em}
+A vastly different model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrated that universal quantum computation could be achieved by \textit{measurements alone!}
 
+\end{frame}
+\begin{frame}
+
+\vspace{2em}
+This so-called cluster model or \textit{one-way quantum computer} (1WQC) relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource.\\
+
+\vspace{2em}
+%Yes I know it's not a quotation -- it is, however, a convenient environment
+\begin{quotation}
+\noindent
+These models have no evident classical analogues and they offer a new perspective on the role of entanglement in quantum computation
+\end{quotation}
 \end{frame}
 
 \subsection{Gates through teleportation}
 \begin{frame}
-  Basic teleporation
+
+If we have a pool of maximally entangled states we can apply any unitary gate $U$ to any (multi-qubit) input state $\ket{\psi}$ by measurements alone.\\
+
+\vspace{2em}
+A significant annoyance is that we do not get the exact desired result $U \ket{\psi}$ but instead get $PU \ket{\psi}$ where $P$ is some Pauli operation (on each qubit) depending on the measurement outcome\cite{jozsa2006introduction}.
+
 \end{frame}
 
 \section{Cluster states (CS)}
@@ -305,27 +312,27 @@ Interestingly, 1WQC's have no classical analogues and probe into new territory i
       \end{figure}
     \end{column}
     \begin{column}{.5\linewidth}
-      A method to prepare cluster states is given in \cite{jorrand2005unifying}, consisting of ``cascading'' $C_z$ gates on $n$ qubits.
+      
 
-      \begin{align*}
-        \Qcircuit @C=1em @R=.5em @!R{
-          \lstick{\ket{+}_1}&\ctrl{1} &\qw       &\qw       &\qw\\
-          \lstick{\ket{+}_2}&\gate{CZ}&\ctrl{1}  &\qw       &\qw\\
-          \lstick{\ket{+}_3}&\qw      &\gate{CZ} &\ctrl{1}  &\qw\\
-          \lstick{\ket{+}_4}&\qw      &\qw       &\gate{CZ} &\qw
-        }\\
-        {\footnotesize \text{A circuit to prepare a linear cluster state}}
-      \end{align*}
-
-      \begin{align*}
+      Any cluster state can be built with the following algorithm:
+      \begin{enumerate}
+        \item Prepare each of the $n$ qubits in the state $\ket{+}$
+        \item Apply controlled-\textsc{phase} gates between qubits whose corresponding graph vertices are connected.
+      \end{enumerate}
+      \vspace{-1em}
+      \begin{gather*}
+        \Qcircuit @C=1em @R=1.3em{
+          \smClstr{1}&\smClstr{2}\ar@{-}[]+<0em,-2.1em>;[d]+<0em,2.1em>\qw&\smClstr{3}\qw\\
+          &\smClstr{4}&
+          }\\
         \Qcircuit @C=1em @R=.5em @!R{
           \lstick{\ket{+}_1}&\ctrl{1} &\qw       &\qw       &\qw\\
           \lstick{\ket{+}_2}&\gate{CZ}&\ctrl{1}  &\ctrl{2}  &\qw\\
           \lstick{\ket{+}_3}&\qw      &\gate{CZ} &\qw       &\qw\\
           \lstick{\ket{+}_4}&\qw      &\qw       &\gate{CZ} &\qw
         }\\
-        {\footnotesize \text{A circuit to prepare a non-linear cluster state}}
-      \end{align*}
+        {\footnotesize \text{A 4-node non-linear cluster state and its associated circuit}}
+      \end{gather*}
     \end{column}
   \end{columns}
 \end{frame}
