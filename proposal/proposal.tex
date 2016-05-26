@@ -1,10 +1,10 @@
-\documentclass[twocolumn]{IEEEtran11}
+\documentclass[twocolumn]{lib/IEEEtran11}
 
 
 \usepackage[usenames,dvipnames]{xcolor} % for colored text
 \usepackage[normalem]{ulem} % for strickthrough text
 
-\include{qmacros}
+\include{lib/qmacros}
 
 
 \usepackage{amsmath}
@@ -34,7 +34,7 @@
 \newcommand{\clbl}{\color{black}}
 
 \begin{document}
-\bibliographystyle{IEEE}
+\bibliographystyle{lib/IEEE}
 
 \title{{\Large \bf Cluster State Quantum Computing}\\ {\normalsize CIS:410/510 Project Proposal, Spring 2016}}
 \author{
@@ -77,7 +77,7 @@ The action of the $C_z$ gate in the computational basis can be seen to be $\ket{
 
 \begin{figure}[thb]
   \centering
-  \includegraphics[width=0.9\linewidth]{2d_clusters_rep.jpg}
+  \includegraphics[width=0.9\linewidth]{figures/2d_clusters_rep.jpg}
   \label{2dclustersfig}
   \caption{Figure from \protect\cite{gerald2006efficient}, showing representative 2-D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
 \end{figure}
