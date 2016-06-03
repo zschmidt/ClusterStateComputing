@@ -277,56 +277,6 @@ Gates through teleportation
     \end{column}
   \end{columns}
 \end{frame}
-
-
-\begin{frame}
-  \begin{columns}
-    \begin{column}{.5\linewidth}
-      Note that the numbering on the nodes is arbitrary:
-
-      \begin{gather*}
-        \Qcircuit @C=1em @R=1.3em{
-          \smClstr{1}&\smClstr{2}\qw&\smClstr{3}\qw}
-          =
-          \Qcircuit @C=1em @R=1.3em{
-          \smClstr{3}&\smClstr{2}\qw&\smClstr{1}\qw}
-      \end{gather*}
-
-      This is immediately apparent when looking at the actual state:
-      {
-      \begin{gather*}
-        \frac{\ket{+}\ket{+}\ket{+}+\ket{-}\ket{-}\ket{-}}{\sqrt{2}}
-      \end{gather*}
-      }%
-
-      Notice this state is symmetric -- `numbering' the qubits is unnecessary in this case
-
-
-    \end{column}
-    \begin{column}{.5\linewidth}
-      This symmetry can make it easy to see how these states will be built.\\
-      Consider an input of $\ket{+++}$. When this is run through a $C_Z$ gate on qubits 1 and 2 produces the state:
-
-      {
-      \begin{gather*}
-        \frac{ (\ket{0}\ket{+} + \ket{1}\ket{-}) \ket{+}}{\sqrt{2}}
-      \end{gather*}
-      }%
-
-      Which is now obviously equal to the state:
-
-      {
-      \begin{gather*}
-        \frac{ (\ket{+}\ket{0} + \ket{-}\ket{1}) \ket{+}}{\sqrt{2}}
-      \end{gather*}
-      }%
-
-      
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
 \subsection{Measurement}
 \begin{frame}
 
