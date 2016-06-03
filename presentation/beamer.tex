@@ -212,10 +212,56 @@ Computer and Information Science, University of Oregon
 
 \section{Motivation}
 \subsection{Gates through teleportation}
+
+\begin{frame}
+Teleportation
+  \begin{gather*}
+     \Qcircuit @C=1em @R=.5em @!R{
+          \lstick{\ket{\psi}_A}&\multigate{1}{U} &\multimeasureD{1}{\text{Bell}} &\cw  &\\
+          \lstick{\ket{\Phi^+}_A}&\ghost{U}&\ghost{\text{Bell}}&\cwx&\\
+          \lstick{\ket{\Phi^+}_B}&\qw &\qw     &\gate{P}\cwx &\gate{M}&\rstick{M\ket{\psi}} \qw      \\
+        }
+  \end{gather*}
+\end{frame}
 \begin{frame}
 
-Gates through teleportation
+Single Quantum Gate Teleportation
 
+   \begin{gather*}
+     \Qcircuit @C=1em @R=.5em @!R{
+          \lstick{\ket{\psi}_A}&\multigate{1}{U} &\multimeasureD{1}{\text{Bell}} &\cw  &\\
+          \lstick{\ket{\Phi^+}_A}&\ghost{U}&\ghost{\text{Bell}}&\cwx&\\
+          \lstick{\ket{\Phi^+}_B}&\gate{M}&\qw     &\gate{MPM}\cwx &\rstick{M\ket{\psi}} \qw      \\
+        }
+  \end{gather*}
+  
+   P depends on the two classical bits that Alice sends Bob.
+\end{frame}
+
+\begin{frame}
+ Multiple Quantum Gate Teleportation
+  \begin{gather*}
+     \Qcircuit @C=1em @R=.5em @!R{
+          \lstick{\ket{\psi}_A}&\multigate{1}{U} &\multimeasureD{1}{\text{Bell}} &\cw  &&\\
+          \lstick{\ket{\Phi^+}_A}&\ghost{U}&\ghost{\text{Bell}}&\cwx&&\\
+          \lstick{\ket{\Phi^+}_B}&\gate{M}&\qw     &\gate{MPM}\cwx  &\multigate{1}{U}&\multimeasureD{1} {\text{Bell}} \\
+          \lstick{\ket{\Phi^+}_{B'}}&&&&\ghost{U}&\ghost{\text{Bell}}&\cw\\
+          \lstick{\ket{\Phi^+}_C}&&&&\gate{M'}&\qw&\gate{M'PM'}\cwx&\rstick{M'M\ket{\psi}}\qw\\
+        }
+  \end{gather*}
+\end{frame}
+
+\begin{frame}
+Rearrange the circuit to apply all of the entanglement gates first.
+ \begin{gather*}
+     \Qcircuit @C=1em @R=.5em @!R{
+          \lstick{\ket{\psi}_A}&\multigate{1}{U}&\qw&\multimeasureD{1}{\text{Bell}}&\cw\\
+          \lstick{\ket{\Phi^+}_A}&\ghost{U}&\qw&\ghost{\text{Bell}}&\cwx\\
+          \lstick{\ket{\Phi^+}_B}&\qw&\multigate{1}{U}&\gate{M}&\gate{MPM}\cwx &\multimeasureD{1}{\text{Bell}}&\cw\\
+          \lstick{\ket{\Phi^+}_{B'}}&\qw&\ghost{U}&\qw&\qw&\ghost{\text{Bell}}&\cwx\\
+          \lstick{\ket{\Phi^+}_C}&\qw&\qw&\qw&\gate{M'}&\qw&\gate{M'PM'}\cwx&\rstick{M'M\ket{\psi}}\qw\\
+        }
+  \end{gather*}
 \end{frame}
 
 \section{Cluster states (CS)}
@@ -429,35 +475,33 @@ A single bit of quantum information is stored in $\ket{\psi}_0$. The state is te
 \subsection{Experimental implementations}
 \begin{frame}
 
-	Four Optical Qubit Cluster State 
+	Three Optical Qubit (Photon) Cluster State 
 	\newcommand{\certLine}{\ar@{-}[]+<0em,-1.em>;[d]+<0em,1.em>}
    \begin{columns}
  
-	 \begin{column}{.7\linewidth}
-	   \begin{figure}\centering\includegraphics[scale=0.4]{figures/opticalclusterstate}\end{figure}
+	 \begin{column}{.6\linewidth}
+	   \begin{figure}\centering\includegraphics[scale=0.4]{figures/threenode}\end{figure}
 	 \end{column}
   
-	\begin{column}{.3\linewidth}
-	This generates a square cluster state. Two pairs of entangle photons are created and then separate pairs are entangled. 
-	 \begin{gather*}
-	  \Qcircuit @C=0.5em @R=0.5em{
-  		 &\cluster{}\certLine&\qw&\cluster{}\certLine\qw\\
-	         &\cluster{}&\qw&\cluster{}\qw\\ 
-	    }
-	  \end{gather*}
-	  The optical components act as the gates. 
+	\begin{column}{.4\linewidth}
+	\begin{itemize}
+		\item This generates a linear cluster state by fusing together two pairs of entangled photons.
+		\item Uses type-I fusion, which annihilates a photon but entangles it's partner with the second pair. 
+		\item Optical components act as gates. HWP = Hadamard gate
+	\end{itemize} 
+	  
 	\end{column}
  
    \end{columns}
-   \cite{prevedel2007experimental}
+   \cite{zhang2006experimental}
 \end{frame}
 
-\begin{frame}
-  Cluster States in Optical Frequency Combs\\
-  
-  \begin{figure}\centering\includegraphics[scale=0.15]{figures/frequencycombs.jpg}\end{figure}
-   \cite{menicucci2008one}
-\end{frame}
+%\begin{frame}
+%  Cluster States in Optical Frequency Combs\\
+%  
+%  \begin{figure}\centering\includegraphics[scale=0.15]{figures/frequencycombs.jpg}\end{figure}
+%   \cite{menicucci2008one}
+%\end{frame}
 
 \subsection{Gate Array Equivalence}
 \begin{frame}
