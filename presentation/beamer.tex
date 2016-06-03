@@ -180,12 +180,12 @@ Computer and Information Science, University of Oregon
 \end{center}
 \end{frame}
 
-\begin{frame}
-{Table of Contents (optional frame. Can delete.)}
-\begin{multicols}{2}
-\tableofcontents
-\end{multicols}
-\end{frame}
+% \begin{frame}
+% {Table of Contents (optional frame. Can delete.)}
+% \begin{multicols}{2}
+% \tableofcontents
+% \end{multicols}
+% \end{frame}
 
 % I may want some junk from this in the future...
 % \begin{frame}{template frame (delete me)}
@@ -211,43 +211,10 @@ Computer and Information Science, University of Oregon
 
 
 \section{Motivation}
-\begin{frame}
-%Zach's note: Does the existence of the teleportation slide imply that this should just
-%   focus on 1WQC and measurement based?
-
-  % One-way quantum computing, measurement based quantum computing \\
-  % As opposed to circuit based quantum computing
-
-The most widely used model of quantum computation at the present time is the
-quantum circuit model.
-
-\vspace{2em}
-A set containing all single-qubit gates and at least one entangling two-qubit gate (such as the controlled-\textsc{not} or controlled-\textsc{phase}) is universal\cite{brylinski2002universal}
-
-\vspace{2em}
-The quantum circuit model provides a convenient way to think about quantum computers as a system of circuits, analogous to our classical computers
-
-\end{frame}
-\begin{frame}
-A vastly different model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrated that universal quantum computation could be achieved by \textit{measurements alone!}
-
-\vspace{2em}
-This so-called cluster model or \textit{one-way quantum computer} (1WQC) relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource.\\
-
-\vspace{2em}
-\begin{alertblock}{Pure Quantum Model}
-These models have no evident classical analogues and they offer a new perspective on the role of entanglement in quantum computation
-\end{alertblock}
-
-\end{frame}
-
 \subsection{Gates through teleportation}
 \begin{frame}
 
-If we have a pool of maximally entangled states we can apply any unitary gate $U$ to any (multi-qubit) input state $\ket{\psi}$ by measurements alone.\\
-
-\vspace{2em}
-One caveat is that the result is not $U \ket{\psi}$ but $PU \ket{\psi}$, where $P$ is some Pauli operation (on each qubit) depending on the measurement outcome\cite{jozsa2006introduction}.
+Gates through teleportation
 
 \end{frame}
 
@@ -410,28 +377,7 @@ Operations on a linearly prepared cluster state can be efficiently simulated on 
 This fact means that (barring strange outcomes) one dimensional cluster states are not sufficient for universal quantum computation.
 
 \vspace{2em}
-This begs the question: \textit{How many dimensions are necessary?}
-\end{frame}
-
-
-\subsection{Gate Array Equivalence}
-\begin{frame}
-
-It turns out that the two dimensional cluster model is polynomial time equivalent to the gate array model\cite{jozsa2006introduction}\\
-
-\vspace{2em}
-We can see that the gate array model allows for arbitrary measurements at any point, and we can further see that subsequent gates and measurements can be made to depend on earlier measurement outcomes. The idea is as follows:
-\begin{itemize}
-\item Attach an ancilla qubit $A$ in state $\ket{0}$ to a state before applying some gate $U$ to another qubit $B$
-\item Apply $U^\dagger$ to $B$ and then apply $C_X$ to $BA$
-\item  Subsequent gates that depend on the measurement outcome are replaced by a corresponding controlled operation, controlled by the state of $A$
-\end{itemize}
-This (general) idea allows us to convert between the cluster and gate array models.
-
-\vspace{2em}
-\begin{alertblock}{Why Bother?}
-Since there is a polynomial time reduced to the gate array model (implying they have the same power) they may not seem to be worthy of further study, but they are more easily parallelizable \cite{jozsa2006introduction}
-\end{alertblock}
+It turns out that all we need is two dimensions to allow universal quantum computation.
 \end{frame}
 
 
@@ -563,12 +509,24 @@ A single bit of quantum information is stored in $\ket{\psi}_0$. The state is te
    \cite{menicucci2008one}
 \end{frame}
 
-\subsection{CS model as an analysis tool}
+\subsection{Gate Array Equivalence}
 \begin{frame}
-    \begin{block}{Coming soon}
-    Text about polynomial time classical simulation of linear cluster chain operations, and necessity of at least 2-D cluster states for true quantum speed up of certain algorithms. This separates product-state preparation from entangling operations.
-  \end{block}
 
+  It turns out that the two dimensional cluster model is polynomial time equivalent to the gate array model\cite{jozsa2006introduction}\\
+
+  \vspace{2em}
+  We can see that the gate array model allows for arbitrary measurements at any point, and we can further see that subsequent gates and measurements can be made to depend on earlier measurement outcomes. The idea is as follows:
+  \begin{itemize}
+    \item Attach an ancilla qubit $A$ in state $\ket{0}$ to a state before applying some gate $U$ to another qubit $B$
+    \item Apply $U^\dagger$ to $B$ and then apply $C_X$ to $BA$
+    \item  Subsequent gates that depend on the measurement outcome are replaced by a corresponding controlled operation, controlled by the state of $A$
+  \end{itemize}
+  This (general) idea allows us to convert between the cluster and gate array models.
+
+  \vspace{2em}
+  \begin{alertblock}{Why Bother?}
+    Since there is a polynomial time reduced to the gate array model (implying they have the same power) they may not seem to be worthy of further study, but they are more easily parallelizable \cite{jozsa2006introduction}
+  \end{alertblock}
 \end{frame}
 
 
