@@ -388,7 +388,13 @@ A single bit of quantum information is stored in $\ket{\psi}_0$. The state is te
     &\cluster{0}&\cluster{1}&\cluster{2}\qw&\cluster{3}\qw
     \gategroup{1}{2}{2}{3}{1.5em}{--}
 }\\
-{\scriptstyle \text{Gate $C_z^{(0,1)}$, followed by measurements $M_X^{(0)}$, $M_X^{(1)}$, \& $M_X^{(2)}$.}}%
+            {\scriptstyle \text{Gate $C_z^{(0,1)}$, followed by measurements $M_X^{(0)}$, $M_X^{(1)}$, \& $M_X^{(2)}$, with outcomes $m_0$, $m_1$, $m_2$, $\in\{0,1\}$.}}%\\
+\end{gather*}
+
+\pause
+\begin{gather*}
+            C_z^{(0,1)}\ket{\psi}_0\otimes\ket{\mathcal{LC}}_{123}
+            \xrightarrow{M_X^{(0,1,2)}}X^{m_2}Z^{m_1}X^{m_0}H\ket{\psi}_3,\quad\quad m_j\in\{0,1\}.
 \end{gather*}
 \end{frame}
 
@@ -402,6 +408,9 @@ A single bit of quantum information is stored in $\ket{\psi}_0$. The state is te
 &\lstick{\ket{+}_2} & \gate{CZ} & \qw & \qw & \ctrl{1} & \gate{HZ_{\pm\alpha2}} \cwx  & \meter \\
 &\lstick{\ket{+}_3} & \qw & \qw & \qw & \gate{CZ} & \qw & \qw \gategroup{1}{5}{2}{3}{0.8em}{--} \gategroup{2}{6}{3}{8}{1.2em}{--}
 }
+\end{gather*}
+\begin{gather*}
+  X^{m_2}HZ_{\pm\alpha2}X^{m_1}HZ_{\alpha1}\ket{+}_3\equiv X^{m_2}Z^{m_1}HZ_{\alpha_2}HZ_{\alpha_1}\ket{+}_3
 \end{gather*}
 
 \end{frame}
@@ -419,7 +428,31 @@ A single bit of quantum information is stored in $\ket{\psi}_0$. The state is te
 {\scriptstyle \text{Apply $C_z^{(A,1)}$ and $C_z^{(B,5)}$ to input quantum information into cluster state.}}%
 \end{gather*}
 
+\begin{gather*}
+  \frac{1}{\sqrt{2}}\left[\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{+}_5\ket{+}_6+Z_{2}\ket{\mathcal{LC}}_{123}\ket{0}_4\ket{-}_5\ket{-}_6\right]\\\otimes\ket{\phi_A}_A\ket{\phi_B}_B,
+\end{gather*}
 \pause
+\begin{gather*}
+  \rightarrow X_6^{m_4}Z_6^{m_5}X_6^{m_B}C_Z^{(2,6)}\ket{\mathcal{LC}}_{123}\ket{\phi_B}_6\otimes\ket{\phi_A}_A.
+\end{gather*}
+\pause
+
+Measurement sequences: $(M_X^{(A)},M_X^{(B)})\rightarrow(M_X^{(1)},M_X^{(5)})\rightarrow(M_X^{(2)},M_X^{(4)})$,\\
+or $(M_X^{(B)}\rightarrow M_X^{(5)}\rightarrow M_X^{(4)})\rightarrow (M_X^{(A)}\rightarrow M_X^{(1)}\rightarrow M_X^{(2)})$
+
+\end{frame}
+
+\begin{frame}
+\newcommand{\bertLine}{\ar@{-}[]+<0em,-2.3em>;[d]+<0em,2.3em>}
+\begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+    \ket{\phi_A}&\cluster{\Scale[0.8] A}&\cluster{1}&\qw&\cluster{2}\bertLine\qw&\qw&\cluster{3}\qw\\
+    \ket{\phi_B}&\cluster{\Scale[0.8] B}&\cluster{5}&\qw&\cluster{4}\qw&\qw&\cluster{6}\qw
+    \gategroup{1}{1}{2}{3}{2.2em}{--}
+}\\
+{\scriptstyle \text{Apply $C_z^{(A,1)}$ and $C_z^{(B,5)}$ to input quantum information into cluster state.}}%
+\end{gather*}
+
     \begin{columns}
 
       \begin{column}{.35\linewidth}
