@@ -429,7 +429,21 @@ This seems to indicate that all multi-qubit interactions can be pre-computed by 
 %In his analysis of the reducibility of 1WQC to the gate array model, Richard Jozsa gives a polynomial time algorithm to perform the conversion between the two computational models \cite{jozsa2006introduction}. 
 %>>>>>>> Stashed changes
 
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Images/topological01.png}
+  \caption{Figure from \protect\cite{goyal2007}. Topologically protected gates as realized in three-dimensional cluster states. (a) An individual encoded CNOT gate with control $c$ and target $t$. (b) The preparation of logical qubits in the \{$\ket{0}$, $\ket{1}$\} (\ie $Z$-) and the \{$\ket{\pm}$\} (\ie $X$-) bases. The line-like structures are connected defect sites (nodes measured in the $Z$-basis, denoted by set `D') embedded in a 3-D lattice, surrounded by sites belonging to set `V' (measured in the $X$-basis). The gate function only depends upon the way the defect lines are wound around one another.}
+  \label{topologicalfig1}
+  \includegraphics[width=0.7\linewidth]{Images/topological02.png}
+  \caption{Figure from \protect\cite{goyal2007}. (a) Another version of the CNOT gate topologically equivalent to that shown in figure \ref{topologicalfig1}(a). (b) Equivalent circuit, representing a CNOT gate between the control and target qubit.}
+  \label{topologicalfig2}  
+\end{figure*}
+
 \subsection{3-D cluster states and topological fault tolerance}
+
+While 2-D cluster states are sufficient for fully realizing any quantum computation, Goyal et al \cite{goyal2007} have exploited a correspondence between quantum gates, quantum correlations, and surfaces to propose a topological model for cluster-state quantum computation. The method affords them a (fault-tolerance) threshold estimate of $0.75$\% for each source in an error model with preparation, gate, storage and measurement errors, with a poly-logarithmic multiplicative overhead in the circuit size. While a full detailed description of this approach is beyond the scope of this article, here we present a brief overview.
+
+In their scheme, a 3-D cluster state consisting of a lattice of qubits is `carved out' with 1-D line-like defects via $Z$-measurements on connected physical qubits. This results in a nontrivial cluster topology in which a fault-tolerant quantum circuit is embedded (figure \ref{topologicalfig1}). These line defects essentially simulate anyons \cite{sarma2008}, and the way they knot and loop around each other effectively obeys non-Abelian braiding statistics, allowing one to simulate gates (figure \ref{topologicalfig2}). The fault tolerance comes from the topological invariance of the structures to local perturbations to the line defects (such as specific path and length). One of the dimensions of this 3-D representation can be mapped to `simulated time,' which is a necessary facet of all computation that maps inputs to outputs. This mapping can be literal in physical 2-D cluster states.
 
 \section{Physical implementations}
 
