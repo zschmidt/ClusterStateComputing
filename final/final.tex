@@ -64,7 +64,7 @@ Over the past few decades, advances in science and technology have greatly contr
 Consider a set of qubits $\mathcal{C}$ labeled by an integer index, that are distributed in some lattice such that every qubit can be said to have adjacent neighbors. For these to collectively form a cluster state, their quantum mechanical state would be characterized by the set of eigenvalue equations \cite{briegel2001persistent},
 
 \begin{equation}
-  K_a\ket{\Phi}_{\mathcal{C}}= \kappa\ket{\Phi}_{\mathcal{C}}
+  K_a\ket{\Phi}_{\mathcal{C}}= \kappa\ket{\Phi}_{\mathcal{C}}\label{eq1}
 \end{equation}
 
 \noindent for a family of operators $K_a = X^{(a)}\bigotimes_{\gamma\in\Gamma(a)}Z^{(\gamma)}$, $a\in\mathcal{C}$, where $\Gamma(a)$ is the set of indices of all qubits in the ``adjacent neighborhood'' of $a$. The matrix $X^{(a)}$ is used to denote an $X$ operation on qubit-$a$, and so on. The eigenvalue $\kappa = \pm 1$ is determined by the specific occupation pattern of the neighboring sites. 
@@ -80,7 +80,7 @@ application of a $C_z$ gate to both adjacent vertices.
   \centering
   \includegraphics[width=0.9\linewidth]{Images/2d_clusters_rep.jpg}
   \label{I2dclustersfig}
-  \caption{Figure from \protect\cite{gerald2006efficient}, showing representative 2-D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
+  \caption{Figure from \protect\cite{gerald2006efficient}, showing representative 2D cluster shapes. The vertices are qubits with integer indices, and the edges indicate entanglement connectivity between select neighbors.}
 \end{figure}
 
 
@@ -352,7 +352,7 @@ We observe that in the circuit given below the two highlighted boxes are both on
 \clbl
 
 \clbl
-\subsection{Applying a 2-qubit gate via 2-D cluster state}
+\subsection{Applying a 2-qubit gate via 2D cluster state}
 
 The ability to implement gates of the form $HZ_\alpha$, and any 2-qubit controlled-phase gate, and to prepare arrays of $\ket{+}$ states as inputs, constitute a set of resources that is universal for quantum computation \cite{jozsa2006introduction}. In this subsection, we will demonstrate the use of two-dimensional cluster states to implement a $C_z$ gate between two input kets bearing quantum information $\ket{\phi_A}_A\ket{\phi_B}_B$ encoded in physical qubits labelled `A' and `B.' Here, $\ket{\phi_j} := \alpha_j\ket{0}+\beta_j\ket{1}$. For the scheme, we will use an I-shaped cluster states with six nodes, as shown in the figure. 
 
@@ -432,28 +432,18 @@ This seems to indicate that all multi-qubit interactions can be pre-computed by 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=0.7\linewidth]{Images/topological01.png}
-  \caption{Figure from \protect\cite{goyal2007}. Topologically protected gates as realized in three-dimensional cluster states. (a) An individual encoded CNOT gate with control $c$ and target $t$. (b) The preparation of logical qubits in the \{$\ket{0}$, $\ket{1}$\} (\ie $Z$-) and the \{$\ket{\pm}$\} (\ie $X$-) bases. The line-like structures are connected defect sites (nodes measured in the $Z$-basis, denoted by set `D') embedded in a 3-D lattice, surrounded by sites belonging to set `V' (measured in the $X$-basis). The gate function only depends upon the way the defect lines are wound around one another.}
+  \caption{Figure from \protect\cite{goyal2007}. Topologically protected gates as realized in three-dimensional cluster states. (a) An individual encoded CNOT gate with control $c$ and target $t$. (b) The preparation of logical qubits in the \{$\ket{0}$, $\ket{1}$\} (\ie $Z$-) and the \{$\ket{\pm}$\} (\ie $X$-) bases. The line-like structures are connected defect sites (nodes measured in the $Z$-basis, denoted by set `D') embedded in a 3D lattice, surrounded by sites belonging to set `V' (measured in the $X$-basis). The gate function only depends upon the way the defect lines are wound around one another.}
   \label{topologicalfig1}
   \includegraphics[width=0.7\linewidth]{Images/topological02.png}
   \caption{Figure from \protect\cite{goyal2007}. (a) Another version of the CNOT gate topologically equivalent to that shown in figure \ref{topologicalfig1}(a). (b) Equivalent circuit, representing a CNOT gate between the control and target qubit.}
   \label{topologicalfig2}  
 \end{figure*}
 
-\subsection{3-D cluster states and topological fault tolerance}
+\subsection{3D cluster states and topological fault tolerance}
 
-While 2-D cluster states are sufficient for fully realizing any quantum computation, Goyal et al \cite{goyal2007} have exploited a correspondence between quantum gates, quantum correlations, and surfaces to propose a topological model for cluster-state quantum computation. The method affords them a (fault-tolerance) threshold estimate of $0.75$\% for each source in an error model with preparation, gate, storage and measurement errors, with a poly-logarithmic multiplicative overhead in the circuit size. While a full detailed description of this approach is beyond the scope of this article, here we present a brief overview.
+While 2D cluster states are sufficient for fully realizing any quantum computation, Goyal et al \cite{goyal2007} have exploited a correspondence between quantum gates, quantum correlations, and surfaces to propose a topological model for cluster-state quantum computation. The method affords them a (fault-tolerance) threshold estimate of $0.75$\% for each source in an error model with preparation, gate, storage and measurement errors, with a poly-logarithmic multiplicative overhead in the circuit size. While a full detailed description of this approach is beyond the scope of this article, here we present a brief overview.
 
-In their scheme, a 3-D cluster state consisting of a lattice of qubits is `carved out' with 1-D line-like defects via $Z$-measurements on connected physical qubits. This results in a nontrivial cluster topology in which a fault-tolerant quantum circuit is embedded (figure \ref{topologicalfig1}). These line defects essentially simulate anyons \cite{sarma2008}, and the way they knot and loop around each other effectively obeys non-Abelian braiding statistics, allowing one to simulate gates (figure \ref{topologicalfig2}). The fault tolerance comes from the topological invariance of the structures to local perturbations to the line defects (such as specific path and length). One of the dimensions of this 3-D representation can be mapped to `simulated time,' which is a necessary facet of all computation that maps inputs to outputs. This mapping can be literal in physical 2-D cluster states.
-
-\section{Physical implementations}
-
-\subsection{Cluster states can't be ground states of Hamiltonians}
-
-\subsection{Two qubit operations on non-photonic qubits}
-
-\subsection{Nondeterministic two-qubit gates with linear optics}
-
-\subsection{Continuous-variable cluster states}
+In their scheme, a 3D cluster state consisting of a lattice of qubits is `carved out' with 1D line-like defects via $Z$-measurements on connected physical qubits. This results in a nontrivial cluster topology in which a fault-tolerant quantum circuit is embedded (figure \ref{topologicalfig1}). These line defects essentially simulate anyons \cite{sarma2008}, and the way they knot and loop around each other effectively obeys non-Abelian braiding statistics, allowing one to simulate gates (figure \ref{topologicalfig2}). The fault tolerance comes from the topological invariance of the structures to local perturbations to the line defects (such as specific path and length). One of the dimensions of this 3D representation can be mapped to `simulated time,' which is a necessary facet of all computation that maps inputs to outputs. This mapping can be literal in physical 2D cluster states.
 
 \section{Computational Power and Complexity}
 The spacial layout of the graph representation of the cluster state plays a role in the computational power of that state. If a cluster state can be prepared linearly via the cascading $C_z$ technique mentioned above, it can be represented as a  ``one-dimensional'' graph (i.e., some graph $G=(V,E),\ \forall v\in V$, deg$(v)\leq 2$). Operations on a linearly prepared cluster state can be efficiently simulated on a classical computer in $O(n\log ^c (1/n))$, where $n$ is the initial number of qubits, and $c$ is the cost of floating point multiplication \cite{nielsen2006cluster}. Though the author consequently dismisses linearly prepared cluster states as a substrate for quantum computation, it would be interesting to know which class of problems they would be able to solve.
@@ -546,9 +536,26 @@ Outside of the physical implementation considerations, cluster state model isomo
 
 We have already shown in section IV, how any quantum algorithm that is expressible via a quantum gate-array circuit can equivalently be computed via single-qubit operations and measurements on a cluster state represented by a graph whose connectivity is topologically similar to the circuit diagram. This equivalence is purely geometric and is independent of the specific gates being applied (those are determined by the choice of measurements on the cluster state). This allows us to reduce entire classes of algorithms to specific types of graphs with designated input and output nodes for state-preparation and final-result measurements. We conjecture that the size of this graph has a bearing on the computational time of the entire class of algorithms. Furthermore, the multi-dimensional connectivity of said graphs embodies entangling operations, and serves to explicitly quantify any gains in complexity quantum offers over classical methods. And finally, the connectivity and feed-forward paths allows one to define modular operations that are independent of each other, and can help exploit all avenues for parallelization more effectively.
 
+\section{Physical implementations}
+
+Although the chief inspiration for cluster-state quantum computation was the ability to enact gates via teleportation, another motivation proved to be the extant experimental realizations of material qubits arranged in 2D arrays in physical space; be they cold atoms in optical lattices \cite{bloch2003}, or 2D ion traps \cite{rabchuk2006}, or other stationary qubits embedded in material substrates (quantum dots, superconducting qubits). The geometry of such systems encourages designs involving programming a quantum circuit into the device by literally ``etching'' the circuit diagram onto the 2D qubit array.
+
+\subsection{Cluster states can't be ground states of Hamiltonians}
+
+
+
+\subsection{Two qubit operations on non-photonic matter qubits}
+
+\subsection{Nondeterministic two-qubit gates with linear optics}
+
+\cite{klm2000}.
+
+\subsection{Continuous-variable cluster states}
+
+
 \section{Conclusions and Acknowledgements}
 
-%To pad this out to ten pages, we can work on physical systems, limitations of linear optics, 3-D fault tolerant model, and complexity theory. If we REALLY have time, there may or may not be something to be done with qudits.
+%To pad this out to ten pages, we can work on physical systems, limitations of linear optics, 3D fault tolerant model, and complexity theory. If we REALLY have time, there may or may not be something to be done with qudits.
 
 %This is the stuff to work into the midterm
 % \section{Proposal}
