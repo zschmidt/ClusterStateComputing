@@ -10,7 +10,7 @@
 \usepackage{amsmath}
 \usepackage{epsfig}
 \usepackage[T1]{fontenc}
-\usepackage{graphicx}
+\usepackage{graphicx,float}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
@@ -444,12 +444,87 @@ This seems to indicate that all multi-qubit interactions can be pre-computed by 
 \section{Computational Power and Complexity}
 The spacial layout of the graph representation of the cluster state plays a role in the computational power of that state. If a cluster state can be prepared linearly via the cascading $C_z$ technique mentioned above, it can be represented as a  ``one-dimensional'' graph (i.e., some graph $G=(V,E),\ \forall v\in V$, deg$(v)\leq 2$). Operations on a linearly prepared cluster state can be efficiently simulated on a classical computer in $O(n\log ^c (1/n))$, where $n$ is the initial number of qubits, and $c$ is the cost of floating point multiplication \cite{nielsen2006cluster}. Though the author consequently dismisses linearly prepared cluster states as a substrate for quantum computation, it would be interesting to know which class of problems they would be able to solve.
 
-\subsection{Gate array reductions}
+\subsection{Gate Array Reductions}
 
-\clr EXPAND THIS WITH CIRCUITS AND END WITH CONJECTURE\clbl
 
-In general, measurement based models can be polynomial time reduced to the gate array model, and thus have the same power, but they are more easily parallelizable \cite{jozsa2006introduction}.\\
-The gate teleportation algorithm \cite{nielsen108020universal} has a time complexity of $O(\log (1/\epsilon))$, where $\epsilon$ is the failure probability.
+With only a bit of construction, it can be seen that the cluster state model is polynomially reducible to the gate array model, and the converse is also true. To see this, we first need to create a definition of the standard gate array model:
+
+\vspace{1em}
+\begin{enumerate}
+\item All measurements take place at the end of the circuit
+\item All measurements take place in the computational basis
+\end{enumerate}
+
+\vspace{1em}
+We can now generalize this definition to allow measurements along the way with subsequent choices of gates and measurements being allowed to depend on earlier measurement outcomes. Intuitively, what we will do is add an ancilla bit to all measurements which take place before the end, and perform controlled operations with this ancilla to return to the standard definition. Specifically, for all measurements in the $\{ U\ket{0}, U\ket{1} \}$ basis, we add an ancillary qubit $A$, (initially in state $\ket{0}$) and replace the measurement with an application of $U^\dagger$ to $B$ followed by applying $C_X$ to $BA$ as shown:
+
+\begin{figure}[H]
+  \begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+  &\lstick{B} & \qw & \meter & \cw & \cw 
+  }
+  \end{gather*}
+  \caption{Some non-standard circuit}
+
+  \begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+  &\lstick{B}       & \gate{U^\dagger} & \ctrl{1} & \qw \\
+  &\lstick{\ket{0}} & \qw              & \gate{X} & \qw
+  }
+  \end{gather*}
+  \caption{An equivalent standard circuit}
+\end{figure}
+
+
+Now, any future gates that depended on the measurement outcome are replaced by a corresponding controlled operation, controlled by the state of $A$. It is therefore clear that this process converts any non-standard circuit to the standard gate array model.
+
+\subsubsection{Reducing Cluster State to Gate Array}
+The above technique shows how a cluster state circuit is converted into an equivalent (standard) gate array. In addition to building the required cluster state using an array of $C_Z$ gates acting on $\ket{+}$ states, we introduce an ancilla $A$ for each 1-qubit measurement. For each $M(\theta)$ measurement we introduce an extra gate $W^\dagger (\theta)$ which transforms the $M(\theta)$ basis to the standard basis. 
+
+\begin{figure}[H]
+  \begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+  &\lstick{\ket{+}} & \ctrl{1} & \gate{M(\theta)} & \cw & \cw \\
+  &\lstick{\ket{+}} & \gate{Z} & \qw
+  }
+  \end{gather*}
+  \caption{A two qubit cluster state}
+
+  \begin{gather*}
+  \Qcircuit @C=1em @R=1em{
+  &                 &          & \lstick{\ket{0}} & \gate{X} & \qw \\
+  &\lstick{\ket{+}} & \ctrl{1} & \gate{W^\dagger (\theta)} & \ctrl{-1}& \qw \\
+  &\lstick{\ket{+}} & \gate{Z} & \qw              & \qw      & \qw
+  }
+  \end{gather*}
+  \caption{An equivalent cluster state with ancilla}
+\end{figure}
+
+
+Thus, to convert the measurement-based cluster state model to the gate array model requires polynomially more gates and qubits (one per measurement).
+
+
+\subsubsection{Reducing Gate Array to Cluster State}
+To see how an arbitrary gate array can be converted to the cluster state model, we first need some universal gate set $G$ (for information on what this set might contain, see \cite{shi2002both}). For each gate within this set, we can specify some number which represents the number of measurements that a 1WQC would have to perform to get the same outcome. These numbers can then be used to partially order a set, allowing us to pick $K$, which represents the maximum number of measurements required to simulate any single gate from the set. From this, we can see that even if some circuit contained only this ``most expensive'' gate, the number of additional qubits and gates would be a factor of $K$ (polynomial).
+
+
+\subsection{Quantum Layers}
+The above reduction strategy provides a nice way of categorizing a given quantum algorithm into its classical and quantum parts:
+
+\begin{itemize}
+\item The classical parts are those that are done serially (i.e. the decision of future gates based on measurement outcomes)
+\item The quantum parts are those that can be done in parallel
+\end{itemize}
+
+From this, we can see that the cluster state model exemplifies both parts, but the gate array model only does ``quantum parts''. With this idea, we can define the notion of layers by saying that a quantum process with $K$ layers is one where $K$ gates are operating in parallel. The above suggests the following conjecture \cite{jozsa2006introduction}:
+
+\begin{description}
+\item[Conjecture:] Any polynomial time quantum algorithm can be implemented with only $O(\log n)$ quantum layers interspersed with polynomial time classical computations.
+\end{description}
+
+
+This conjecture remains unproven in general, but it has been shown to hold for Shor's algorithm \cite{cleve2000fast}.
+
 
 \subsection{Cluster graphs as an analysis tool}
 
