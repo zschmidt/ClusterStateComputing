@@ -60,7 +60,7 @@ Any quantum computation can be performed via sequences of one-qubit measurements
 \section{Background}
 Over the past few decades, advances in science and technology have greatly contributed to the development of modern computers. While these computers are efficient and convenient for everyday needs, they fail at certain computational tasks. Instead, quantum computers promise faster large scale factorization and database searches that are intractable for their classical counterparts. The first quantum computer designs were based off of classical models; sequences of one- and multi-qubit gate operations are performed on chosen quantum bits and a final measurement would convert quantum information into classical bits. A new model, proposed by Briegel and Raussendorf \cite{briegel2000measurements}, demonstrates that quantum computation can be achieved by using single qubit measurements as computational steps. This so-called cluster model or \textit{one-way quantum computer (1WQC)} relies on an entangled state of a large number of qubits or \textit{cluster state} as the resource. The fascinating feature about 1WQC is that they have no classical analogues and probe into new territory in regards to entanglement and measurements. 
 
-\subsection{Cluster States}
+\section{Cluster States}
 Consider a set of qubits $\mathcal{C}$ labeled by an integer index, that are distributed in some lattice such that every qubit can be said to have adjacent neighbors. For these to collectively form a cluster state, their quantum mechanical state would be characterized by the set of eigenvalue equations \cite{briegel2001persistent},
 
 \begin{equation}
@@ -69,7 +69,7 @@ Consider a set of qubits $\mathcal{C}$ labeled by an integer index, that are dis
 
 \noindent for a family of operators $K_a = X^{(a)}\bigotimes_{\gamma\in\Gamma(a)}Z^{(\gamma)}$, $a\in\mathcal{C}$, where $\Gamma(a)$ is the set of indices of all qubits in the ``adjacent neighborhood'' of $a$. The matrix $X^{(a)}$ is used to denote an $X$ operation on qubit-$a$, and so on. The eigenvalue $\kappa = \pm 1$ is determined by the specific occupation pattern of the neighboring sites. 
 
-\subsubsection{Preparation of Linear Cluster State}
+\subsection{Preparation of Linear Cluster State}
 
 
 Intuitively, a cluster state can be thought of as a graph
@@ -151,7 +151,7 @@ We can then analyze the state of the qubits at each of the dotted lines:
 The action of the $C_z$ gate in the computational basis can be seen to be $\ket{x,y} \to (-1)^{xy}\ket{x,y}$. Cluster states of arbitrary shape and connectivity can similarly be prepared via the recursive use of the Hadamard gate and two-qubit fusion operations \cite{browne2005efficient,gerald2006efficient}. 
 
 
-\subsubsection{Preparation of T-Shaped Cluster State}
+\subsection{Preparation of T-Shaped Cluster State}
 
 A cluster state without the limitation on the degree of a node allows us to build \textit{nonlinear} cluster states:
 %That vertical line bugged me
@@ -188,7 +188,7 @@ The state of the qubits after the application of the first two $C_z$ gates is id
 
 It is important to emphasize that the order in which the $C_z$ gates are applied to grow the cluster state is irrelevant, as all of these pair-wise operations commute. This feature will be exploited later when discussing parallelizability.
 
-\subsection{The Effects of Measurement on a Cluster State}
+\section{The Effects of Measurement on a Cluster State}
 
 As is clear from the form of the expressions of all cluster states
 illustrated thus far, measuring any node in the computational basis
@@ -232,7 +232,7 @@ The quantum information $\ket{\psi}$ has successfully been teleported to physica
 
 Briegel and Raussendorf show that any quantum logic circuit can be implemented on a cluster state, which demonstrates universality of the proposed scheme \cite{briegel2000measurements}. Nielsen \cite{nielsen108020universal} extended this result to no longer require coherent dynamics, instead relying on a method to teleport quantum gates, and he provided a concise algorithm to accomplish this. 
 
-\subsection{One-Way Quantum Computation}
+\section{One-Way Quantum Computation}
 All quantum computation schemes may be characterized by some combination of state preparation, unitary transformation of said states, and measurements on the same. Human-usable computational tasks necessarily require both input and final output to be classical information. The classical input information can influence the quantum computation in choice of initial states, the choice of unitary transforms (\ie algorithm), and the choice of measurement bases. The output is always a classical function of the measurement outcomes. In typical models for quantum computation, entire algorithms are implemented as a sequence of unitary transformations on a prepared quantum state (stored in qubits) of size appropriate to the problem, with a round of measurements as the final step. In such models, the unitary transformation stage is completely reversible. The splitting of the effective unitary matrix into sequential steps can be arbitrary and entirely dependent on physical hardware limitations. There is no correspondence with ``computational steps'' or ``clock cycles'' in the classical sense, as the quantum state of the computer in the midst of the unitary stages is inaccessible for diagnosis or debugging purposes. Any leakage of information into computer memory or environment constitutes decoherence, and will introduce errors in the computation.
 
 
@@ -262,7 +262,7 @@ The basic principle of cluster-state quantum computation is to effectively enact
             {\footnotesize \text{to the topologically similar circuit above.}}%
  \end{gather*}
 
-\subsubsection{Gates through teleportation}
+\subsection{Gates through teleportation}
 %\clr Xiaodi mentioned that gate application via teleportation was the motivation for cluster states to begin with. This is basically Maira's segment of the talk. Can she turn it into motivational prose? No she cannot. Writing is not her forte. 
 Quantum teleportation is a procedure by which quantum information can be transferred from one point to another via two classical bits of information if the sender and received previously shared an entangled state. It is useful for quantum computation however, this approach uses an entangled state as a resource but if that state has some error then teleportation fails. Gottesman and Chuang \cite{gottesman1999demonstrating} first showed that if the entangled state $\ket{\psi}$ can be replaced by $U\ket{\psi}$, such that $U$ is a non-trivial quantum operation. The corresponding output $U\ket{\alpha}$ is in the initial state $\ket{\psi}$ but with additional single-qubit Pauli operations $X$, $Y$, or $Z$. By simply reversing the Pauli operators the original state can be reconstructed. This teleportation scheme can be useful in applying other gates that are non-trivial. 
 
@@ -352,7 +352,7 @@ We observe that in the circuit given below the two highlighted boxes are both on
 \clbl
 
 \clbl
-\subsubsection{Applying a 2-qubit gate via 2-D cluster state}
+\subsection{Applying a 2-qubit gate via 2-D cluster state}
 
 The ability to implement gates of the form $HZ_\alpha$, and any 2-qubit controlled-phase gate, and to prepare arrays of $\ket{+}$ states as inputs, constitute a set of resources that is universal for quantum computation \cite{jozsa2006introduction}. In this subsection, we will demonstrate the use of two-dimensional cluster states to implement a $C_z$ gate between two input kets bearing quantum information $\ket{\phi_A}_A\ket{\phi_B}_B$ encoded in physical qubits labelled `A' and `B.' Here, $\ket{\phi_j} := \alpha_j\ket{0}+\beta_j\ket{1}$. For the scheme, we will use an I-shaped cluster states with six nodes, as shown in the figure. 
 
@@ -396,20 +396,68 @@ Note that even though the original cluster state had an edge between nodes $2$ a
 
 \noindent which is the desired result, up to overall Pauli transformations on the individual qubits. Thus, we have proven that a universal set of quantum operations can be implemented using the cluster state model.
 
-\subsubsection{Commutations and parallelizability}
+\subsection{Commutations and parallelizability}
 
-The previous subsections demostrated that although measurements in a specific layer (an ordered set of sequentially connected nodes) of a cluster state need to occur in a specific order, operations on different layers commute, and can therefore be interspersed. This, combined with the ability to delay the growth of the cluster state to occur just before the measurements catch up with the remaining nodes, offers several possibilities for process parallelization. Indeed, in the $2$-qubit gate example, the quantum information in one of the qubits was put into the system first, followed by some measurement-based teleporation, and the other input qubit was brought in later. We effectively managed to entangle the two qubits using only single-qubit measurements. This seems to indicate that all multi-qubit interactions can be pre-computed by setting the topological layout of the graph of the cluster state before any of the quantum information has even been introduced into the system. Thus, outside of the physical implementation considerations, cluster state model isomorphisms offer a new analysis tool that disentangles the quintessential influence of quantum formalism on the complexity class of various algorithms.
+The previous subsections demostrated that although measurements in a
+specific layer (an ordered set of sequentially connected nodes) of a
+cluster state need to occur in a specific order, operations on
+different layers commute, and can therefore be interspersed. This,
+combined with the ability to delay the growth of the cluster state to
+occur just before the measurements catch up with the remaining nodes,
+offers several possibilities for process parallelization.
+
+\begin{figure}[thb]
+  \centering
+  \includegraphics[width=\linewidth]{Images/parallel01.png}
+  \label{parallelfig1}
+  \caption{The controlled-phase operations commute with unitaries and measurements on other parts of the cluster state. This allows one to conserve and reuse physical resourses, as well as maintain coherence on smaller cluster sizes at any given time.}
+\end{figure}
 
 
-%\subsection{Gate Array Correspondence}
+Indeed, in the $2$-qubit gate example, the quantum information in one of the qubits was put into the system first, followed by some measurement-based teleporation, and the other input qubit was brought in later. We effectively managed to entangle the two qubits using only single-qubit measurements.
+
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=\linewidth]{Images/parallel02.png}
+  \label{parallelfig2}
+  \caption{X-measurements do not sever ``vertical'' links despite destruction of qubits. This allows different linear layers to be processed in any order.}
+\end{figure}
+
+This seems to indicate that all multi-qubit interactions can be pre-computed by setting the topological layout of the graph of the cluster state before any of the quantum information has even been introduced into the system. 
+
+%\section{Gate Array Correspondence}
 %In his analysis of the reducibility of 1WQC to the gate array model, Richard Jozsa gives a polynomial time algorithm to perform the conversion between the two computational models \cite{jozsa2006introduction}. 
 %>>>>>>> Stashed changes
 
-\subsection{Computational Power and Complexity}
+\subsection{3-D cluster states and topological fault tolerance}
+
+\section{Physical implementations}
+
+\subsection{Cluster states can't be ground states of Hamiltonians}
+
+\subsection{Two qubit operations on non-photonic qubits}
+
+\subsection{Nondeterministic two-qubit gates with linear optics}
+
+\subsection{Continuous-variable cluster states}
+
+\section{Computational Power and Complexity}
 The spacial layout of the graph representation of the cluster state plays a role in the computational power of that state. If a cluster state can be prepared linearly via the cascading $C_z$ technique mentioned above, it can be represented as a  ``one-dimensional'' graph (i.e., some graph $G=(V,E),\ \forall v\in V$, deg$(v)\leq 2$). Operations on a linearly prepared cluster state can be efficiently simulated on a classical computer in $O(n\log ^c (1/n))$, where $n$ is the initial number of qubits, and $c$ is the cost of floating point multiplication \cite{nielsen2006cluster}. Though the author consequently dismisses linearly prepared cluster states as a substrate for quantum computation, it would be interesting to know which class of problems they would be able to solve.
+
+\subsection{Gate array reductions}
+
+\clr EXPAND THIS WITH CIRCUITS AND END WITH CONJECTURE\clbl
 
 In general, measurement based models can be polynomial time reduced to the gate array model, and thus have the same power, but they are more easily parallelizable \cite{jozsa2006introduction}.\\
 The gate teleportation algorithm \cite{nielsen108020universal} has a time complexity of $O(\log (1/\epsilon))$, where $\epsilon$ is the failure probability.
+
+\subsection{Cluster graphs as an analysis tool}
+
+Outside of the physical implementation considerations, cluster state model isomorphisms offer a new analysis tool that disentangles the quintessential influence of quantum formalism on the complexity class of various algorithms.
+
+We have already shown in section IV, how any quantum algorithm that is expressible via a quantum gate-array circuit can equivalently be computed via single-qubit operations and measurements on a cluster state represented by a graph whose connectivity is topologically similar to the circuit diagram. This equivalence is purely geometric and is independent of the specific gates being applied (those are determined by the choice of measurements on the cluster state). This allows us to reduce entire classes of algorithms to specific types of graphs with designated input and output nodes for state-preparation and final-result measurements. We conjecture that the size of this graph has a bearing on the computational time of the entire class of algorithms. Furthermore, the multi-dimensional connectivity of said graphs embodies entangling operations, and serves to explicitly quantify any gains in complexity quantum offers over classical methods. And finally, the connectivity and feed-forward paths allows one to define modular operations that are independent of each other, and can help exploit all avenues for parallelization more effectively.
+
+\section{Conclusions and Acknowledgements}
 
 %To pad this out to ten pages, we can work on physical systems, limitations of linear optics, 3-D fault tolerant model, and complexity theory. If we REALLY have time, there may or may not be something to be done with qudits.
 
