@@ -540,11 +540,20 @@ We have already shown in section IV, how any quantum algorithm that is expressib
 
 Although the chief inspiration for cluster-state quantum computation was the ability to enact gates via teleportation, another motivation proved to be the extant experimental realizations of material qubits arranged in 2D arrays in physical space; be they cold atoms in optical lattices \cite{bloch2003}, or 2D ion traps \cite{rabchuk2006}, or other stationary qubits embedded in material substrates (quantum dots, superconducting qubits). The geometry of such systems encourages designs involving programming a quantum circuit into the device by literally ``etching'' the circuit diagram onto the 2D qubit array.
 
-\subsection{Cluster states can't be ground states of Hamiltonians}
-
-
+Given the prevalence of experiments on 2D lattices of physical qubits, it is natural to ask if it were possible to anneal such a system in an imposed, time-invariante potential such that the natural ground state of the corresponding Hamiltonian would be a desired cluster state. Nielsen \cite{nielsen2006cluster} provides an argument for why this is not possible for systems that have only two-body interactions (up to first order). The ``distance'' between any cluster state and the energy eigenstates of a Hamiltonian with two-body interactions of the connection-intended qubit pairs can be shown to be bounded below by a constant independent of anything except the Hilbert space dimension (\ie the cluster size).
 
 \subsection{Two qubit operations on non-photonic matter qubits}
+
+The above argument however, does not forbid the application of time-varying interaction potentials in order to facilitate inter-qubit entangling operations. In matter qubits that have physical proximity, this can be achieved by applying external electric and magnetic fields. For example, two neighboring quantum dots with one valence electron each, can be coupled via transverse electric and magnetic fields to implement a quantum XOR gate via an exchange mechanism \cite{divincenzo1999}. Figure \ref{qdotfig} illustrates the essential mechanism. The coupling fields are pulsed such that the net integral effect of the interaction results in a ``swap'' operator being applied. The temporal duration of the unitary time-evolution operator associated with the interaction naturally depends on the physical parameters in question, namely, the quantum dot size, mutual distance between them, peak field strength, etc.
+
+For trapped ions and neutral atoms, two-qubit gates can be enacted by coupling internal degrees of freedom in individual qubits (usually electron energy levels) with multi-qubit vibrational modes. For ions \cite{zoller1995}, the interaction is mediated by the Coulomb potential, whereas in neutral atoms \cite{lukin2000}, this could be due to dipole-dipole interactions between atoms excited to low-lying Rydberg states in constant electric fields. The state read-in, single-qubit manipulation, and state read-out are all carried out using coherent laser pulses of set power and durations. The durations are dictated by the natural Hamiltonian frequencies of the energy states being coupled, and the pulses are designated names such as $\pi$-pulses in the literature, depending on their effect in the Hilbert space.
+
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=\linewidth]{Images/qdot.png}
+  \caption{Figure from \protect\cite{divincenzo1999}. Two coupled quantum dots with one valence electron per dot (both confined to the $xy$ plane). Their spins are denoted by $\vec{S}_1$ and $\vec{S}_2$. The magnetic field $B$ is along the $z$-axis and the electric field $E$ is along the $x$-axis. The interaction term of the Hamiltonian reads $H_s(t) = J(t)\vec{S}_1\cdot\vec{S}_2$, where the exchange coupling $j$ between the spins is a function of $B$, $E$, and the interdot distance $2a$.}
+  \label{qdotfig}
+\end{figure}
 
 \subsection{Nondeterministic two-qubit gates with linear optics}
 
