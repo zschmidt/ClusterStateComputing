@@ -566,8 +566,31 @@ As discussed in the previous section, cluster states are constructed by preparin
 
 \subsection{Continuous-variable cluster states}
 
+While single-photons have sufficent degrees of freedom to afford storage of quantum information, the difficultly of causing multiple photons to efficiently interact with each other limits their potential. However, the interaction barrier can be circumvented by relying on cavities, and the quadrature space of optical modes for information storage. Squeezed coherent states of light \cite{lvovsky2014} are specific linear combinations of photon-number states in a designated set of optical modes. In quadrature space, they are expressed as Gaussian functions with well defined axes of squeezing. The widths of the major and minor axes refer to the quantum uncertainty in two canonical (non-commuting) quadrature expectation values. The uncertainties are saturated to the Heisenberg limit, but the asymmetry results in one quadrature uncertainty having been drastically reduced at the expense of the other.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Images/squeezed01.png}
+  \caption{Figure from \protect\cite{furusawa2013}. Yokoyama et al use (a) two separate optical parametric oscillators (OPOs) as sources of squeezed pulses of light, and mix them in an unbalanced Mach-Zehnder interferometer to produce (b) a long, dual-rail style squeezed state. 50:50 BS, balanced beamsplitter; HD, homodyne detector; LO, local oscillator.}
+  \label{squeezedfig1}
+\end{figure*}
+
+Quadratures make for a perfectly acceptable Hilbert space of infinite dimension. They can be entangled, and by extension, can be used as a quantum resource to teleport other continuous variable states. Multiple optical modes are generally squeezed via a process of spontaneous parametric down conversion (SPDC), where in a coherent laser pump field of a higher frequency interacts with a bulk, nonlinear material (typically a down-conversion $\chi^{(2)}$ crystal or crystalline waveguide) to produce pairs of correlated photons at a lower frequency. If this process were to occur inside an optical cavity whose modes are resonant at the emitted field frequencies, then the interaction is no longer perturbative, and will result in significant squeezing. Such sources are called optical parametric oscillators (OPO).
+
+Multiple optical modes (defined by beam-momentum vectors) may then be deterministically entangled in quadrature space via use of linear optical elements such as simple beam splitters. Yokoyama et al \cite{furusawa2013} exploited this to create a lengthy continuous variable cluster state encoded in quadratue space (figure \ref{squeezedfig1}). An optical cavity has multiple resonant modes at different frequencies, and a sufficiently broadband SPDC process can squeeze many of them in pairs. By using two pumps at different polarizations and slightly offset frequencies, Chen et al \cite{pfister2014} managed to generate the same lengthy cluster state, with the time-multiplexed axis having been replaced by a discrete frequency variable in some spiral magnitude order (figute \ref{squeezedfig2}).
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\linewidth]{Images/squeezed02.png}
+  \caption{Figure from \protect\cite{pfister2014}. Chen et al pumped an OPO with two pumps with perpendicular polarizations (Z and Y) and offset frequencies to couple th squeezing of intertwined pairs of (a) optical cavity-resonant modes. These are then mixed on a single beamsplitter to produce (b) a dual-rail style long cluster state. The horizontal axis here is the cavity resonant frequency label ordered in a spiral permutation.}
+  \label{squeezedfig2}
+\end{figure}
+
+Continuous variable cluster states cannot be used for quantum computation if all our manipulation and measurement operations are so-called ``Gaussian'' in nature. For optical quadrature squeezed cluster states, measurement in the photon-number basis is a non-Gaussian operation, and might be sufficient to break the constraint. Such optical cluster states, however, are by definition travelling at the speed of light, and barring a sophisticated quantum memory solution, will require computational steps to occur on the fly using ultrafast homodyne detection setups.
 
 \section{Conclusions and Acknowledgements}
+
+
 
 %To pad this out to ten pages, we can work on physical systems, limitations of linear optics, 3D fault tolerant model, and complexity theory. If we REALLY have time, there may or may not be something to be done with qudits.
 
