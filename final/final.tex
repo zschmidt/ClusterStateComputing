@@ -69,7 +69,7 @@ Consider a set of qubits $\mathcal{C}$ labeled by an integer index, that are dis
 
 \noindent for a family of operators $K_a = X^{(a)}\bigotimes_{\gamma\in\Gamma(a)}Z^{(\gamma)}$, $a\in\mathcal{C}$, where $\Gamma(a)$ is the set of indices of all qubits in the ``adjacent neighborhood'' of $a$. The matrix $X^{(a)}$ is used to denote an $X$ operation on qubit-$a$, and so on. The eigenvalue $\kappa = \pm 1$ is determined by the specific occupation pattern of the neighboring sites. 
 
-\subsection{Preparation of Linear Cluster State}
+\subsection{Preparation of linear cluster state}
 
 
 Intuitively, a cluster state can be thought of as a graph
@@ -151,7 +151,7 @@ We can then analyze the state of the qubits at each of the dotted lines:
 The action of the $C_z$ gate in the computational basis can be seen to be $\ket{x,y} \to (-1)^{xy}\ket{x,y}$. Cluster states of arbitrary shape and connectivity can similarly be prepared via the recursive use of the Hadamard gate and two-qubit fusion operations \cite{browne2005efficient,gerald2006efficient}. 
 
 
-\subsection{Preparation of T-Shaped Cluster State}
+\subsection{Preparation of T-shaped cluster state}
 
 A cluster state without the limitation on the degree of a node allows us to build \textit{nonlinear} cluster states:
 %That vertical line bugged me
@@ -448,7 +448,7 @@ In their scheme, a 3D cluster state consisting of a lattice of qubits is `carved
 \section{Computational Power and Complexity}
 The spacial layout of the graph representation of the cluster state plays a role in the computational power of that state. If a cluster state can be prepared linearly via the cascading $C_z$ technique mentioned above, it can be represented as a  ``one-dimensional'' graph (i.e., some graph $G=(V,E),\ \forall v\in V$, deg$(v)\leq 2$). Operations on a linearly prepared cluster state can be efficiently simulated on a classical computer in $O(n\log ^c (1/n))$, where $n$ is the initial number of qubits, and $c$ is the cost of floating point multiplication \cite{nielsen2006cluster}. Though the author consequently dismisses linearly prepared cluster states as a substrate for quantum computation, it would be interesting to know which class of problems they would be able to solve.
 
-\subsection{Gate Array Reductions}
+\subsection{Gate array reductions}
 
 
 With only a bit of construction, it can be seen that the cluster state model is polynomially reducible to the gate array model, and the converse is also true. To see this, we first need to create a definition of the standard gate array model:
@@ -482,7 +482,7 @@ We can now generalize this definition to allow measurements along the way with s
 
 Now, any future gates that depended on the measurement outcome are replaced by a corresponding controlled operation, controlled by the state of $A$. It is therefore clear that this process converts any non-standard circuit to the standard gate array model.
 
-\subsubsection{Reducing Cluster State to Gate Array}
+\subsubsection{Reducing cluster state to gate array}
 The above technique shows how a cluster state circuit is converted into an equivalent (standard) gate array. In addition to building the required cluster state using an array of $C_Z$ gates acting on $\ket{+}$ states, we introduce an ancilla $A$ for each 1-qubit measurement. For each $M(\theta)$ measurement we introduce an extra gate $W^\dagger (\theta)$ which transforms the $M(\theta)$ basis to the standard basis. 
 
 \begin{figure}[H]
@@ -508,11 +508,11 @@ The above technique shows how a cluster state circuit is converted into an equiv
 Thus, to convert the measurement-based cluster state model to the gate array model requires polynomially more gates and qubits (one per measurement).
 
 
-\subsubsection{Reducing Gate Array to Cluster State}
+\subsubsection{Reducing gate array to cluster state}
 To see how an arbitrary gate array can be converted to the cluster state model, we first need some universal gate set $G$ (for information on what this set might contain, see \cite{shi2002both}). For each gate within this set, we can specify some number which represents the number of measurements that a 1WQC would have to perform to get the same outcome. These numbers can then be used to partially order a set, allowing us to pick $K$, which represents the maximum number of measurements required to simulate any single gate from the set. From this, we can see that even if some circuit contained only this ``most expensive'' gate, the number of additional qubits and gates would be a factor of $K$ (polynomial).
 
 
-\subsection{Quantum Layers}
+\subsection{Quantum layers}
 The above reduction strategy provides a nice way of categorizing a given quantum algorithm into its classical and quantum parts:
 
 \begin{itemize}
@@ -562,26 +562,26 @@ A common feature of all such physical systems is the profusion of degrees of fre
 Matter qubits are promising candidates for quantum computing but they are subject to decoherence. Photons, on the other hand, do no suffer from decoherence effects because they weakly interact with the matter. However, multi-qubit operations on photons are much harder because of this weak interaction. A new approach fuses photon states into entangled states via projective measurements. With this method, nondeterministic multi-qubit gates can be applied to photons. KLM \cite{klm2000} showed that this method can be used for efficient quantum computation using linear optical elements only. It can be carried over to preparation of cluster states. 
 
 The second section of this paper discussed how to construct a T-shaped cluster state by entangling qubits 2 and 4. A linear cluster state can be grown on qubit 4 to create a 2D cluster state.  However, this method cannot be easily applied to photons with high fidelity. Browne and Rudolph \cite{browne2005efficient} first proposed a scheme to build L-shaped clusters using two different fusion types. The L-shaped structures would provide an easy way to construct 2D arrays. 
-  \begin{figure*}[t]
+  \begin{figure}[t]
    \centering
-    \includegraphics[width=0.4\linewidth]{Images/fusiontypes.png}
+    \includegraphics[width=\linewidth]{Images/fusiontypes.png}
     \caption{Figure from \protect\cite{browne2005efficient}. (a) Connceting the end qubits of two linear cluster states using type-I fusion. (b) Middle qubits are fused to create a cross in the cluster state.}
-  \end{figure*}
+  \end{figure}
 In 2006, Gilbert et. al. \cite{gerald2006efficient} proposed a simpler scheme which used local unitaries and type-I fusion operations to create a two-dimensional cluster state.  By only utilizing type-I fusion Gilbert et. al. demonstrated that the cost of creating an entangled state was reduced from 34 bonds to 2 bonds. Type-I fusion takes the end qubits of two separate linear clusters and makes a measurement. The fusion of the two linear clusters would be determined by the number of photons that were measured. If one photon was measured the two clusters would be joined with $(n+m-1)$ qubits, or the two clusters would remain separate. If the process was not successful it could be done again but each cluster was smaller by one qubit. 
 
-   \begin{figure*}[h]
+   \begin{figure}[h]
     \centering
-     \includegraphics[width=0.5\linewidth]{Images/lshaped.png}
+     \includegraphics[width=0.9\linewidth]{Images/lshaped.png}
      \caption{Figure from \protect\cite{gerald2006efficient}. (a) Hamdamard gate applied to qubits 2 and 3. (b) The operations prepare this box state which entangles qubits 1 and 4. (c) Once the box is formed a measurement is made on qubit 2 to break the bonds and create the L-shaped structure.}
-   \end{figure*}
+   \end{figure}
    
 The first photonic cluster state was created by Zhang et. al. in 2005 \cite{zhang2006experimental}. This three qubit linear cluster was created by generating pairs of entangled photons and using Type-I fusion between photons in paths 2 and 3. The final entangled state was measured using photodetectors and verified with the three particle Bell inequality. 
 
- \begin{figure*}[h]
+ \begin{figure}[h]
     \centering
-     \includegraphics[width=0.5\linewidth]{Images/experiment.png}
+     \includegraphics[width=\linewidth]{Images/experiment.png}
      \caption{Figure from \protect\cite{zhang2006experimental}. Two pairs of entangled photons are created via spontaneous parametric down conversion. Opposite pairs are sent through polarizing beam splitters to do type-I fusion and then detected to verify the state.}
-   \end{figure*}
+   \end{figure}
 
 
 \subsection{Continuous-variable cluster states}
