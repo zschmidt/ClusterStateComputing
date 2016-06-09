@@ -201,7 +201,7 @@ from the cluster. This is accomplished by measuring the target qubit
 in the computational basis, and performing appropriate unitary
 rotations on its former neighbors based on the measurement outcome.
 
-The effect of an $X$-measurement (\ie a computational basis measurement following a Hadamard transformation) on any node of the cluster state is much more involved. This is best illustrated when demonstrating the use of a linear cluster state as a wire for quantum information. For this exercise, we start with a linear cluster state with three nodes (labeled $1$, $2$, and $3$). A single qubit of quantum information $\ket{\psi} = \alpha\ket{0}+\beta\ket{1}$ is stored in a physical qubit labelled $0$ as illustrated below.
+The effect of an $X$-measurement (\ie a computational basis measurement following a Hadamard transformation) on any node of the cluster state is much more involved. This is best illustrated when demonstrating the use of a linear cluster state as a wire for quantum information. For this exercise, we start with a linear cluster state with three nodes (labeled $1$, $2$, and $3$). A single qubit of quantum information $\ket{\psi} = \alpha\ket{0}+\beta\ket{1}$ is stored in a physical qubit labeled $0$ as illustrated below.
 
 \begin{gather*}
   \Qcircuit @C=1em @R=1em{
@@ -354,7 +354,7 @@ We observe that in the circuit given below the two highlighted boxes are both on
 \clbl
 \subsection{Applying a 2-qubit gate via 2D cluster state}
 
-The ability to implement gates of the form $HZ_\alpha$, and any 2-qubit controlled-phase gate, and to prepare arrays of $\ket{+}$ states as inputs, constitute a set of resources that is universal for quantum computation \cite{jozsa2006introduction}. In this subsection, we will demonstrate the use of two-dimensional cluster states to implement a $C_z$ gate between two input kets bearing quantum information $\ket{\phi_A}_A\ket{\phi_B}_B$ encoded in physical qubits labelled `A' and `B.' Here, $\ket{\phi_j} := \alpha_j\ket{0}+\beta_j\ket{1}$. For the scheme, we will use an I-shaped cluster states with six nodes, as shown in the figure. 
+The ability to implement gates of the form $HZ_\alpha$, and any 2-qubit controlled-phase gate, and to prepare arrays of $\ket{+}$ states as inputs, constitute a set of resources that is universal for quantum computation \cite{jozsa2006introduction}. In this subsection, we will demonstrate the use of two-dimensional cluster states to implement a $C_z$ gate between two input kets bearing quantum information $\ket{\phi_A}_A\ket{\phi_B}_B$ encoded in physical qubits labeled `A' and `B.' Here, $\ket{\phi_j} := \alpha_j\ket{0}+\beta_j\ket{1}$. For the scheme, we will use an I-shaped cluster states with six nodes, as shown in the figure. 
 
 \newcommand{\bertLine}{\ar@{-}[]+<0em,-2.3em>;[d]+<0em,2.3em>}
 \begin{gather*}
@@ -374,7 +374,7 @@ The procedure would be to first entangle the input quantum information qubits in
 
 \noindent where $Z_{2}$ is being applied on qubit $2$.
 
-The single qubit mesurements have to be performed in the order ($M^{(A)}_X, M^{(1)}_X, M^{(2)}_X$) and ($M^{(B)}_X, M^{(5)}_B, M^{(4)}_X$). These two subsets are parallelizable, and one could perform the measurements \{$M^{(A)}_X, M^{(B)}_X$\} in parallel, and then \{$M^{(1)}_X, M^{(5)}_X$\}, and so on. But here, we will introduce the concept of layers of measurement, by performing all bottom row operations at once (including input entanglement), and then working on the top row.
+The single qubit measurements have to be performed in the order ($M^{(A)}_X, M^{(1)}_X, M^{(2)}_X$) and ($M^{(B)}_X, M^{(5)}_B, M^{(4)}_X$). These two subsets are parallelizable, and one could perform the measurements \{$M^{(A)}_X, M^{(B)}_X$\} in parallel, and then \{$M^{(1)}_X, M^{(5)}_X$\}, and so on. But here, we will introduce the concept of layers of measurement, by performing all bottom row operations at once (including input entanglement), and then working on the top row.
 
 Enacting the gate $C_z^{(B,5)}$ on the initial state, followed by measurements $M^{(B)}_X, M^{(5)}_B, M^{(4)}_X$ yields random outcomes $m_B, m_5, m_4 \in \{0,1\}$ and  gives us the state
 
@@ -398,23 +398,17 @@ Note that even though the original cluster state had an edge between nodes $2$ a
 
 \subsection{Commutations and parallelizability}
 
-The previous subsections demostrated that although measurements in a
-specific layer (an ordered set of sequentially connected nodes) of a
-cluster state need to occur in a specific order, operations on
-different layers commute, and can therefore be interspersed. This,
-combined with the ability to delay the growth of the cluster state to
-occur just before the measurements catch up with the remaining nodes,
-offers several possibilities for process parallelization.
+The previous subsections demonstrated that although measurements in a specific layer (an ordered set of sequentially connected nodes) of a cluster state need to occur in a specific order, operations on different layers commute, and can therefore be interspersed. This, combined with the ability to delay the growth of the cluster state to occur just before the measurements catch up with the remaining nodes, offers several possibilities for process parallelization.
 
 \begin{figure}[thb]
   \centering
   \includegraphics[width=\linewidth]{Images/parallel01.png}
   \label{parallelfig1}
-  \caption{The controlled-phase operations commute with unitaries and measurements on other parts of the cluster state. This allows one to conserve and reuse physical resourses, as well as maintain coherence on smaller cluster sizes at any given time.}
+  \caption{The controlled-phase operations commute with unitaries and measurements on other parts of the cluster state. This allows one to conserve and reuse physical resources, as well as maintain coherence on smaller cluster sizes at any given time.}
 \end{figure}
 
 
-Indeed, in the $2$-qubit gate example, the quantum information in one of the qubits was put into the system first, followed by some measurement-based teleporation, and the other input qubit was brought in later. We effectively managed to entangle the two qubits using only single-qubit measurements.
+Indeed, in the $2$-qubit gate example, the quantum information in one of the qubits was put into the system first, followed by some measurement-based teleportation, and the other input qubit was brought in later. We effectively managed to entangle the two qubits using only single-qubit measurements.
 
 \begin{figure}[hbt]
   \centering
@@ -540,7 +534,7 @@ We have already shown in section IV, how any quantum algorithm that is expressib
 
 Although the chief inspiration for cluster-state quantum computation was the ability to enact gates via teleportation, another motivation proved to be the extant experimental realizations of material qubits arranged in 2D arrays in physical space; be they cold atoms in optical lattices \cite{bloch2003}, or 2D ion traps \cite{rabchuk2006}, or other stationary qubits embedded in material substrates (quantum dots, superconducting qubits). The geometry of such systems encourages designs involving programming a quantum circuit into the device by literally ``etching'' the circuit diagram onto the 2D qubit array.
 
-Given the prevalence of experiments on 2D lattices of physical qubits, it is natural to ask if it were possible to anneal such a system in an imposed, time-invariante potential such that the natural ground state of the corresponding Hamiltonian would be a desired cluster state. Nielsen \cite{nielsen2006cluster} provides an argument for why this is not possible for systems that have only two-body interactions (up to first order). The ``distance'' between any cluster state and the energy eigenstates of a Hamiltonian with two-body interactions of the connection-intended qubit pairs can be shown to be bounded below by a constant independent of anything except the Hilbert space dimension (\ie the cluster size).
+Given the prevalence of experiments on 2D lattices of physical qubits, it is natural to ask if it were possible to anneal such a system in an imposed, time-invariant potential such that the natural ground state of the corresponding Hamiltonian would be a desired cluster state. Nielsen \cite{nielsen2006cluster} provides an argument for why this is not possible for systems that have only two-body interactions (up to first order). The ``distance'' between any cluster state and the energy eigenstates of a Hamiltonian with two-body interactions of the connection-intended qubit pairs can be shown to be bounded below by a constant independent of anything except the Hilbert space dimension (\ie the cluster size).
 
 \subsection{Two qubit operations on non-photonic matter qubits}
 
@@ -555,7 +549,7 @@ For trapped ions and neutral atoms, two-qubit gates can be enacted by coupling i
   \label{qdotfig}
 \end{figure}
 
-A common feature of all such physical systems is the profusion of degrees of freedom available for manipulation. The storage of quantum information typically occurs within well chosen, two-level subspaces of the full Hibert space, which are local (non-interacting) and relatively decoherence free. All multi-qubit operations, however, occur in higher-energy, nonlocal regions of the Hilbert space. The storage subspaces and the interaction subspaces are temporarily coupled to each other via externally applied potentials for the necessary duration for specific types of interactions to occur.
+A common feature of all such physical systems is the profusion of degrees of freedom available for manipulation. The storage of quantum information typically occurs within well chosen, two-level subspaces of the full Hilbert space, which are local (non-interacting) and relatively decoherence free. All multi-qubit operations, however, occur in higher-energy, nonlocal regions of the Hilbert space. The storage subspaces and the interaction subspaces are temporarily coupled to each other via externally applied potentials for the necessary duration for specific types of interactions to occur.
 
 \subsection{Nondeterministic two-qubit gates with linear optics}
 
@@ -570,7 +564,7 @@ The second section of this paper discussed how to construct a T-shaped cluster s
      \includegraphics[width=0.9\linewidth]{Images/lshaped.png}
      \caption{Figure from \protect\cite{gerald2006efficient}. (a) Hamdamard gate applied to qubits 2 and 3. (b) The operations prepare this box state which entangles qubits 1 and 4. (c) Once the box is formed a measurement is made on qubit 2 to break the bonds and create the L-shaped structure starting from a linear chain.}    
   \end{figure}
-In 2006, Gilbert et. al. \cite{gerald2006efficient} proposed a simpler scheme which used local unitaries and type-I fusion operations alone, to create a two-dimensional cluster state. By only utilizing type-I fusion Gilbert et. al. demonstrated that the cost of creating an entangled state was reduced from 34 bonds to 2 bonds. Type-I fusion takes the end qubits of two separate linear clusters and makes a projective measurement. If the opeartions succeeds (with probability $0.5$, subject to efficient photon detection and number resolution), the two clusters would be joined into a single linear chain with $(n+m-1)$ qubits. If the fusion operation were to fail, the size of each participating cluster would be reduced by one qubit (or split, if fusion was attempted in the middle), and the fusion will have to be reattempted. 
+In 2006, Gilbert et. al. \cite{gerald2006efficient} proposed a simpler scheme which used local unitaries and type-I fusion operations alone, to create a two-dimensional cluster state. By only utilizing type-I fusion Gilbert et. al. demonstrated that the cost of creating an entangled state was reduced from 34 bonds to 2 bonds. Type-I fusion takes the end qubits of two separate linear clusters and makes a projective measurement. If the operations succeeds (with probability $0.5$, subject to efficient photon detection and number resolution), the two clusters would be joined into a single linear chain with $(n+m-1)$ qubits. If the fusion operation were to fail, the size of each participating cluster would be reduced by one qubit (or split, if fusion was attempted in the middle), and the fusion will have to be reattempted. 
 
 The first photonic cluster state was created by Zhang et. al. in 2005 \cite{zhang2006experimental}. This three qubit linear cluster was created by generating pairs of entangled photons and using Type-I fusion between photons in paths 2 and 3. The final entangled state was measured using photodetectors and verified with the three particle Bell inequality. 
 
@@ -583,7 +577,7 @@ The first photonic cluster state was created by Zhang et. al. in 2005 \cite{zhan
 
 \subsection{Continuous-variable cluster states}
 
-While single-photons have sufficent degrees of freedom to afford storage of quantum information, the difficultly of causing multiple photons to efficiently interact with each other limits their potential. However, the interaction barrier can be circumvented by relying on cavities, and the quadrature space of optical modes for information storage. Squeezed coherent states of light \cite{lvovsky2014} are specific linear combinations of photon-number states in a designated set of optical modes. In quadrature space, they are expressed as Gaussian functions with well defined axes of squeezing. The widths of the major and minor axes refer to the quantum uncertainty in two canonical (non-commuting) quadrature expectation values. The uncertainties are saturated to the Heisenberg limit, but the asymmetry results in one quadrature uncertainty having been drastically reduced at the expense of the other.
+While single-photons have sufficient degrees of freedom to afford storage of quantum information, the difficultly of causing multiple photons to efficiently interact with each other limits their potential. However, the interaction barrier can be circumvented by relying on cavities, and the quadrature space of optical modes for information storage. Squeezed coherent states of light \cite{lvovsky2014} are specific linear combinations of photon-number states in a designated set of optical modes. In quadrature space, they are expressed as Gaussian functions with well defined axes of squeezing. The widths of the major and minor axes refer to the quantum uncertainty in two canonical (non-commuting) quadrature expectation values. The uncertainties are saturated to the Heisenberg limit, but the asymmetry results in one quadrature uncertainty having been drastically reduced at the expense of the other.
 
 \begin{figure*}[t]
   \centering
@@ -605,7 +599,7 @@ Multiple optical modes (defined by beam-momentum vectors) may then be determinis
 
 Continuous variable cluster states cannot be used for quantum computation if all our manipulation and measurement operations are so-called ``Gaussian'' in nature \cite{bartlett2002}. For optical quadrature squeezed cluster states, measurement in the photon-number basis is a non-Gaussian operation, and might be sufficient to break the constraint. Such optical cluster states, however, are by definition travelling at the speed of light, and barring a sophisticated quantum memory solution, will require computational steps to occur on the fly using ultrafast homodyne detection setups.
 
-\section{Conclusions and Acknowledgements}
+\section{Conclusions and Acknowledgments}
 
 In this article, we have defined quantum cluster states, and have motivated their use for performing universal quantum computation using single-qubit measurements. We briefly reviewed their preparation, and the effects of measurements on them. We demonstrated their equivalence to traditional gate array models of quantum computation and enumerated certain advantages, namely, parallelization, and use as an analysis tool for complexity studies. We further presented some experimental implementations and caveats in various physical systems.
 
